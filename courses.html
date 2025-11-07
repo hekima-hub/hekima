@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Hekima Hub</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --blue: #1a73e8;
+            --maroon: #8b0000;
+            --white: #ffffff;
+            --green: #34a853;
+            --orange: #ff9800;
+            --light-blue: #e8f0fe;
+            --light-maroon: #f5e6e6;
+            --dark-blue: #0d47a1;
+            --dark-maroon: #5a0000;
+            --gray: #5f6368;
+            --light-gray: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-maroon {
+            background-color: var(--maroon);
+        }
+        
+        .btn-maroon:hover {
+            background-color: var(--dark-maroon);
+        }
+        
+        .btn-green {
+            background-color: var(--green);
+        }
+        
+        .btn-orange {
+            background-color: var(--orange);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+            line-height: 1.2;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--maroon);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: var(--gray);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        nav ul li a:hover {
+            color: var(--blue);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        /* Side Menu for Mobile */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 4rem 1.5rem 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .side-menu.open {
+            right: 0;
+        }
+        
+        .side-menu ul {
+            list-style: none;
+        }
+        
+        .side-menu ul li {
+            margin-bottom: 1rem;
+        }
+        
+        .side-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .side-menu ul li a:hover {
+            color: var(--blue);
+        }
+        
+        .side-menu .close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(to right, var(--blue), var(--maroon));
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Course Categories */
+        .course-categories {
+            background-color: var(--white);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-header {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--blue);
+        }
+        
+        .category-content {
+            padding: 1.5rem;
+        }
+        
+        .category-content h3 {
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+        }
+        
+        .category-content p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .courses-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .courses-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .courses-list li:before {
+            content: '•';
+            color: var(--blue);
+            position: absolute;
+            left: 0;
+        }
+        
+        .courses-list a {
+            text-decoration: none;
+            color: var(--gray);
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .courses-list a:hover {
+            color: var(--blue);
+        }
+        
+        /* All Courses Section */
+        .all-courses {
+            background-color: var(--light-blue);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .course-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .course-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .course-content h3 {
+            color: var(--dark-blue);
+            margin-bottom: 0.75rem;
+        }
+        
+        .course-content p {
+            margin-bottom: 1.25rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(to right, var(--blue), var(--maroon));
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta h2::after {
+            background-color: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--orange);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.8rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .page-header {
+                padding: 100px 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 220px;
+                margin-bottom: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-menu {
+                width: 260px;
+            }
+            
+            .logo img {
+                height: 50px;
+            }
+            
+            .categories-grid,
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Side Menu for Mobile -->
+    <div class="side-menu" id="side-menu">
+        <div class="close-btn" id="close-menu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="courses.html" class="active">Courses</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
+        </ul>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Courses</h1>
+            <p>Explore our comprehensive range of courses designed to help you develop in-demand skills and advance your career.</p>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="course-categories">
+        <div class="container">
+            <h2>Course Categories</h2>
+            
+            <div class="categories-grid">
+                <!-- Business & Finance -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Business & Finance</h3>
+                    </div>
+                    <div class="category-content">
+                        <p>Master business strategies, financial management, and leadership skills to excel in today's competitive business environment.</p>
+                        
+                        <ul class="courses-list">
+                            <li><a href="financial-management.html">Financial Management</a></li>
+                            <li><a href="effective-leadership.html">Effective Leadership</a></li>
+                            <li><a href="business-strategy.html">Business Strategy</a></li>
+                            <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        </ul>
+                        
+                        <a href="business-finance-courses.html" class="btn btn-maroon">View All Business Courses</a>
+                    </div>
+                </div>
+                
+                <!-- Technology & IT -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Technology & IT</h3>
+                    </div>
+                    <div class="category-content">
+                        <p>Develop technical skills in programming, data analysis, and IT management to thrive in the digital economy.</p>
+                        
+                        <ul class="courses-list">
+                            <li><a href="data-entry.html">Data Entry Mastery</a></li>
+                            <li><a href="web-development.html">Web Development</a></li>
+                            <li><a href="data-analytics.html">Data Analytics</a></li>
+                            <li><a href="cybersecurity.html">Cybersecurity Fundamentals</a></li>
+                        </ul>
+                        
+                        <a href="technology-courses.html" class="btn">View All Tech Courses</a>
+                    </div>
+                </div>
+                
+                <!-- Professional Development -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Professional Development</h3>
+                    </div>
+                    <div class="category-content">
+                        <p>Enhance your professional skills with courses focused on communication, project management, and career advancement.</p>
+                        
+                        <ul class="courses-list">
+                            <li><a href="communication-skills.html">Effective Communication</a></li>
+                            <li><a href="project-management.html">Project Management</a></li>
+                            <li><a href="time-management.html">Time Management</a></li>
+                            <li><a href="public-speaking.html">Public Speaking</a></li>
+                        </ul>
+                        
+                        <a href="professional-development-courses.html" class="btn btn-green">View All Professional Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Courses Section -->
+    <section class="all-courses">
+        <div class="container">
+            <h2>All Courses</h2>
+            
+            <div class="courses-grid">
+                <!-- Data Entry Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Data Entry Mastery</h3>
+                        <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy in today's data-driven workplace.</p>
+                        <a href="data-entry.html" class="btn btn-green">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Financial Management Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Financial Management</h3>
+                        <p>Master budgeting, investment strategies, and financial analysis to make informed decisions for personal and business finances. Learn from industry experts.</p>
+                        <a href="financial-management.html" class="btn btn-maroon">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 8 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Effective Leadership Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Effective Leadership</h3>
+                        <p>Develop essential leadership skills, team management techniques, and communication strategies to inspire and guide others toward shared goals.</p>
+                        <a href="effective-leadership.html" class="btn btn-orange">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 10 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Development Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Web Development</h3>
+                        <p>Learn HTML, CSS, JavaScript and modern frameworks to build responsive websites and web applications from scratch.</p>
+                        <a href="web-development.html" class="btn">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 12 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Analytics Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Data Analytics</h3>
+                        <p>Learn to collect, process, and analyze data to derive insights and support decision-making processes in business contexts.</p>
+                        <a href="data-analytics.html" class="btn btn-green">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 10 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Management Course -->
+                <div class="course-card">
+                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    </div>
+                    <div class="course-content">
+                        <h3>Project Management</h3>
+                        <p>Master project planning, execution, and monitoring techniques to deliver successful projects on time and within budget.</p>
+                        <a href="project-management.html" class="btn btn-maroon">View Course</a>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 8 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Learning?</h2>
+            <p>Join thousands of students who have transformed their careers with Hekima Hub's expert-led courses.</p>
+            <a href="https://classroom.google.com" target="_blank" class="btn">Access E-Learning Platform</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hekima Hub</h3>
+                    <p style="color: #bbb; font-size: 0.85rem;">Empowering students through personalized education and expert guidance to achieve academic and career success.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="data-entry.html">Data Entry Mastery</a></li>
+                        <li><a href="financial-management.html">Financial Management</a></li>
+                        <li><a href="effective-leadership.html">Effective Leadership</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="project-management.html">Project Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Street, City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@hekima-hub.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Hekima Hub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenu = document.getElementById('mobile-menu');
+        const sideMenu = document.getElementById('side-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.getElementById('overlay');
+        
+        // Toggle side menu
+        mobileMenu.addEventListener('click', function() {
+            sideMenu.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close side menu
+        function closeSideMenu() {
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        closeMenu.addEventListener('click', closeSideMenu);
+        overlay.addEventListener('click', closeSideMenu);
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.side-menu a').forEach(link => {
+            link.addEventListener('click', closeSideMenu);
+        });
+    </script>
+</body>
+</html>
