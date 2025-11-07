@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Hekima Hub</title>
     <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <meta name="msapplication-tap-highlight" content="no">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Global Styles */
         :root {
@@ -39,6 +50,7 @@
             line-height: 1.5;
             overflow-x: hidden;
             font-family: 'Roboto', sans-serif;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
         }
         
         .container {
@@ -61,6 +73,7 @@
             font-size: 0.95rem;
             transition: all 0.3s ease;
             font-family: 'Roboto', sans-serif;
+            text-align: center;
         }
         
         .btn:hover {
@@ -86,7 +99,7 @@
         }
         
         section {
-            padding: 60px 0;
+            padding: 40px 0;
         }
         
         h1, h2, h3, h4 {
@@ -98,14 +111,14 @@
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: 1.75rem;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             position: relative;
             font-weight: 600;
         }
@@ -122,13 +135,13 @@
         }
         
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
         }
         
         p {
             margin-bottom: 1rem;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--gray);
             font-weight: 400;
             line-height: 1.6;
@@ -157,7 +170,7 @@
         }
         
         .logo img {
-            height: 60px;
+            height: 50px;
             transition: transform 0.3s ease;
         }
         
@@ -178,7 +191,7 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1rem;
             transition: color 0.3s ease;
             position: relative;
             font-family: 'Roboto', sans-serif;
@@ -282,10 +295,13 @@
         
         /* Page Header */
         .page-header {
-            background: linear-gradient(to right, var(--blue), var(--maroon));
+            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 120px 0 60px;
             text-align: center;
+            padding: 120px 0 60px;
+            margin-top: 80px; /* Account for fixed header */
         }
         
         .page-header h1 {
@@ -297,7 +313,7 @@
             color: rgba(255,255,255,0.9);
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         /* Course Categories */
@@ -307,38 +323,38 @@
         
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
         
         .category-card {
             background-color: var(--white);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eee;
         }
         
         .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .category-header {
-            padding: 1.5rem;
+            padding: 1.25rem;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
         
         .category-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--blue);
         }
         
         .category-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
         
         .category-content h3 {
@@ -347,19 +363,19 @@
         }
         
         .category-content p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         
         .courses-list {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         
         .courses-list li {
             margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
+            padding-left: 1.25rem;
             position: relative;
         }
         
@@ -375,6 +391,7 @@
             color: var(--gray);
             transition: color 0.3s ease;
             font-weight: 500;
+            font-size: 0.9rem;
         }
         
         .courses-list a:hover {
@@ -388,15 +405,15 @@
         
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
         
         .course-card {
             background-color: var(--white);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eee;
         }
@@ -407,7 +424,7 @@
         }
         
         .course-img {
-            height: 180px;
+            height: 160px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -424,7 +441,7 @@
         }
         
         .course-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
         
         .course-content h3 {
@@ -435,7 +452,7 @@
         .course-content p {
             margin-bottom: 1.25rem;
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         
         .course-meta {
@@ -451,7 +468,7 @@
             background: linear-gradient(to right, var(--blue), var(--maroon));
             color: white;
             text-align: center;
-            padding: 4rem 0;
+            padding: 3rem 0;
         }
         
         .cta h2 {
@@ -466,7 +483,7 @@
         .cta p {
             max-width: 700px;
             margin: 0 auto 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255,255,255,0.9);
         }
         
@@ -474,19 +491,19 @@
         footer {
             background-color: #1a1a2e;
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 2rem 0 1rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
         
         .footer-column h3 {
             color: white;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             font-size: 1.1rem;
             position: relative;
         }
@@ -552,6 +569,67 @@
             font-size: 0.8rem;
         }
         
+        /* PWA Install Prompt */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1002;
+            display: none;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        .pwa-install-prompt.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .pwa-install-prompt p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .pwa-install-btns {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .pwa-install-btns button {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .pwa-install-btns .install-btn {
+            background-color: var(--blue);
+            color: white;
+        }
+        
+        .pwa-install-btns .dismiss-btn {
+            background-color: #eee;
+            color: #333;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .footer-content {
@@ -574,10 +652,11 @@
             
             .page-header {
                 padding: 100px 0 40px;
+                margin-top: 70px;
             }
             
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
             
             .btn {
@@ -587,11 +666,30 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
             
             h2 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 30px 0;
+            }
+            
+            .categories-grid,
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .category-content,
+            .course-content {
+                padding: 1rem;
+            }
+            
+            .footer-content {
+                gap: 1rem;
             }
         }
         
@@ -605,12 +703,25 @@
             }
             
             .logo img {
-                height: 50px;
+                height: 45px;
             }
             
-            .categories-grid,
-            .courses-grid {
-                grid-template-columns: 1fr;
+            .pwa-install-prompt {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .page-header p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -646,7 +757,7 @@
             <i class="fas fa-times"></i>
         </div>
         <ul>
-            <li><a href="home.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="courses.html" class="active">Courses</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
@@ -655,6 +766,15 @@
     
     <!-- Overlay for mobile menu -->
     <div class="overlay" id="overlay"></div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-prompt" id="pwa-prompt">
+        <p>Install Hekima Hub app for a better experience?</p>
+        <div class="pwa-install-btns">
+            <button class="install-btn" id="install-btn">Install</button>
+            <button class="dismiss-btn" id="dismiss-btn">Not Now</button>
+        </div>
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -859,7 +979,7 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="home.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="courses.html">Courses</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="#">Testimonials</a></li>
@@ -921,6 +1041,49 @@
         // Close menu when clicking on links
         document.querySelectorAll('.side-menu a').forEach(link => {
             link.addEventListener('click', closeSideMenu);
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        const pwaPrompt = document.getElementById('pwa-prompt');
+        const installBtn = document.getElementById('install-btn');
+        const dismissBtn = document.getElementById('dismiss-btn');
+        
+        // Show install prompt when app can be installed
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install prompt
+            setTimeout(() => {
+                pwaPrompt.classList.add('show');
+            }, 3000);
+        });
+        
+        // Install button click handler
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                // We've used the prompt, and can't use it again, discard it
+                deferredPrompt = null;
+                // Hide the prompt
+                pwaPrompt.classList.remove('show');
+            }
+        });
+        
+        // Dismiss button click handler
+        dismissBtn.addEventListener('click', () => {
+            pwaPrompt.classList.remove('show');
+        });
+        
+        // Hide the prompt when app is successfully installed
+        window.addEventListener('appinstalled', () => {
+            pwaPrompt.classList.remove('show');
+            deferredPrompt = null;
         });
     </script>
 </body>
