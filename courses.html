@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Hekima Hub</title>
     <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <meta name="msapplication-tap-highlight" content="no">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Global Styles */
         :root {
@@ -30,7 +41,7 @@
         }
         
         html {
-            font-size: 16px;
+            font-size: 14px; /* Reduced base font size for mobile */
         }
         
         body {
@@ -39,6 +50,7 @@
             line-height: 1.5;
             overflow-x: hidden;
             font-family: 'Roboto', sans-serif;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
         }
         
         .container {
@@ -50,7 +62,7 @@
         
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: var(--blue);
             color: white;
             border: none;
@@ -58,9 +70,10 @@
             cursor: pointer;
             font-weight: 500;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             font-family: 'Roboto', sans-serif;
+            text-align: center;
         }
         
         .btn:hover {
@@ -86,11 +99,11 @@
         }
         
         section {
-            padding: 60px 0;
+            padding: 40px 0;
         }
         
         h1, h2, h3, h4 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--dark-blue);
             font-weight: 600;
             line-height: 1.2;
@@ -98,14 +111,14 @@
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
             position: relative;
             font-weight: 600;
         }
@@ -113,25 +126,25 @@
         h2::after {
             content: '';
             position: absolute;
-            bottom: -0.75rem;
+            bottom: -0.5rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
+            width: 50px;
+            height: 2px;
             background-color: var(--maroon);
         }
         
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
         }
         
         p {
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
             color: var(--gray);
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         
         /* Header & Navigation */
@@ -148,7 +161,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            padding: 0.6rem 0;
         }
         
         .logo {
@@ -157,7 +170,7 @@
         }
         
         .logo img {
-            height: 60px;
+            height: 45px;
             transition: transform 0.3s ease;
         }
         
@@ -171,14 +184,14 @@
         }
         
         nav ul li {
-            margin-left: 1.5rem;
+            margin-left: 1.2rem;
         }
         
         nav ul li a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             transition: color 0.3s ease;
             position: relative;
             font-family: 'Roboto', sans-serif;
@@ -205,7 +218,7 @@
         
         .mobile-menu {
             display: none;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             cursor: pointer;
             color: var(--blue);
         }
@@ -215,13 +228,13 @@
             position: fixed;
             top: 0;
             right: -300px;
-            width: 280px;
+            width: 260px;
             height: 100%;
             background-color: var(--white);
             box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             z-index: 1001;
             transition: right 0.3s ease;
-            padding: 4rem 1.5rem 1.5rem;
+            padding: 3.5rem 1.2rem 1.2rem;
             overflow-y: auto;
         }
         
@@ -234,16 +247,16 @@
         }
         
         .side-menu ul li {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         
         .side-menu ul li a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: block;
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
             border-bottom: 1px solid #eee;
             transition: color 0.3s ease;
             font-family: 'Roboto', sans-serif;
@@ -255,9 +268,9 @@
         
         .side-menu .close-btn {
             position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            font-size: 1.25rem;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             color: var(--blue);
         }
@@ -284,7 +297,7 @@
         .page-header {
             background: linear-gradient(to right, var(--blue), var(--maroon));
             color: white;
-            padding: 120px 0 60px;
+            padding: 100px 0 40px;
             text-align: center;
         }
         
@@ -297,7 +310,7 @@
             color: rgba(255,255,255,0.9);
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
         
         /* Course Categories */
@@ -307,59 +320,59 @@
         
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
         
         .category-card {
             background-color: var(--white);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eee;
         }
         
         .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .category-header {
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
         
         .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
             color: var(--blue);
         }
         
         .category-content {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
         
         .category-content h3 {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             color: var(--dark-blue);
         }
         
         .category-content p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
         
         .courses-list {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
         
         .courses-list li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
             position: relative;
         }
         
@@ -375,6 +388,7 @@
             color: var(--gray);
             transition: color 0.3s ease;
             font-weight: 500;
+            font-size: 0.85rem;
         }
         
         .courses-list a:hover {
@@ -388,15 +402,15 @@
         
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
         
         .course-card {
             background-color: var(--white);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #eee;
         }
@@ -407,7 +421,7 @@
         }
         
         .course-img {
-            height: 180px;
+            height: 140px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -424,26 +438,26 @@
         }
         
         .course-content {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
         
         .course-content h3 {
             color: var(--dark-blue);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
         
         .course-content p {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
         
         .course-meta {
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             color: #777;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
         
         /* CTA Section */
@@ -451,12 +465,12 @@
             background: linear-gradient(to right, var(--blue), var(--maroon));
             color: white;
             text-align: center;
-            padding: 4rem 0;
+            padding: 2.5rem 0;
         }
         
         .cta h2 {
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         
         .cta h2::after {
@@ -465,8 +479,8 @@
         
         .cta p {
             max-width: 700px;
-            margin: 0 auto 1.5rem;
-            font-size: 1.1rem;
+            margin: 0 auto 1.2rem;
+            font-size: 0.9rem;
             color: rgba(255,255,255,0.9);
         }
         
@@ -474,29 +488,29 @@
         footer {
             background-color: #1a1a2e;
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 2rem 0 0.8rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
         }
         
         .footer-column h3 {
             color: white;
-            margin-bottom: 1.25rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
             position: relative;
         }
         
         .footer-column h3::after {
             content: '';
             position: absolute;
-            bottom: -0.5rem;
+            bottom: -0.4rem;
             left: 0;
-            width: 30px;
+            width: 25px;
             height: 2px;
             background-color: var(--orange);
         }
@@ -506,13 +520,13 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
         
         .footer-column ul li a {
             color: #bbb;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: color 0.3s ease;
         }
         
@@ -522,21 +536,21 @@
         
         .social-links {
             display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
         .social-links a:hover {
@@ -546,14 +560,80 @@
         
         .footer-bottom {
             text-align: center;
-            padding-top: 1rem;
+            padding-top: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+        }
+        
+        /* PWA Install Prompt */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--white);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1002;
+            display: none;
+            max-width: 90%;
+            width: 350px;
+        }
+        
+        .pwa-install-prompt.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .pwa-install-prompt p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .pwa-install-btns {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .pwa-install-btns button {
+            flex: 1;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        .pwa-install-btns .install-btn {
+            background-color: var(--blue);
+            color: white;
+        }
+        
+        .pwa-install-btns .dismiss-btn {
+            background-color: #eee;
+            color: #333;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
         
         /* Responsive Design */
         @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -573,25 +653,47 @@
             }
             
             .page-header {
-                padding: 100px 0 40px;
+                padding: 90px 0 30px;
             }
             
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            
+            .page-header p {
+                font-size: 0.9rem;
             }
             
             .btn {
                 width: 100%;
-                max-width: 220px;
-                margin-bottom: 0.5rem;
+                max-width: 200px;
+                margin-bottom: 0.4rem;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             h2 {
-                font-size: 1.75rem;
+                font-size: 1.3rem;
+            }
+            
+            section {
+                padding: 25px 0;
+            }
+            
+            .categories-grid,
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                gap: 1rem;
+            }
+            
+            html {
+                font-size: 13px;
             }
         }
         
@@ -601,16 +703,37 @@
             }
             
             .side-menu {
-                width: 260px;
+                width: 240px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.4rem;
             }
             
             .logo img {
-                height: 50px;
+                height: 40px;
             }
             
-            .categories-grid,
-            .courses-grid {
-                grid-template-columns: 1fr;
+            .pwa-install-prompt {
+                width: 90%;
+            }
+            
+            html {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            html {
+                font-size: 11px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .page-header p {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -627,7 +750,7 @@
             
             <nav>
                 <ul id="nav-menu">
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="courses.html" class="active">Courses</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
@@ -646,7 +769,7 @@
             <i class="fas fa-times"></i>
         </div>
         <ul>
-            <li><a href="home.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="courses.html" class="active">Courses</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
@@ -655,6 +778,15 @@
     
     <!-- Overlay for mobile menu -->
     <div class="overlay" id="overlay"></div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-prompt" id="pwa-prompt">
+        <p>Install Hekima Hub app for a better experience?</p>
+        <div class="pwa-install-btns">
+            <button class="install-btn" id="install-btn">Install</button>
+            <button class="dismiss-btn" id="dismiss-btn">Not Now</button>
+        </div>
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -853,13 +985,13 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Hekima Hub</h3>
-                    <p style="color: #bbb; font-size: 0.85rem;">Empowering students through personalized education and expert guidance to achieve academic and career success.</p>
+                    <p style="color: #bbb; font-size: 0.8rem;">Empowering students through personalized education and expert guidance to achieve academic and career success.</p>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="home.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="courses.html">Courses</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="#">Testimonials</a></li>
@@ -881,15 +1013,15 @@
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Street, City</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@hekima-hub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 727211191</li>
+                        <li><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 Hekima Hub. All Rights Reserved.</p>
+                <p>&copy; 2025 Hekima Hub. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -921,6 +1053,49 @@
         // Close menu when clicking on links
         document.querySelectorAll('.side-menu a').forEach(link => {
             link.addEventListener('click', closeSideMenu);
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        const pwaPrompt = document.getElementById('pwa-prompt');
+        const installBtn = document.getElementById('install-btn');
+        const dismissBtn = document.getElementById('dismiss-btn');
+        
+        // Show install prompt when app can be installed
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install prompt
+            setTimeout(() => {
+                pwaPrompt.classList.add('show');
+            }, 3000);
+        });
+        
+        // Install button click handler
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                // We've used the prompt, and can't use it again, discard it
+                deferredPrompt = null;
+                // Hide the prompt
+                pwaPrompt.classList.remove('show');
+            }
+        });
+        
+        // Dismiss button click handler
+        dismissBtn.addEventListener('click', () => {
+            pwaPrompt.classList.remove('show');
+        });
+        
+        // Hide the prompt when app is successfully installed
+        window.addEventListener('appinstalled', () => {
+            pwaPrompt.classList.remove('show');
+            deferredPrompt = null;
         });
     </script>
 </body>
