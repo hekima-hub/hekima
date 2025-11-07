@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hekima Hub</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --blue: #1a73e8;
+            --maroon: #8b0000;
+            --white: #ffffff;
+            --green: #34a853;
+            --orange: #ff9800;
+            --light-blue: #e8f0fe;
+            --light-maroon: #f5e6e6;
+            --dark-blue: #0d47a1;
+            --dark-maroon: #5a0000;
+            --gray: #5f6368;
+            --light-gray: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-maroon {
+            background-color: var(--maroon);
+        }
+        
+        .btn-maroon:hover {
+            background-color: var(--dark-maroon);
+        }
+        
+        .btn-green {
+            background-color: var(--green);
+        }
+        
+        .btn-orange {
+            background-color: var(--orange);
+        }
+        
+        section {
+            padding: 40px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+            line-height: 1.2;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--maroon);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        nav ul li a:hover {
+            color: var(--blue);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        /* Side Menu for Mobile */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 4rem 1.5rem 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .side-menu.open {
+            right: 0;
+        }
+        
+        .side-menu ul {
+            list-style: none;
+        }
+        
+        .side-menu ul li {
+            margin-bottom: 1rem;
+        }
+        
+        .side-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .side-menu ul li a:hover {
+            color: var(--blue);
+        }
+        
+        .side-menu .close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0 60px;
+            margin-top: 80px; /* Account for fixed header */
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+        
+        /* About Story Section */
+        .about-story {
+            background-color: var(--white);
+        }
+        
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .story-text h2 {
+            text-align: left;
+        }
+        
+        .story-text h2::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .story-img {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .story-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Vision & Mission Section */
+        .vision-mission {
+            background-color: var(--light-blue);
+        }
+        
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .vm-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .vm-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .vm-icon {
+            font-size: 2.5rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .vm-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        /* Values Section */
+        .values {
+            background-color: var(--white);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .value-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .acuity .value-icon {
+            color: var(--blue);
+        }
+        
+        .passion .value-icon {
+            color: var(--maroon);
+        }
+        
+        .loyalty .value-icon {
+            color: var(--green);
+        }
+        
+        .value-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        /* Learning Section */
+        .learning {
+            background-color: var(--light-blue);
+        }
+        
+        .learning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .learning-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .learning-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .learning-icon {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .learning-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(to right, var(--blue), var(--maroon));
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta h2::after {
+            background-color: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--orange);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.8rem;
+        }
+        
+        /* PWA Install Prompt */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1002;
+            display: none;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        .pwa-install-prompt.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .pwa-install-prompt p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .pwa-install-btns {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .pwa-install-btns button {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .pwa-install-btns .install-btn {
+            background-color: var(--blue);
+            color: white;
+        }
+        
+        .pwa-install-btns .dismiss-btn {
+            background-color: #eee;
+            color: #333;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .story-content,
+            .vm-grid,
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .page-header {
+                padding: 100px 0 40px;
+                margin-top: 70px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 220px;
+                margin-bottom: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 30px 0;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-menu {
+                width: 260px;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .pwa-install-prompt {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .page-header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="home.html">
+                    <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Side Menu for Mobile -->
+    <div class="side-menu" id="side-menu">
+        <div class="close-btn" id="close-menu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="https://classroom.google.com" target="_blank">E-Learning</a></li>
+        </ul>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-prompt" id="pwa-prompt">
+        <p>Install Hekima Hub app for a better experience?</p>
+        <div class="pwa-install-btns">
+            <button class="install-btn" id="install-btn">Install</button>
+            <button class="dismiss-btn" id="dismiss-btn">Not Now</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Hekima Hub</h1>
+            <p>Discover our story, mission, and values that drive our commitment to empowering individuals through education.</p>
+        </div>
+    </section>
+
+    <!-- About Story Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <h2>A Short Long Story</h2>
+                    <p>At Hekima Hub, we are committed to being your partners in education, guiding you every step of the way towards success. Our vision is to stand at the forefront of the education sector, with a relentless focus on empowering individuals like you through knowledge acquisition and skill development.</p>
+                    <p>We believe in fostering a learning environment where you not only gain valuable insights but also discover your true potential. Whether you're aiming for success in business, technology, healthcare, or any other field, we're dedicated to supporting your journey and helping you reach your full potential.</p>
+                    <p>The name "Hekima" means wisdom in Swahili, reflecting our commitment to nurturing knowledge and skills that transform lives and communities.</p>
+                </div>
+                
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Hekima Hub Story">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="vision-mission">
+        <div class="container">
+            <h2>Our Vision & Mission</h2>
+            
+            <div class="vm-grid">
+                <div class="vm-card">
+                    <div class="vm-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To stand at the forefront of the education sector, with a relentless focus on empowering individuals through knowledge acquisition and skill development. We envision a world where everyone has access to quality education that unlocks their potential and transforms their lives.</p>
+                </div>
+                
+                <div class="vm-card">
+                    <div class="vm-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To empower professionals to achieve academic excellence and excel in diverse industries. We're here to nurture talents and provide the competitive skills needed to thrive in today's dynamic job market. We're dedicated to supporting your journey and helping you reach your full potential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container">
+            <h2>Our Values</h2>
+            
+            <div class="values-grid">
+                <div class="value-card acuity">
+                    <div class="value-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Acuity</h3>
+                    <p>At Hekima Hub, we embody a relentless commitment to acuity in service provision. We understand that excellence lies in the details, and we strive to exceed expectations. Our team delivers services with precision, insight, and attention to the unique needs of each individual.</p>
+                </div>
+                
+                <div class="value-card passion">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>Passion is at the heart of everything we do at Hekima Hub. Our educators are not just instructors; they are mentors, motivators, and champions of student success. Fueled by a genuine love for teaching and a deep commitment to student prioritization.</p>
+                </div>
+                
+                <div class="value-card loyalty">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Loyalty</h3>
+                    <p>Loyalty is the cornerstone of our relationships at Hekima Hub. We believe in building enduring partnerships based on trust, integrity, and mutual respect. We stand by our promises, uphold our commitments, and always strive to act in the best interests of those we serve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section -->
+    <section class="learning">
+        <div class="container">
+            <h2>Our Learning Approach</h2>
+            
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="learning-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Online Classes</h3>
+                    <p>Hekima Hub offers flexible online classes through our virtual learning platform. Students can access interactive lectures and resources from anywhere with an internet connection, empowering them to learn at their own pace while maintaining the quality of education.</p>
+                </div>
+                
+                <div class="learning-card">
+                    <div class="learning-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Bootcamps</h3>
+                    <p>Our bootcamps provide intensive, hands-on training led by industry experts. These immersive experiences equip students with practical skills and real-world knowledge in a short period, preparing them for success in their chosen field with confidence and competence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join thousands of students who have transformed their careers with Hekima Hub's expert-led courses and personalized approach to learning.</p>
+            <a href="courses.html" class="btn">Explore Our Courses</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hekima Hub</h3>
+                    <p style="color: #bbb; font-size: 0.85rem;">Empowering individuals through personalized education and expert guidance to achieve academic and career success.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="courses.html">Data Entry Mastery</a></li>
+                        <li><a href="courses.html">Financial Management</a></li>
+                        <li><a href="courses.html">Effective Leadership</a></li>
+                        <li><a href="courses.html">Web Development</a></li>
+                        <li><a href="courses.html">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 727211191</li>
+                        <li><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hekima Hub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenu = document.getElementById('mobile-menu');
+        const sideMenu = document.getElementById('side-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.getElementById('overlay');
+        
+        // Toggle side menu
+        mobileMenu.addEventListener('click', function() {
+            sideMenu.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close side menu
+        function closeSideMenu() {
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        closeMenu.addEventListener('click', closeSideMenu);
+        overlay.addEventListener('click', closeSideMenu);
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.side-menu a').forEach(link => {
+            link.addEventListener('click', closeSideMenu);
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        const pwaPrompt = document.getElementById('pwa-prompt');
+        const installBtn = document.getElementById('install-btn');
+        const dismissBtn = document.getElementById('dismiss-btn');
+        
+        // Show install prompt when app can be installed
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install prompt
+            setTimeout(() => {
+                pwaPrompt.classList.add('show');
+            }, 3000);
+        });
+        
+        // Install button click handler
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                // We've used the prompt, and can't use it again, discard it
+                deferredPrompt = null;
+                // Hide the prompt
+                pwaPrompt.classList.remove('show');
+            }
+        });
+        
+        // Dismiss button click handler
+        dismissBtn.addEventListener('click', () => {
+            pwaPrompt.classList.remove('show');
+        });
+        
+        // Hide the prompt when app is successfully installed
+        window.addEventListener('appinstalled', () => {
+            pwaPrompt.classList.remove('show');
+            deferredPrompt = null;
+        });
+    </script>
+</body>
+</html>
