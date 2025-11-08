@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Working Mastery - Hekima Hub</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/ncNcvdsr/unnamed.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --blue: #1a73e8;
+            --maroon: #8b0000;
+            --white: #ffffff;
+            --green: #34a853;
+            --orange: #ff9800;
+            --light-blue: #e8f0fe;
+            --light-maroon: #f5e6e6;
+            --dark-blue: #0d47a1;
+            --dark-maroon: #5a0000;
+            --gray: #5f6368;
+            --light-gray: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-maroon {
+            background-color: var(--maroon);
+        }
+        
+        .btn-maroon:hover {
+            background-color: var(--dark-maroon);
+        }
+        
+        .btn-green {
+            background-color: var(--green);
+        }
+        
+        .btn-green:hover {
+            background-color: #2e8b47;
+        }
+        
+        .btn-orange {
+            background-color: var(--orange);
+        }
+        
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        section {
+            padding: 40px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+            line-height: 1.2;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--maroon);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        nav ul li a:hover {
+            color: var(--blue);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        /* Side Menu for Mobile */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 4rem 1.5rem 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .side-menu.open {
+            right: 0;
+        }
+        
+        .side-menu ul {
+            list-style: none;
+        }
+        
+        .side-menu ul li {
+            margin-bottom: 1rem;
+        }
+        
+        .side-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .side-menu ul li a:hover {
+            color: var(--blue);
+        }
+        
+        .side-menu .close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--blue);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0 60px;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .course-badge {
+            display: inline-block;
+            background-color: var(--green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        /* Course Overview Section */
+        .course-overview {
+            background-color: var(--white);
+        }
+        
+        .overview-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .overview-text h2 {
+            text-align: left;
+        }
+        
+        .overview-text h2::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .course-highlights {
+            background-color: var(--light-blue);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .highlight-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .highlight-text h4 {
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+        
+        .highlight-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Course Details Section */
+        .course-details {
+            background-color: var(--light-blue);
+        }
+        
+        .details-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--blue);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--blue);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .week-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .week-content h3 {
+            color: var(--blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .week-content h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .topics-list {
+            list-style-type: none;
+        }
+        
+        .topics-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .topics-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .topics-list li i {
+            color: var(--green);
+            margin-right: 0.75rem;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            background-color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-card {
+            background-color: var(--light-blue);
+            border-radius: 8px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Updated Pricing Section */
+        .pricing-section {
+            background-color: var(--light-blue);
+            padding: 3rem 0;
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--blue);
+            position: relative;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-type {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-features {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+        }
+        
+        .pricing-features li i {
+            color: var(--green);
+            margin-right: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(to right, var(--blue), var(--maroon));
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta h2::after {
+            background-color: white;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--orange);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.8rem;
+        }
+        
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-float i {
+            margin-top: 2px;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 25px;
+            left: 25px;
+            background-color: var(--blue);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .overview-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .page-header {
+                padding: 100px 0 40px;
+                margin-top: 70px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 220px;
+                margin-bottom: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 30px 0;
+            }
+            
+            .details-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                text-align: left;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .tab-btn.active::after {
+                display: none;
+            }
+            
+            .pricing-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                gap: 1rem;
+            }
+            
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 26px;
+            }
+            
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                left: 20px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-menu {
+                width: 260px;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 24px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                left: 15px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="home.html">
+                    <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="elearning.html">E-Learning</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Side Menu for Mobile -->
+    <div class="side-menu" id="side-menu">
+        <div class="close-btn" id="close-menu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="elearning.html">E-Learning</a></li>
+        </ul>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Online Working Mastery</h1>
+            <p>Master the fundamentals of online work, from data entry basics to advanced online tasking strategies that will help you succeed in the digital workspace.</p>
+            <div class="course-badge">4 Weeks • Beginner to Intermediate • Practical Focus</div>
+        </div>
+    </section>
+
+    <!-- Course Overview Section -->
+    <section class="course-overview">
+        <div class="container">
+            <div class="overview-content">
+                <div class="overview-text">
+                    <h2>Course Overview</h2>
+                    <p>Our Online Working Mastery course is designed to equip you with the essential skills needed to thrive in the digital workspace. Starting with data entry fundamentals, we'll guide you through best practices and advanced techniques for various online tasks.</p>
+                    <p>This comprehensive course covers everything from basic computer proficiency to specialized online work strategies. You'll learn how to increase your efficiency, accuracy, and productivity while working remotely.</p>
+                    <p>Whether you're looking to start a career in online work or improve your current remote working skills, this course provides the foundation you need to succeed in today's digital economy.</p>
+                    
+                    <h3>What You'll Learn</h3>
+                    <ul class="topics-list">
+                        <li><i class="fas fa-check-circle"></i> Data entry fundamentals and best practices</li>
+                        <li><i class="fas fa-check-circle"></i> Time management for online workers</li>
+                        <li><i class="fas fa-check-circle"></i> Communication tools and techniques for remote work</li>
+                        <li><i class="fas fa-check-circle"></i> Online task platforms and how to navigate them</li>
+                        <li><i class="fas fa-check-circle"></i> Quality assurance and accuracy in online work</li>
+                        <li><i class="fas fa-check-circle"></i> Building a sustainable online career</li>
+                    </ul>
+                </div>
+                
+                <div class="course-highlights">
+                    <h3>Course Highlights</h3>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="highlight-text">
+                            <h4>Duration</h4>
+                            <p>4 Weeks</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="highlight-text">
+                            <h4>Level</h4>
+                            <p>Beginner to Intermediate</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="highlight-text">
+                            <h4>Focus</h4>
+                            <p>Practical Online Skills</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="highlight-text">
+                            <h4>Certificate</h4>
+                            <p>Upon Completion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2>Benefits of Online Working Mastery</h2>
+            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">Unlock the advantages of working effectively in the digital space</p>
+            
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Work From Anywhere</h3>
+                    <p>Learn how to effectively work remotely, giving you the flexibility to work from home or any location with internet access.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Income Opportunities</h3>
+                    <p>Access a wide range of online earning opportunities from data entry to specialized digital tasks.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <h3>Flexible Schedule</h3>
+                    <p>Master time management techniques that allow you to work during hours that suit your lifestyle.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Career Growth</h3>
+                    <p>Build skills that are in high demand in today's digital economy with opportunities for advancement.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Opportunities</h3>
+                    <p>Access work opportunities from companies around the world without geographical limitations.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Practical Skills</h3>
+                    <p>Gain hands-on experience with tools and platforms used by successful online workers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Section -->
+    <section class="course-details">
+        <div class="container">
+            <h2>Course Curriculum</h2>
+            
+            <div class="details-tabs">
+                <button class="tab-btn active" data-tab="week1">Week 1</button>
+                <button class="tab-btn" data-tab="week2">Week 2</button>
+                <button class="tab-btn" data-tab="week3">Week 3</button>
+                <button class="tab-btn" data-tab="week4">Week 4</button>
+            </div>
+            
+            <div class="tab-content active" id="week1">
+                <div class="week-content">
+                    <h3><i class="fas fa-keyboard"></i> Week 1: Data Entry Fundamentals</h3>
+                    <ul class="topics-list">
+                        <li><i class="fas fa-check"></i> Introduction to online work and data entry</li>
+                        <li><i class="fas fa-check"></i> Proper typing techniques and speed building</li>
+                        <li><i class="fas fa-check"></i> Essential keyboard shortcuts for efficiency</li>
+                        <li><i class="fas fa-check"></i> Data accuracy and error prevention methods</li>
+                        <li><i class="fas fa-check"></i> Introduction to spreadsheet software</li>
+                        <li><i class="fas fa-check"></i> Basic data formatting and organization</li>
+                        <li><i class="fas fa-check"></i> Time management for repetitive tasks</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="week2">
+                <div class="week-content">
+                    <h3><i class="fas fa-tasks"></i> Week 2: Online Tasking Best Practices</h3>
+                    <ul class="topics-list">
+                        <li><i class="fas fa-check"></i> Understanding different types of online tasks</li>
+                        <li><i class="fas fa-check"></i> Quality assurance in online work</li>
+                        <li><i class="fas fa-check"></i> Effective communication for remote work</li>
+                        <li><i class="fas fa-check"></i> Meeting deadlines and managing workload</li>
+                        <li><i class="fas fa-check"></i> Tools for online collaboration</li>
+                        <li><i class="fas fa-check"></i> Building a professional online presence</li>
+                        <li><i class="fas fa-check"></i> Avoiding common online work pitfalls</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="week3">
+                <div class="week-content">
+                    <h3><i class="fas fa-chart-line"></i> Week 3: Advanced Online Working Strategies</h3>
+                    <ul class="topics-list">
+                        <li><i class="fas fa-check"></i> Specialized online task platforms</li>
+                        <li><i class="fas fa-check"></i> Increasing productivity with automation tools</li>
+                        <li><i class="fas fa-check"></i> Advanced data management techniques</li>
+                        <li><i class="fas fa-check"></i> Building a diverse online skill set</li>
+                        <li><i class="fas fa-check"></i> Managing multiple projects simultaneously</li>
+                        <li><i class="fas fa-check"></i> Problem-solving for online workers</li>
+                        <li><i class="fas fa-check"></i> Creating efficient workflows</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="week4">
+                <div class="week-content">
+                    <h3><i class="fas fa-briefcase"></i> Week 4: Building Your Online Career</h3>
+                    <ul class="topics-list">
+                        <li><i class="fas fa-check"></i> Finding and applying for online work</li>
+                        <li><i class="fas fa-check"></i> Creating a compelling online profile</li>
+                        <li><i class="fas fa-check"></i> Pricing your services competitively</li>
+                        <li><i class="fas fa-check"></i> Building long-term client relationships</li>
+                        <li><i class="fas fa-check"></i> Managing finances as an online worker</li>
+                        <li><i class="fas fa-check"></i> Continuing skill development</li>
+                        <li><i class="fas fa-check"></i> Final project: Complete a real online task</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2>Choose Your Learning Format</h2>
+            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">Select the learning format that best fits your needs and schedule</p>
+            
+            <div class="pricing-container">
+                <!-- Fully Online Card -->
+                <div class="pricing-card">
+                    <div class="pricing-type">Fully Online</div>
+                    <div class="pricing-price">KSh 2,900</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Full 4-week course access</li>
+                            <li><i class="fas fa-check"></i> Weekly live online sessions</li>
+                            <li><i class="fas fa-check"></i> All course materials and resources</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Instructor support throughout</li>
+                            <li><i class="fas fa-check"></i> Practical online working exercises</li>
+                            <li><i class="fas fa-check"></i> Access to online work tools</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20Online%20Online%20Working%20Mastery%20course%20for%20KSh%202,900" class="btn btn-green" target="_blank">Enroll Now</a>
+                </div>
+                
+                <!-- Fully In-Person Card -->
+                <div class="pricing-card">
+                    <div class="pricing-type">Fully In-Person</div>
+                    <div class="pricing-price">KSh 3,900</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Full 4-week in-person classes</li>
+                            <li><i class="fas fa-check"></i> Hands-on computer lab sessions</li>
+                            <li><i class="fas fa-check"></i> All course materials and resources</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Direct instructor guidance</li>
+                            <li><i class="fas fa-check"></i> Networking with fellow participants</li>
+                            <li><i class="fas fa-check"></i> Access to physical learning resources</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20In-Person%20Online%20Working%20Mastery%20course%20for%20KSh%203,900" class="btn btn-orange" target="_blank">Enroll Now</a>
+                </div>
+                
+                <!-- Hybrid Card -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-type">Hybrid</div>
+                    <div class="pricing-price">KSh 4,900</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Combination of online and in-person</li>
+                            <li><i class="fas fa-check"></i> Flexible learning schedule</li>
+                            <li><i class="fas fa-check"></i> All course materials and resources</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Both online and in-person support</li>
+                            <li><i class="fas fa-check"></i> Best of both learning formats</li>
+                            <li><i class="fas fa-check"></i> Extended access to course materials</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Hybrid%20Online%20Working%20Mastery%20course%20for%20KSh%204,900" class="btn btn-maroon" target="_blank">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Master Online Working?</h2>
+            <p>Join our next cohort and gain the skills you need to succeed in the digital workspace. Limited spots available.</p>
+            <a href="https://wa.me/254727211191?text=Hi,%20I%20have%20questions%20about%20the%20Online%20Working%20Mastery%20course" class="btn btn-large" target="_blank">Contact Us for More Info</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hekima Hub</h3>
+                    <p style="color: #bbb; font-size: 0.85rem;">Empowering individuals through personalized education and expert guidance to achieve academic and career success.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="data-entry.html">Data Entry Mastery</a></li>
+                        <li><a href="financial-management.html">Financial Management</a></li>
+                        <li><a href="online-working.html">Online Working Mastery</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="project-management.html">Project Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 727211191</li>
+                        <li><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hekima Hub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254727211191" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenu = document.getElementById('mobile-menu');
+        const sideMenu = document.getElementById('side-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.getElementById('overlay');
+        
+        // Toggle side menu
+        mobileMenu.addEventListener('click', function() {
+            sideMenu.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close side menu
+        function closeSideMenu() {
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        closeMenu.addEventListener('click', closeSideMenu);
+        overlay.addEventListener('click', closeSideMenu);
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.side-menu a').forEach(link => {
+            link.addEventListener('click', closeSideMenu);
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Back to Top functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        // Scroll to top when back to top button is clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
