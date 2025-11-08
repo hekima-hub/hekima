@@ -495,56 +495,97 @@
             margin-right: 0.75rem;
         }
         
-        /* Simple Pricing Section */
-        .simple-pricing {
+        /* Updated Pricing Section */
+        .pricing-section {
             background-color: var(--white);
-            text-align: center;
             padding: 3rem 0;
         }
         
-        .pricing-card-simple {
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
             background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 3rem 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            border: 2px solid var(--light-blue);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
-        .pricing-price-simple {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--blue);
-            margin-bottom: 0.5rem;
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
         }
         
-        .pricing-name-simple {
-            font-size: 1.5rem;
+        .pricing-card.featured {
+            border: 2px solid var(--blue);
+            position: relative;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-type {
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-features {
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         
-        .pricing-features-simple {
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-features-simple ul {
+        .pricing-features ul {
             list-style: none;
+            text-align: left;
         }
         
-        .pricing-features-simple li {
-            padding: 0.75rem 0;
+        .pricing-features li {
+            padding: 0.5rem 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            font-size: 0.9rem;
         }
         
-        .pricing-features-simple li i {
+        .pricing-features li i {
             color: var(--green);
             margin-right: 0.75rem;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
         }
         
         /* CTA Section */
@@ -736,6 +777,18 @@
                 grid-template-columns: 1fr;
             }
             
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -794,6 +847,13 @@
                 display: none;
             }
             
+            .pricing-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
             .footer-content {
                 gap: 1rem;
             }
@@ -812,14 +872,6 @@
                 bottom: 20px;
                 left: 20px;
                 font-size: 18px;
-            }
-            
-            .pricing-card-simple {
-                padding: 2rem 1.5rem;
-            }
-            
-            .pricing-price-simple {
-                font-size: 2.5rem;
             }
         }
         
@@ -1038,28 +1090,64 @@
         </div>
     </section>
 
-    <!-- Simple Pricing Section -->
-    <section class="simple-pricing">
+    <!-- Updated Pricing Section -->
+    <section class="pricing-section">
         <div class="container">
-            <h2>Course Fee</h2>
-            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">One simple price for our comprehensive 4-week Data Entry Mastery course</p>
+            <h2>Choose Your Learning Format</h2>
+            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">Select the learning format that best fits your needs and schedule</p>
             
-            <div class="pricing-card-simple">
-                <div class="pricing-price-simple">KSh 3,500</div>
-                <div class="pricing-name-simple">Data Entry Mastery Course</div>
-                
-                <div class="pricing-features-simple">
-                    <ul>
-                        <li><i class="fas fa-check"></i> Full 4-week course access</li>
-                        <li><i class="fas fa-check"></i> Weekly live online sessions</li>
-                        <li><i class="fas fa-check"></i> All course materials and exercises</li>
-                        <li><i class="fas fa-check"></i> Certificate of completion</li>
-                        <li><i class="fas fa-check"></i> Instructor support throughout the course</li>
-                        <li><i class="fas fa-check"></i> Practical assignments and feedback</li>
-                    </ul>
+            <div class="pricing-container">
+                <!-- Fully Online Card -->
+                <div class="pricing-card">
+                    <div class="pricing-type">Fully Online</div>
+                    <div class="pricing-price">KSh 3,500</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Full 4-week course access</li>
+                            <li><i class="fas fa-check"></i> Weekly live online sessions</li>
+                            <li><i class="fas fa-check"></i> All course materials and exercises</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Instructor support throughout</li>
+                            <li><i class="fas fa-check"></i> Practical assignments and feedback</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20Online%20Data%20Entry%20Mastery%20course%20for%20KSh%203,500" class="btn btn-green" target="_blank">Enroll Now</a>
                 </div>
                 
-                <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Data%20Entry%20Mastery%20course%20for%20KSh%203,500" class="btn btn-large btn-green" target="_blank">Enroll Now via WhatsApp</a>
+                <!-- Fully In-Person Card -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-type">Fully In-Person</div>
+                    <div class="pricing-price">KSh 4,500</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Full 4-week in-person classes</li>
+                            <li><i class="fas fa-check"></i> Hands-on training with instructors</li>
+                            <li><i class="fas fa-check"></i> All course materials and exercises</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Direct instructor guidance</li>
+                            <li><i class="fas fa-check"></i> Access to physical learning resources</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20In-Person%20Data%20Entry%20Mastery%20course%20for%20KSh%204,500" class="btn btn-orange" target="_blank">Enroll Now</a>
+                </div>
+                
+                <!-- Hybrid Card -->
+                <div class="pricing-card">
+                    <div class="pricing-type">Hybrid</div>
+                    <div class="pricing-price">KSh 5,500</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Combination of online and in-person</li>
+                            <li><i class="fas fa-check"></i> Flexible learning schedule</li>
+                            <li><i class="fas fa-check"></i> All course materials and exercises</li>
+                            <li><i class="fas fa-check"></i> Certificate of completion</li>
+                            <li><i class="fas fa-check"></i> Both online and in-person support</li>
+                            <li><i class="fas fa-check"></i> Best of both learning formats</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Hybrid%20Data%20Entry%20Mastery%20course%20for%20KSh%205,500" class="btn btn-maroon" target="_blank">Enroll Now</a>
+                </div>
             </div>
         </div>
     </section>
