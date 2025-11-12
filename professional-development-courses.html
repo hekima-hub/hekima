@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Entry Mastery - Hekima Hub</title>
+    <title>Professional Development Courses - Hekima Hub</title>
     <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/ncNcvdsr/unnamed.png">
     
     <!-- PWA Meta Tags -->
@@ -306,7 +306,7 @@
         
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -328,264 +328,92 @@
             font-size: 1.1rem;
         }
         
-        .course-badge {
-            display: inline-block;
-            background-color: var(--green);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-top: 1rem;
-        }
-        
-        /* Course Overview Section */
-        .course-overview {
-            background-color: var(--white);
-        }
-        
-        .overview-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-        
-        .overview-text h2 {
-            text-align: left;
-        }
-        
-        .overview-text h2::after {
-            left: 0;
-            transform: none;
-        }
-        
-        .course-highlights {
-            background-color: var(--light-blue);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-        
-        .highlight-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .highlight-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .highlight-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--blue);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-        
-        .highlight-text h4 {
-            margin-bottom: 0.25rem;
-            font-size: 1rem;
-        }
-        
-        .highlight-text p {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        /* Course Details Section */
-        .course-details {
-            background-color: var(--light-blue);
-        }
-        
-        .details-tabs {
-            display: flex;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #ddd;
-            flex-wrap: wrap;
-        }
-        
-        .tab-btn {
-            padding: 12px 24px;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--gray);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .tab-btn.active {
-            color: var(--blue);
-        }
-        
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--blue);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .week-content {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-        
-        .week-content h3 {
-            color: var(--blue);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .week-content h3 i {
-            margin-right: 0.5rem;
-        }
-        
-        .topics-list {
-            list-style-type: none;
-        }
-        
-        .topics-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .topics-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .topics-list li i {
-            color: var(--green);
-            margin-right: 0.75rem;
-        }
-        
-        /* Updated Pricing Section */
-        .pricing-section {
+        /* Course Grid */
+        .courses-section {
             background-color: var(--white);
             padding: 3rem 0;
         }
         
-        .pricing-container {
+        .courses-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
-        .pricing-card {
+        .course-card {
             background-color: var(--white);
             border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            padding: 2rem 1.5rem;
-            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
         
-        .pricing-card:hover {
+        .course-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.12);
         }
         
-        .pricing-card.featured {
-            border: 2px solid var(--blue);
-            position: relative;
+        .course-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-image img {
             transform: scale(1.05);
         }
         
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
+        .course-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
-        .featured-badge {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--orange);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .pricing-type {
+        .course-title {
             font-size: 1.2rem;
-            font-weight: 600;
+            margin-bottom: 0.75rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
         }
         
-        .pricing-price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--blue);
+        .course-description {
+            color: var(--gray);
+            font-size: 0.9rem;
             margin-bottom: 1rem;
-        }
-        
-        .pricing-features {
-            margin-bottom: 1.5rem;
             flex-grow: 1;
         }
         
-        .pricing-features ul {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .pricing-features li {
-            padding: 0.5rem 0;
+        .course-meta {
             display: flex;
-            align-items: flex-start;
-            font-size: 0.9rem;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
         }
         
-        .pricing-features li i {
-            color: var(--green);
-            margin-right: 0.75rem;
-            font-size: 0.9rem;
-            margin-top: 0.2rem;
-            flex-shrink: 0;
+        .course-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .course-meta i {
+            margin-right: 5px;
+        }
+        
+        .course-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 1rem;
         }
         
         /* CTA Section */
@@ -773,22 +601,6 @@
         
         /* Responsive Design */
         @media (max-width: 992px) {
-            .overview-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
-            }
-            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -834,24 +646,9 @@
                 padding: 30px 0;
             }
             
-            .details-tabs {
-                flex-direction: column;
-            }
-            
-            .tab-btn {
-                text-align: left;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .tab-btn.active::after {
-                display: none;
-            }
-            
-            .pricing-container {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin-left: auto;
-                margin-right: auto;
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
             }
             
             .footer-content {
@@ -888,6 +685,10 @@
                 height: 45px;
             }
             
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .whatsapp-float {
                 width: 50px;
                 height: 50px;
@@ -919,7 +720,7 @@
             <nav>
                 <ul id="nav-menu">
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="elearning.html">E-Learning</a></li>
                 </ul>
@@ -938,7 +739,7 @@
         </div>
         <ul>
             <li><a href="home.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
+            <li><a href="courses.html" class="active">Courses</a></li>
             <li><a href="about-us.html">About Us</a></li>
             <li><a href="elearning.html">E-Learning</a></li>
         </ul>
@@ -950,203 +751,151 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Data Entry Mastery</h1>
-            <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy in today's data-driven workplace.</p>
-            <div class="course-badge">4 Weeks • Online • Beginner Level</div>
+            <h1>Professional Development Courses</h1>
+            <p>Advance your career with our comprehensive professional development programs designed to enhance your skills and boost your career prospects.</p>
         </div>
     </section>
 
-    <!-- Course Overview Section -->
-    <section class="course-overview">
+    <!-- Courses Section -->
+    <section class="courses-section">
         <div class="container">
-            <div class="overview-content">
-                <div class="overview-text">
-                    <h2>Course Overview</h2>
-                    <p>Our Data Entry Mastery course is designed to equip you with the essential skills needed to excel in data entry roles across various industries. In just 4 weeks, you'll learn efficient typing techniques, data accuracy methods, and time-saving strategies that will make you a valuable asset in any organization.</p>
-                    <p>This comprehensive course covers everything from basic keyboard proficiency to advanced data management techniques. You'll gain hands-on experience with real-world data entry tasks and learn how to maintain high accuracy while increasing your speed.</p>
-                    <p>Whether you're looking to start a career in data entry or improve your current skills, this course provides the foundation you need to succeed in today's data-driven workplace.</p>
-                    
-                    <h3>What You'll Learn</h3>
-                    <ul class="topics-list">
-                        <li><i class="fas fa-check-circle"></i> Touch typing techniques for improved speed and accuracy</li>
-                        <li><i class="fas fa-check-circle"></i> Efficient use of keyboard shortcuts</li>
-                        <li><i class="fas fa-check-circle"></i> Data validation and error-checking methods</li>
-                        <li><i class="fas fa-check-circle"></i> Introduction to spreadsheet software (Excel/Google Sheets)</li>
-                        <li><i class="fas fa-check-circle"></i> Data organization and management best practices</li>
-                        <li><i class="fas fa-check-circle"></i> Time management strategies for data entry tasks</li>
-                    </ul>
+            <h2>Our Professional Development Programs</h2>
+            
+            <div class="courses-grid">
+                <!-- Data Entry Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Data Entry Mastery">
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Entry Mastery</h3>
+                        <p class="course-description">Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 4 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                        </div>
+                        <div class="course-price">From KSh 3,499</div>
+                        <a href="data-entry.html" class="btn">View Course</a>
+                    </div>
                 </div>
                 
-                <div class="course-highlights">
-                    <h3>Course Highlights</h3>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="highlight-text">
-                            <h4>Duration</h4>
-                            <p>4 Weeks</p>
-                        </div>
+                <!-- Personal Branding Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Personal Branding Mastery">
                     </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-user-graduate"></i>
+                    <div class="course-content">
+                        <h3 class="course-title">Personal Branding Mastery</h3>
+                        <p class="course-description">Discover how to build a powerful personal brand that sets you apart, attracts opportunities, and establishes your authority.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
                         </div>
-                        <div class="highlight-text">
-                            <h4>Level</h4>
-                            <p>Beginner</p>
-                        </div>
+                        <div class="course-price">From KSh 5,999</div>
+                        <a href="personal-branding.html" class="btn">View Course</a>
                     </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-laptop"></i>
-                        </div>
-                        <div class="highlight-text">
-                            <h4>Format</h4>
-                            <p>100% Online</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="highlight-text">
-                            <h4>Certificate</h4>
-                            <p>Upon Completion</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Course Details Section -->
-    <section class="course-details">
-        <div class="container">
-            <h2>Course Curriculum</h2>
-            
-            <div class="details-tabs">
-                <button class="tab-btn active" data-tab="week1">Week 1</button>
-                <button class="tab-btn" data-tab="week2">Week 2</button>
-                <button class="tab-btn" data-tab="week3">Week 3</button>
-                <button class="tab-btn" data-tab="week4">Week 4</button>
-            </div>
-            
-            <div class="tab-content active" id="week1">
-                <div class="week-content">
-                    <h3><i class="fas fa-keyboard"></i> Week 1: Keyboard Mastery & Basic Data Entry</h3>
-                    <ul class="topics-list">
-                        <li><i class="fas fa-check"></i> Introduction to data entry and its importance</li>
-                        <li><i class="fas fa-check"></i> Proper typing posture and hand positioning</li>
-                        <li><i class="fas fa-check"></i> Touch typing fundamentals</li>
-                        <li><i class="fas fa-check"></i> Alphabet keys practice and speed building</li>
-                        <li><i class="fas fa-check"></i> Number keys and special characters</li>
-                        <li><i class="fas fa-check"></i> Introduction to data accuracy and error prevention</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="week2">
-                <div class="week-content">
-                    <h3><i class="fas fa-bolt"></i> Week 2: Efficiency & Shortcuts</h3>
-                    <ul class="topics-list">
-                        <li><i class="fas fa-check"></i> Essential keyboard shortcuts for Windows/Mac</li>
-                        <li><i class="fas fa-check"></i> Text navigation and selection techniques</li>
-                        <li><i class="fas fa-check"></i> Copy, cut, paste, and formatting shortcuts</li>
-                        <li><i class="fas fa-check"></i> Browser and application switching shortcuts</li>
-                        <li><i class="fas fa-check"></i> Time-saving techniques for repetitive tasks</li>
-                        <li><i class="fas fa-check"></i> Practice exercises for shortcut mastery</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="week3">
-                <div class="week-content">
-                    <h3><i class="fas fa-table"></i> Week 3: Spreadsheet Fundamentals</h3>
-                    <ul class="topics-list">
-                        <li><i class="fas fa-check"></i> Introduction to spreadsheet software (Excel/Google Sheets)</li>
-                        <li><i class="fas fa-check"></i> Basic spreadsheet navigation and data entry</li>
-                        <li><i class="fas fa-check"></i> Cell formatting and data organization</li>
-                        <li><i class="fas fa-check"></i> Simple formulas and functions</li>
-                        <li><i class="fas fa-check"></i> Data sorting and filtering</li>
-                        <li><i class="fas fa-check"></i> Creating basic charts and graphs</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="week4">
-                <div class="week-content">
-                    <h3><i class="fas fa-tasks"></i> Week 4: Data Management & Professional Skills</h3>
-                    <ul class="topics-list">
-                        <li><i class="fas fa-check"></i> Data validation techniques</li>
-                        <li><i class="fas fa-check"></i> Error checking and quality assurance</li>
-                        <li><i class="fas fa-check"></i> Time management for data entry projects</li>
-                        <li><i class="fas fa-check"></i> Maintaining focus and accuracy over long periods</li>
-                        <li><i class="fas fa-check"></i> Final project: Complete a real-world data entry task</li>
-                        <li><i class="fas fa-check"></i> Course review and next steps for continued improvement</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Updated Pricing Section -->
-    <section class="pricing-section">
-        <div class="container">
-            <h2>Choose Your Learning Format</h2>
-            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto;">Select the learning format that best fits your needs and schedule</p>
-            
-            <div class="pricing-container">
-                <!-- Fully Online Card -->
-                <div class="pricing-card">
-                    <div class="pricing-type">Fully Online</div>
-                    <div class="pricing-price">KSh 3,499</div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Full 4-week course access</li>
-                            <li><i class="fas fa-check"></i> Weekly live online sessions</li>
-                            <li><i class="fas fa-check"></i> All course materials and exercises</li>
-                            <li><i class="fas fa-check"></i> Certificate of completion</li>
-                            <li><i class="fas fa-check"></i> Instructor support throughout</li>
-                            <li><i class="fas fa-check"></i> Practical assignments and feedback</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20Online%20Data%20Entry%20Mastery%20course%20for%20KSh%203,499" class="btn btn-green" target="_blank">Enroll Now</a>
                 </div>
                 
-                <!-- Fully In-Person Card -->
-                <div class="pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="pricing-type">Fully In-Person</div>
-                    <div class="pricing-price">KSh 4,499</div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Full 4-week in-person classes</li>
-                            <li><i class="fas fa-check"></i> Hands-on training with instructors</li>
-                            <li><i class="fas fa-check"></i> All course materials and exercises</li>
-                            <li><i class="fas fa-check"></i> Certificate of completion</li>
-                            <li><i class="fas fa-check"></i> Direct instructor guidance</li>
-                            <li><i class="fas fa-check"></i> Access to physical learning resources</li>
-                        </ul>
+                <!-- Financial Management Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1911&q=80" alt="Financial Management">
                     </div>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Fully%20In-Person%20Data%20Entry%20Mastery%20course%20for%20KSh%204,499" class="btn btn-orange" target="_blank">Enroll Now</a>
+                    <div class="course-content">
+                        <h3 class="course-title">Financial Management</h3>
+                        <p class="course-description">Master the fundamentals of financial management, budgeting, and investment strategies for personal and business success.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 5 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                        <div class="course-price">From KSh 6,499</div>
+                        <a href="financial-management.html" class="btn">View Course</a>
+                    </div>
                 </div>
                 
-                <!-- Hybrid Card -->
-                <div class="pricing-card">
-                    <div class="pricing-type">Hybrid</div>
-                    <div class="pricing-price">KSh 5,499</div>
-                    <div class="pricing-features">
-                        <ul>
-                        <li><a href="data-entry.html">Data Entry Mastery</a></li>
-                        <li><a href="online-working.html">Online Working Mastery</a></li>
-                        <li><a href="personal-branding.html">Personal Branding Mastery</a></li>
-                        <li><a href="financial-management.html">Financial Management</a></li>
-                        <li><a href="web-development.html">Web Development</a></li>
-                        <li><a href="project-management.html">Project Management</a></li>
-                    </ul>
+                <!-- Effective Leadership Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Effective Leadership">
                     </div>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20the%20Hybrid%20Data%20Entry%20Mastery%20course%20for%20KSh%205,499" class="btn btn-maroon" target="_blank">Enroll Now</a>
+                    <div class="course-content">
+                        <h3 class="course-title">Effective Leadership</h3>
+                        <p class="course-description">Develop essential leadership skills, team management techniques, and strategic thinking abilities to lead with confidence.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                        <div class="course-price">From KSh 7,499</div>
+                        <a href="effective-leadership.html" class="btn">View Course</a>
+                    </div>
+                </div>
+                
+                <!-- Project Management Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Project Management">
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Project Management</h3>
+                        <p class="course-description">Master project planning, execution, and delivery using industry-standard methodologies and tools for successful outcomes.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 7 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                        <div class="course-price">From KSh 7,999</div>
+                        <a href="project-management.html" class="btn">View Course</a>
+                    </div>
+                </div>
+                
+                <!-- Communication Skills Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1951&q=80" alt="Effective Communication">
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Effective Communication</h3>
+                        <p class="course-description">Enhance your verbal, non-verbal, and written communication skills for professional success and better relationships.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 4 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
+                        </div>
+                        <div class="course-price">From KSh 4,999</div>
+                        <a href="effective-communication.html" class="btn">View Course</a>
+                    </div>
+                </div>
+                
+                <!-- Digital Marketing Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Digital Marketing">
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Digital Marketing</h3>
+                        <p class="course-description">Learn SEO, social media marketing, content strategy, and analytics to drive business growth in the digital age.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                        </div>
+                        <div class="course-price">From KSh 6,999</div>
+                        <a href="digital-marketing.html" class="btn">View Course</a>
+                    </div>
+                </div>
+                
+                <!-- Time Management Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1948&q=80" alt="Time Management">
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Time Management Mastery</h3>
+                        <p class="course-description">Learn proven techniques to prioritize tasks, eliminate time-wasters, and maximize productivity in professional settings.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 3 Weeks</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
+                        </div>
+                        <div class="course-price">From KSh 3,999</div>
+                        <a href="time-management.html" class="btn">View Course</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1155,9 +904,9 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to Master Data Entry?</h2>
-            <p>Join our next cohort and gain the skills you need to excel in data entry roles. Limited spots available.</p>
-            <a href="https://wa.me/254727211191?text=Hi,%20I%20have%20questions%20about%20the%20Data%20Entry%20Mastery%20course" class="btn btn-large" target="_blank">Contact Us for More Info</a>
+            <h2>Not Sure Which Course Is Right For You?</h2>
+            <p>Contact our course advisors for personalized recommendations based on your career goals and experience level.</p>
+            <a href="https://wa.me/254727211191?text=Hi,%20I%20need%20help%20choosing%20a%20professional%20development%20course" class="btn btn-large" target="_blank">Get Course Advice</a>
         </div>
     </section>
 
@@ -1185,10 +934,9 @@
                     <h3>Popular Courses</h3>
                     <ul>
                         <li><a href="data-entry.html">Data Entry Mastery</a></li>
-                        <li><a href="online-working.html">Online Working Mastery</a></li>
-                        <li><a href="personal-branding.html">Personal Branding Mastery</a></li>
+                        <li><a href="personal-branding.html">Personal Branding</a></li>
                         <li><a href="financial-management.html">Financial Management</a></li>
-                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="effective-leadership.html">Effective Leadership</a></li>
                         <li><a href="project-management.html">Project Management</a></li>
                     </ul>
                 </div>
@@ -1246,23 +994,6 @@
         // Close menu when clicking on links
         document.querySelectorAll('.side-menu a').forEach(link => {
             link.addEventListener('click', closeSideMenu);
-        });
-
-        // Tab functionality
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
         });
 
         // Back to Top functionality
