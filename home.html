@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hekima Hub - Premium Learning Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -163,6 +163,34 @@
             color: var(--blue);
         }
         
+        /* Mobile Search */
+        .mobile-search {
+            display: none;
+            padding: 1rem 0;
+            background-color: var(--light-gray);
+        }
+        
+        .mobile-search.active {
+            display: block;
+        }
+        
+        .mobile-search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+        }
+        
+        .mobile-search-box input {
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
+            width: 100%;
+            outline: none;
+        }
+        
         /* Side Menu for Mobile */
         .side-menu {
             position: fixed;
@@ -231,6 +259,243 @@
         .overlay.active {
             opacity: 1;
             visibility: visible;
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1002;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .cart-header h3 {
+            color: var(--dark-blue);
+        }
+        
+        .close-cart {
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .cart-items {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 60px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-details h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--dark-blue);
+        }
+        
+        .cart-item-price {
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .remove-item {
+            color: var(--maroon);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-gray);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--light-gray);
+        }
+        
+        /* Checkout Modal */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 1003;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .checkout-modal.open {
+            right: 0;
+        }
+        
+        .checkout-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: var(--light-blue);
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .checkout-header h2 {
+            color: var(--dark-blue);
+        }
+        
+        .close-checkout {
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .checkout-content {
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .checkout-section {
+            margin-bottom: 2rem;
+        }
+        
+        .checkout-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkout-summary {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .checkout-summary h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-gray);
+        }
+        
+        .whatsapp-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .whatsapp-checkout:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
         }
         
         /* Hero Slider */
@@ -378,48 +643,156 @@
         }
         
         .courses-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
         }
         
         .course-card {
-            background-color: var(--light-gray);
+            background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-gray);
+            cursor: pointer;
         }
         
         .course-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
-        .course-img {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
+        .course-card.expanded {
+            transform: translateY(0);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         
-        .course-content {
+        .course-main {
+            display: flex;
+            align-items: center;
             padding: 1.5rem;
         }
         
-        .course-content h3 {
-            margin-bottom: 1rem;
+        .course-img {
+            width: 200px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+        }
+        
+        .course-info {
+            flex-grow: 1;
+        }
+        
+        .course-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--dark-blue);
         }
         
-        .course-content p {
-            margin-bottom: 1.5rem;
+        .course-info p {
+            margin-bottom: 1rem;
             color: var(--gray);
         }
         
+        .course-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .meta-item i {
+            color: var(--blue);
+        }
+        
         .course-price {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--dark-blue);
             margin-bottom: 1rem;
+        }
+        
+        .course-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .course-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background-color: var(--light-gray);
+            border-top: 1px solid var(--border-gray);
+        }
+        
+        .course-card.expanded .course-details {
+            max-height: 500px;
+        }
+        
+        .details-content {
+            padding: 2rem;
+        }
+        
+        .details-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .details-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .details-section h4 i {
+            color: var(--blue);
+        }
+        
+        .details-section ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        
+        .details-section li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .details-section li:before {
+            content: "•";
+            color: var(--blue);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        
+        .learning-models {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .model-tag {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
         
         /* Platform Model Section */
@@ -626,37 +999,47 @@
                 font-size: 1.5rem;
             }
             
-            /* Two cards per row on mobile */
             .features-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
             
-            .courses-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+            .course-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .course-img {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .course-actions {
+                flex-direction: column;
             }
             
             .model-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            
-            /* Adjust card padding for smaller screens */
-            .feature-card,
-            .course-card,
-            .model-card {
-                padding: 1.5rem 1rem;
-            }
-            
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+                grid-template-columns: 1fr;
             }
             
             .search-box {
                 width: 200px;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .checkout-modal {
+                width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
             }
         }
         
@@ -673,37 +1056,17 @@
                 padding: 1.5rem;
             }
             
-            /* For very small screens, ensure cards don't get too small */
-            .features-container,
-            .courses-container,
-            .model-container {
-                grid-template-columns: repeat(2, minmax(140px, 1fr));
-            }
-            
-            .feature-card h3,
-            .course-card h3,
-            .model-card h3 {
-                font-size: 1rem;
-            }
-            
-            .feature-card p,
-            .course-card p,
-            .model-card p {
-                font-size: 0.85rem;
-            }
-            
-            .btn {
-                padding: 10px 16px;
-                font-size: 0.85rem;
-            }
-        }
-        
-        /* For very small screens (below 400px) */
-        @media (max-width: 400px) {
-            .features-container,
-            .courses-container,
-            .model-container {
+            .features-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .course-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .learning-models {
+                flex-direction: column;
             }
         }
     </style>
@@ -726,9 +1089,9 @@
             </div>
             
             <div class="header-right">
-                <div class="cart-icon">
+                <div class="cart-icon" id="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">2</span>
+                    <span class="cart-count">0</span>
                 </div>
                 <div class="mobile-menu" id="mobile-menu">
                     <i class="fas fa-bars"></i>
@@ -745,6 +1108,16 @@
                 <li><a href="about-us.html">About Us</a></li>
             </ul>
         </nav>
+        
+        <!-- Mobile Search -->
+        <div class="mobile-search" id="mobile-search">
+            <div class="container">
+                <div class="mobile-search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search for courses...">
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Side Menu for Mobile -->
@@ -758,11 +1131,101 @@
             <li><a href="programs.html">Programs</a></li>
             <li><a href="tutors.html">Tutors</a></li>
             <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#" id="mobile-search-toggle"><i class="fas fa-search"></i> Search</a></li>
         </ul>
     </div>
     
     <!-- Overlay for mobile menu -->
     <div class="overlay" id="overlay"></div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <div class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-total" id="cart-total" style="display: none;">
+            <span>Total:</span>
+            <span id="total-amount">KSh 0</span>
+        </div>
+        <button class="btn btn-maroon" id="checkout-btn" style="width: 100%; display: none;">Proceed to Checkout</button>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+            <div class="close-checkout" id="close-checkout">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="checkout-content">
+            <form id="checkout-form">
+                <div class="checkout-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3>Course Selection</h3>
+                    <div class="checkout-summary" id="checkout-summary">
+                        <!-- Course summary will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3>Payment Method</h3>
+                    <div class="form-group">
+                        <label for="payment-method">Select Payment Method</label>
+                        <select id="payment-method" name="payment-method" required>
+                            <option value="">Choose an option</option>
+                            <option value="mpesa">M-Pesa</option>
+                            <option value="bank">Bank Transfer</option>
+                            <option value="card">Credit/Debit Card</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="mpesa-details" style="display: none;">
+                        <label for="mpesa-number">M-Pesa Number</label>
+                        <input type="tel" id="mpesa-number" name="mpesa-number">
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <a href="#" class="whatsapp-checkout" id="whatsapp-checkout" style="display: none;">
+                    <i class="fab fa-whatsapp"></i> Complete Purchase via WhatsApp
+                </a>
+            </form>
+        </div>
+    </div>
 
     <!-- Hero Slider -->
     <section class="hero-slider">
@@ -776,7 +1239,7 @@
                         <span><i class="far fa-clock"></i> 4 Weeks</span>
                         <span><i class="fas fa-user-graduate"></i> Beginner</span>
                     </div>
-                    <a href="#" class="btn btn-maroon">Add to Cart - KSh 3,500</a>
+                    <a href="#" class="btn btn-maroon" data-course-id="1" data-course-name="Data Entry Mastery" data-course-price="3500">Add to Cart - KSh 3,500</a>
                 </div>
             </div>
             
@@ -789,7 +1252,7 @@
                         <span><i class="far fa-clock"></i> 6 Weeks</span>
                         <span><i class="fas fa-user-graduate"></i> Intermediate</span>
                     </div>
-                    <a href="#" class="btn btn-maroon">Add to Cart - KSh 6,000</a>
+                    <a href="#" class="btn btn-maroon" data-course-id="2" data-course-name="Financial Management" data-course-price="6000">Add to Cart - KSh 6,000</a>
                 </div>
             </div>
             
@@ -802,7 +1265,7 @@
                         <span><i class="far fa-clock"></i> 4 Weeks</span>
                         <span><i class="fas fa-user-graduate"></i> All Levels</span>
                     </div>
-                    <a href="#" class="btn btn-maroon">Add to Cart - KSh 4,500</a>
+                    <a href="#" class="btn btn-maroon" data-course-id="3" data-course-name="Online Working Mastery" data-course-price="4500">Add to Cart - KSh 4,500</a>
                 </div>
             </div>
         </div>
@@ -867,43 +1330,181 @@
             </div>
             
             <div class="courses-container">
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="course-content">
-                        <h3>Data Entry Mastery</h3>
-                        <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills.</p>
-                        <div class="course-price">KSh 3,500</div>
-                        <a href="#" class="btn btn-maroon">Add to Cart</a>
+                <!-- Course 1 -->
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-main">
+                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="course-info">
+                            <h3>Data Entry Mastery</h3>
+                            <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy.</p>
+                            <div class="course-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>4 Weeks</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>Beginner Level</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span>Instructor-Led</span>
+                                </div>
+                            </div>
+                            <div class="course-price">KSh 3,500</div>
+                            <div class="course-actions">
+                                <a href="#" class="btn btn-maroon add-to-cart" data-course-id="1" data-course-name="Data Entry Mastery" data-course-price="3500">Add to Cart</a>
+                                <a href="#" class="btn btn-outline">Save for Later</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-details">
+                        <div class="details-content">
+                            <div class="details-section">
+                                <h4><i class="fas fa-info-circle"></i> Course Overview</h4>
+                                <p>This comprehensive course will transform you into a data entry professional. You'll learn industry-standard techniques, keyboard shortcuts, and data management best practices that will make you more efficient and accurate in any data-driven role.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-list-check"></i> What You'll Learn</h4>
+                                <ul>
+                                    <li>Master keyboard shortcuts for faster data entry</li>
+                                    <li>Learn data validation and error-checking techniques</li>
+                                    <li>Understand data organization and management principles</li>
+                                    <li>Develop accuracy and speed in data processing</li>
+                                    <li>Apply best practices for data security and privacy</li>
+                                </ul>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-calendar-alt"></i> Duration & Schedule</h4>
+                                <p>This is a 4-week course with flexible scheduling options. You can choose between morning, evening, or weekend sessions to fit your schedule.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-graduation-cap"></i> Learning Models Available</h4>
+                                <div class="learning-models">
+                                    <span class="model-tag">Instructor-Led</span>
+                                    <span class="model-tag">Self-Paced</span>
+                                    <span class="model-tag">Subscription</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="course-content">
-                        <h3>Financial Management</h3>
-                        <p>Master budgeting, investment strategies, and financial analysis for personal and business finances.</p>
-                        <div class="course-price">KSh 6,000</div>
-                        <a href="#" class="btn btn-maroon">Add to Cart</a>
+                <!-- Course 2 -->
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-main">
+                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="course-info">
+                            <h3>Financial Management</h3>
+                            <p>Master budgeting, investment strategies, and financial analysis to make informed decisions for personal and business finances.</p>
+                            <div class="course-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>6 Weeks</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>Intermediate Level</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span>Instructor-Led</span>
+                                </div>
+                            </div>
+                            <div class="course-price">KSh 6,000</div>
+                            <div class="course-actions">
+                                <a href="#" class="btn btn-maroon add-to-cart" data-course-id="2" data-course-name="Financial Management" data-course-price="6000">Add to Cart</a>
+                                <a href="#" class="btn btn-outline">Save for Later</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-details">
+                        <div class="details-content">
+                            <div class="details-section">
+                                <h4><i class="fas fa-info-circle"></i> Course Overview</h4>
+                                <p>This comprehensive financial management course will equip you with the skills needed to make sound financial decisions for both personal and business contexts. Learn from industry experts with real-world experience.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-list-check"></i> What You'll Learn</h4>
+                                <ul>
+                                    <li>Create and manage personal and business budgets</li>
+                                    <li>Understand investment strategies and risk management</li>
+                                    <li>Analyze financial statements and performance metrics</li>
+                                    <li>Develop financial planning and forecasting skills</li>
+                                    <li>Learn tax planning and optimization strategies</li>
+                                </ul>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-calendar-alt"></i> Duration & Schedule</h4>
+                                <p>This is a 6-week intensive course with weekly live sessions and practical assignments. Flexible scheduling options available.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-graduation-cap"></i> Learning Models Available</h4>
+                                <div class="learning-models">
+                                    <span class="model-tag">Instructor-Led</span>
+                                    <span class="model-tag">Self-Paced</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');"></div>
-                    <div class="course-content">
-                        <h3>Online Working Mastery</h3>
-                        <p>Master the fundamentals of online work, from data entry basics to advanced online tasking.</p>
-                        <div class="course-price">KSh 4,500</div>
-                        <a href="#" class="btn btn-maroon">Add to Cart</a>
+                <!-- Course 3 -->
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-main">
+                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');"></div>
+                        <div class="course-info">
+                            <h3>Online Working Mastery</h3>
+                            <p>Master the fundamentals of online work, from data entry basics to advanced online tasking strategies for the digital workspace.</p>
+                            <div class="course-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>4 Weeks</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>All Levels</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span>Self-Paced</span>
+                                </div>
+                            </div>
+                            <div class="course-price">KSh 4,500</div>
+                            <div class="course-actions">
+                                <a href="#" class="btn btn-maroon add-to-cart" data-course-id="3" data-course-name="Online Working Mastery" data-course-price="4500">Add to Cart</a>
+                                <a href="#" class="btn btn-outline">Save for Later</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
-                    <div class="course-content">
-                        <h3>Web Development</h3>
-                        <p>Learn HTML, CSS, JavaScript and build responsive websites from scratch.</p>
-                        <div class="course-price">KSh 8,000</div>
-                        <a href="#" class="btn btn-maroon">Add to Cart</a>
+                    <div class="course-details">
+                        <div class="details-content">
+                            <div class="details-section">
+                                <h4><i class="fas fa-info-circle"></i> Course Overview</h4>
+                                <p>This course provides a comprehensive foundation for succeeding in the online work environment. Learn essential skills for remote work, freelancing, and digital entrepreneurship.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-list-check"></i> What You'll Learn</h4>
+                                <ul>
+                                    <li>Set up an effective home office and work environment</li>
+                                    <li>Master time management and productivity techniques</li>
+                                    <li>Learn communication best practices for remote teams</li>
+                                    <li>Understand online security and data protection</li>
+                                    <li>Develop skills for finding and securing online work</li>
+                                </ul>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-calendar-alt"></i> Duration & Schedule</h4>
+                                <p>This 4-week course is self-paced, allowing you to complete it according to your schedule. All materials are available upon enrollment.</p>
+                            </div>
+                            <div class="details-section">
+                                <h4><i class="fas fa-graduation-cap"></i> Learning Models Available</h4>
+                                <div class="learning-models">
+                                    <span class="model-tag">Self-Paced</span>
+                                    <span class="model-tag">Subscription</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1002,11 +1603,30 @@
     </footer>
 
     <script>
+        // Cart functionality
+        let cart = [];
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const totalAmount = document.getElementById('total-amount');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeCheckout = document.getElementById('close-checkout');
+        const checkoutForm = document.getElementById('checkout-form');
+        const checkoutSummary = document.getElementById('checkout-summary');
+        const whatsappCheckout = document.getElementById('whatsapp-checkout');
+        const paymentMethod = document.getElementById('payment-method');
+        const mpesaDetails = document.getElementById('mpesa-details');
+        
         // Mobile menu functionality
         const mobileMenu = document.getElementById('mobile-menu');
         const sideMenu = document.getElementById('side-menu');
         const closeMenu = document.getElementById('close-menu');
         const overlay = document.getElementById('overlay');
+        const mobileSearch = document.getElementById('mobile-search');
+        const mobileSearchToggle = document.getElementById('mobile-search-toggle');
         
         // Toggle side menu
         mobileMenu.addEventListener('click', function() {
@@ -1029,7 +1649,14 @@
         document.querySelectorAll('.side-menu a').forEach(link => {
             link.addEventListener('click', closeSideMenu);
         });
-
+        
+        // Toggle mobile search
+        mobileSearchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            mobileSearch.classList.toggle('active');
+            closeSideMenu();
+        });
+        
         // Hero Slider Functionality
         const slides = document.querySelectorAll('.slide');
         const indicators = document.querySelectorAll('.indicator');
@@ -1071,6 +1698,248 @@
                 showSlide(index);
             });
         });
+
+        // Course details toggle functionality
+        function toggleCourseDetails(courseCard) {
+            // Close all other expanded course cards
+            document.querySelectorAll('.course-card.expanded').forEach(card => {
+                if (card !== courseCard) {
+                    card.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle the clicked course card
+            courseCard.classList.toggle('expanded');
+        }
+        
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const courseId = this.getAttribute('data-course-id');
+                const courseName = this.getAttribute('data-course-name');
+                const coursePrice = parseInt(this.getAttribute('data-course-price'));
+                
+                // Check if course is already in cart
+                const existingItem = cart.find(item => item.id === courseId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: courseId,
+                        name: courseName,
+                        price: coursePrice,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                openCartModal();
+            });
+        });
+        
+        // Update cart display
+        function updateCart() {
+            const cartCount = document.querySelector('.cart-count');
+            let totalItems = 0;
+            let totalPrice = 0;
+            
+            cart.forEach(item => {
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
+            });
+            
+            cartCount.textContent = totalItems;
+            
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartTotal.style.display = 'none';
+                checkoutBtn.style.display = 'none';
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">KSh ${item.price.toLocaleString()} x ${item.quantity}</div>
+                        </div>
+                        <div class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+                
+                cartTotal.style.display = 'flex';
+                checkoutBtn.style.display = 'block';
+                totalAmount.textContent = `KSh ${totalPrice.toLocaleString()}`;
+            }
+        }
+        
+        // Remove from cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+        }
+        
+        // Open cart modal
+        function openCartModal() {
+            cartModal.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close cart modal
+        function closeCartModal() {
+            cartModal.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        cartIcon.addEventListener('click', openCartModal);
+        closeCart.addEventListener('click', closeCartModal);
+        overlay.addEventListener('click', closeCartModal);
+        
+        // Open checkout modal
+        checkoutBtn.addEventListener('click', function() {
+            closeCartModal();
+            openCheckoutModal();
+        });
+        
+        // Open checkout modal
+        function openCheckoutModal() {
+            updateCheckoutSummary();
+            checkoutModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close checkout modal
+        function closeCheckoutModal() {
+            checkoutModal.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+        
+        closeCheckout.addEventListener('click', closeCheckoutModal);
+        
+        // Update checkout summary
+        function updateCheckoutSummary() {
+            let totalPrice = 0;
+            checkoutSummary.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                
+                const summaryItem = document.createElement('div');
+                summaryItem.className = 'summary-item';
+                summaryItem.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>KSh ${itemTotal.toLocaleString()}</span>
+                `;
+                checkoutSummary.appendChild(summaryItem);
+            });
+            
+            const summaryTotal = document.createElement('div');
+            summaryTotal.className = 'summary-total';
+            summaryTotal.innerHTML = `
+                <span>Total</span>
+                <span>KSh ${totalPrice.toLocaleString()}</span>
+            `;
+            checkoutSummary.appendChild(summaryTotal);
+            
+            // Update WhatsApp checkout link
+            const coursesText = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+            const message = `Hello! I would like to purchase the following courses from Hekima Hub: ${coursesText}. Total: KSh ${totalPrice.toLocaleString()}.`;
+            whatsappCheckout.href = `https://wa.me/254784599322?text=${encodeURIComponent(message)}`;
+            whatsappCheckout.style.display = 'block';
+        }
+        
+        // Payment method change
+        paymentMethod.addEventListener('change', function() {
+            if (this.value === 'mpesa') {
+                mpesaDetails.style.display = 'block';
+            } else {
+                mpesaDetails.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const fullName = formData.get('full-name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const paymentMethodValue = formData.get('payment-method');
+            const mpesaNumber = formData.get('mpesa-number');
+            const notes = formData.get('notes');
+            
+            // Calculate total
+            let totalPrice = 0;
+            const coursesText = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                return `${item.name} (x${item.quantity}) - KSh ${itemTotal.toLocaleString()}`;
+            }).join('%0A');
+            
+            // Create WhatsApp message
+            let message = `*HEKIMA HUB COURSE PURCHASE*%0A%0A`;
+            message += `*Customer Information:*%0A`;
+            message += `Name: ${fullName}%0A`;
+            message += `Email: ${email}%0A`;
+            message += `Phone: ${phone}%0A%0A`;
+            message += `*Course Selection:*%0A${coursesText}%0A%0A`;
+            message += `*Total Amount:* KSh ${totalPrice.toLocaleString()}%0A%0A`;
+            message += `*Payment Method:* ${paymentMethodValue}%0A`;
+            
+            if (paymentMethodValue === 'mpesa' && mpesaNumber) {
+                message += `M-Pesa Number: ${mpesaNumber}%0A`;
+            }
+            
+            if (notes) {
+                message += `*Additional Notes:*%0A${notes}%0A%0A`;
+            }
+            
+            message += `I'm ready to complete my purchase!`;
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/254784599322?text=${message}`, '_blank');
+            
+            // Close checkout modal
+            closeCheckoutModal();
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+            
+            // Show success message
+            alert('Thank you for your purchase! You will be redirected to WhatsApp to complete your order.');
+        });
+        
+        // Initialize cart
+        updateCart();
     </script>
 </body>
 </html>
