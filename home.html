@@ -2,24 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
-    <title>Hekima Hub - Comprehensive Education Services</title>
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/ncNcvdsr/unnamed.png">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#1a73e8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-TileColor" content="#1a73e8">
-    <meta name="msapplication-tap-highlight" content="no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hekima Hub - Premium Learning Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* Global Styles */
         :root {
             --blue: #1a73e8;
             --maroon: #8b0000;
@@ -32,6 +19,8 @@
             --dark-maroon: #5a0000;
             --gray: #5f6368;
             --light-gray: #f8f9fa;
+            --dark-gray: #333;
+            --border-gray: #e0e0e0;
         }
         
         * {
@@ -40,17 +29,11 @@
             box-sizing: border-box;
         }
         
-        html {
-            font-size: 16px;
-        }
-        
         body {
-            background-color: var(--light-gray);
-            color: #333;
-            line-height: 1.5;
-            overflow-x: hidden;
             font-family: 'Roboto', sans-serif;
-            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
         }
         
         .container {
@@ -60,94 +43,7 @@
             padding: 0 15px;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--blue);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background-color: var(--dark-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .btn-maroon {
-            background-color: var(--maroon);
-        }
-        
-        .btn-maroon:hover {
-            background-color: var(--dark-maroon);
-        }
-        
-        .btn-green {
-            background-color: var(--green);
-        }
-        
-        .btn-orange {
-            background-color: var(--orange);
-        }
-        
-        section {
-            padding: 40px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-            font-weight: 600;
-            line-height: 1.2;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        h2 {
-            font-size: 1.75rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            font-weight: 600;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.75rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--maroon);
-        }
-        
-        h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: var(--gray);
-            font-weight: 400;
-            line-height: 1.6;
-        }
-        
-        /* Header & Navigation */
+        /* Header Styles */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -161,59 +57,65 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            padding: 1rem 0;
         }
         
         .logo {
-            display: flex;
-            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .logo img {
             height: 50px;
-            transition: transform 0.3s ease;
         }
         
-        .logo:hover img {
-            transform: scale(1.05);
-        }
-        
-        nav ul {
+        .header-left, .header-right {
             display: flex;
-            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
         }
         
-        nav ul li {
-            margin-left: 1.5rem;
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            width: 300px;
         }
         
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            position: relative;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        nav ul li a:hover {
-            color: var(--blue);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--blue);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after {
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
             width: 100%;
+            outline: none;
+        }
+        
+        .cart-icon, .search-icon {
+            font-size: 1.25rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--maroon);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .mobile-menu {
@@ -223,318 +125,130 @@
             color: var(--blue);
         }
         
-        /* Side Menu for Mobile */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: var(--white);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1001;
-            transition: right 0.3s ease;
-            padding: 4rem 1.5rem 1.5rem;
-            overflow-y: auto;
-        }
-        
-        .side-menu.open {
-            right: 0;
-        }
-        
-        .side-menu ul {
-            list-style: none;
-        }
-        
-        .side-menu ul li {
-            margin-bottom: 1rem;
-        }
-        
-        .side-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1.1rem;
-            display: block;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            transition: color 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        .side-menu ul li a:hover {
-            color: var(--blue);
-        }
-        
-        .side-menu .close-btn {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--blue);
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Hero Section - Redesigned */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding-top: 80px; /* Account for fixed header */
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        /* Learning Formats Section */
-        .learning-formats {
-            background-color: var(--white);
-            padding: 40px 0;
-        }
-        
-        .formats-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .format-card {
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .format-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .format-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--blue);
-        }
-        
-        .format-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Featured Courses Section - Redesigned */
-        .featured-courses {
-            background-color: var(--light-blue);
-        }
-        
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .course-card {
-            background-color: var(--white);
-            border-radius: 6px;
+        /* Hero Slider */
+        .hero-slider {
+            margin-top: 80px;
+            position: relative;
+            height: 500px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
         }
         
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .course-img {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
+        .slider-container {
+            height: 100%;
             position: relative;
         }
         
-        .course-img::after {
-            content: '';
+        .slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-        }
-        
-        .course-content {
-            padding: 1.25rem;
-        }
-        
-        .course-content h3 {
-            color: var(--dark-blue);
-            margin-bottom: 0.75rem;
-        }
-        
-        .course-content p {
-            margin-bottom: 1.25rem;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            color: #777;
-            font-size: 0.85rem;
-        }
-        
-        /* School Tutoring Section */
-        .school-tutoring {
-            background-color: var(--white);
-            padding: 40px 0;
-        }
-        
-        .tutoring-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .tutoring-card {
-            background-color: var(--light-blue);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .tutoring-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .tutoring-icon {
-            width: 80px;
-            height: 80px;
-            background-color: var(--blue);
-            color: white;
-            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            background-size: cover;
+            background-position: center;
         }
         
-        .tutoring-card h3 {
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            max-width: 600px;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            margin-left: 10%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .slide-content h2 {
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--dark-blue);
         }
         
-        .tutoring-card ul {
-            list-style: none;
-            text-align: left;
-            margin-top: 1rem;
+        .slide-content p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
         }
         
-        .tutoring-card li {
-            padding: 0.5rem 0;
+        .slide-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            align-items: center;
+            gap: 10px;
         }
         
-        .tutoring-card li i {
-            color: var(--green);
-            margin-right: 0.75rem;
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
         }
         
-        /* Child Development Section */
-        .child-development {
-            background-color: var(--light-blue);
-            padding: 40px 0;
+        .indicator.active {
+            background-color: var(--white);
         }
         
-        .development-container {
+        /* Why Choose Us Section */
+        .why-choose-us {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--maroon);
+        }
+        
+        .features-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
         
-        .development-card {
+        .feature-card {
             background-color: var(--white);
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 2rem;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
         
-        .development-card:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
         }
         
-        .development-icon {
+        .feature-icon {
             width: 70px;
             height: 70px;
-            background-color: var(--green);
+            background-color: var(--blue);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -544,247 +258,113 @@
             font-size: 1.8rem;
         }
         
-        .development-card h3 {
+        .feature-card h3 {
             margin-bottom: 1rem;
             color: var(--dark-blue);
         }
         
-        /* Adult Tutoring Section */
-        .adult-tutoring {
+        /* Course Categories Section */
+        .course-categories {
+            padding: 4rem 0;
             background-color: var(--white);
-            padding: 40px 0;
         }
         
-        .adult-container {
+        .categories-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
         
-        .adult-card {
-            background-color: var(--light-blue);
+        .category-card {
+            background-color: var(--light-gray);
             border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
         
-        .adult-card:hover {
+        .category-card:hover {
             transform: translateY(-5px);
         }
         
-        .adult-icon {
-            width: 80px;
-            height: 80px;
-            background-color: var(--orange);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+        .category-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
         }
         
-        .adult-card h3 {
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-        }
-        
-        .adult-card ul {
-            list-style: none;
-            text-align: left;
-            margin-top: 1rem;
-        }
-        
-        .adult-card li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .adult-card li i {
-            color: var(--green);
-            margin-right: 0.75rem;
-        }
-        
-        /* Mission Section */
-        .mission-section {
-            background-color: var(--light-blue);
-            padding: 40px 0;
-        }
-        
-        .mission-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .mission-content h2 {
-            margin-bottom: 1.5rem;
-        }
-        
-        .mission-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        
-        .mission-highlights {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .mission-item {
-            background-color: var(--white);
-            border-radius: 8px;
+        .category-content {
             padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         
-        .mission-item i {
-            font-size: 2rem;
-            color: var(--blue);
+        .category-content h3 {
             margin-bottom: 1rem;
-        }
-        
-        .mission-item h4 {
-            margin-bottom: 0.75rem;
             color: var(--dark-blue);
         }
         
-        /* Chat CTA Section */
-        .chat-cta {
-            background-color: var(--white);
-            padding: 40px 0;
-            text-align: center;
+        .category-content p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
         }
         
-        .chat-box {
+        /* Platform Model Section */
+        .platform-model {
+            padding: 4rem 0;
             background-color: var(--light-blue);
+        }
+        
+        .model-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .model-card {
+            background-color: var(--white);
             border-radius: 8px;
             padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
         
-        .chat-box h3 {
+        .model-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .model-icon {
+            font-size: 3rem;
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .model-card h3 {
             margin-bottom: 1rem;
             color: var(--dark-blue);
         }
         
-        .chat-box p {
+        .model-card p {
             margin-bottom: 1.5rem;
-        }
-        
-        /* About Section */
-        .about {
-            background-color: var(--light-blue);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .about-text h2 {
-            text-align: left;
-        }
-        
-        .about-text h2::after {
-            left: 0;
-            transform: none;
-        }
-        
-        .about-img {
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 1.25rem;
-            background-color: var(--white);
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--blue);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-text {
             color: var(--gray);
-            font-weight: 500;
-            font-size: 0.85rem;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(to right, var(--blue), var(--maroon));
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .cta h2::after {
-            background-color: white;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.9);
         }
         
         /* Footer */
         footer {
             background-color: #1a1a2e;
             color: white;
-            padding: 2rem 0 1rem;
+            padding: 3rem 0 1rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-column h3 {
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
             position: relative;
         }
@@ -804,13 +384,13 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
         
         .footer-column ul li a {
             color: #bbb;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: color 0.3s ease;
         }
         
@@ -820,7 +400,7 @@
         
         .social-links {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
             margin-top: 1rem;
         }
         
@@ -834,7 +414,6 @@
             border-radius: 50%;
             color: white;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
         
         .social-links a:hover {
@@ -844,183 +423,61 @@
         
         .footer-bottom {
             text-align: center;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         
-        /* PWA Install Prompt */
-        .pwa-install-prompt {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--white);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1002;
-            display: none;
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        .pwa-install-prompt.show {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-        
-        .pwa-install-prompt p {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .pwa-install-btns {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .pwa-install-btns button {
-            flex: 1;
-            padding: 8px 12px;
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
-        }
-        
-        .pwa-install-btns .install-btn {
-            background-color: var(--blue);
-            color: white;
-        }
-        
-        .pwa-install-btns .dismiss-btn {
-            background-color: #eee;
-            color: #333;
-        }
-        
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-decoration: none;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-        
-        .whatsapp-float:hover {
-            background-color: #128c7e;
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        .whatsapp-float i {
-            margin-top: 2px;
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            bottom: 25px;
-            left: 25px;
-            background-color: var(--blue);
-            color: white;
-            border-radius: 50%;
             text-align: center;
-            font-size: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            cursor: pointer;
         }
         
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
+        .btn:hover {
             background-color: var(--dark-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+        .btn-maroon {
+            background-color: var(--maroon);
         }
         
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+        .btn-maroon:hover {
+            background-color: var(--dark-maroon);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--blue);
+            color: var(--blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light-blue);
         }
         
         /* Responsive Design */
         @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .tutoring-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .development-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .adult-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .mission-highlights {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: row;
-            }
-            
-            nav ul {
+            .header-left {
                 display: none;
             }
             
@@ -1028,82 +485,34 @@
                 display: block;
             }
             
-            .hero h1 {
-                font-size: 2rem;
+            .logo {
+                position: static;
+                transform: none;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .header-container {
+                justify-content: space-between;
             }
             
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
+            .hero-slider {
+                height: 400px;
             }
             
-            .btn {
-                width: 100%;
-                max-width: 220px;
-                margin-bottom: 0.5rem;
+            .slide-content {
+                margin-left: 5%;
+                max-width: 90%;
             }
             
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .development-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .mission-highlights {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 1.75rem;
-            }
-            
-            h2 {
+            .slide-content h2 {
                 font-size: 1.5rem;
             }
             
-            section {
-                padding: 30px 0;
-            }
-            
-            .hero {
-                padding-top: 70px;
-                height: 80vh;
-                min-height: 500px;
-            }
-            
-            .courses-grid {
+            .features-container, .categories-container, .model-container {
                 grid-template-columns: 1fr;
-                gap: 1rem;
             }
             
-            .course-content {
-                padding: 1rem;
-            }
-            
-            .footer-content {
-                gap: 1rem;
-            }
-            
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 26px;
-            }
-            
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
-                left: 20px;
-                font-size: 18px;
+            .search-box {
+                width: 200px;
             }
         }
         
@@ -1112,449 +521,214 @@
                 grid-template-columns: 1fr;
             }
             
-            .side-menu {
-                width: 260px;
+            .hero-slider {
+                height: 350px;
             }
             
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-            
-            .logo img {
-                height: 50px;
-            }
-            
-            .pwa-install-prompt {
-                width: 90%;
-            }
-            
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 15px;
-                right: 15px;
-                font-size: 24px;
-            }
-            
-            .back-to-top {
-                width: 40px;
-                height: 40px;
-                bottom: 15px;
-                left: 15px;
-                font-size: 16px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            html {
-                font-size: 14px;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
+            .slide-content {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
+            <div class="header-left">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search for courses...">
+                </div>
+            </div>
+            
             <div class="logo">
                 <a href="home.html">
                     <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
                 </a>
             </div>
             
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="https://classroom.google.com">E-Learning</a></li>                </ul>
-            </nav>
-            
-            <div class="mobile-menu" id="mobile-menu">
-                <i class="fas fa-bars"></i>
+            <div class="header-right">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </div>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Side Menu for Mobile -->
-    <div class="side-menu" id="side-menu">
-        <div class="close-btn" id="close-menu">
-            <i class="fas fa-times"></i>
-        </div>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="https://classroom.google.com">E-Learning</a></li>        </ul>
-    </div>
-    
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- PWA Install Prompt -->
-    <div class="pwa-install-prompt" id="pwa-prompt">
-        <p>Install Hekima Hub app for a better experience?</p>
-        <div class="pwa-install-btns">
-            <button class="install-btn" id="install-btn">Install</button>
-            <button class="dismiss-btn" id="dismiss-btn">Not Now</button>
-        </div>
-    </div>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/254727211191" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="back-to-top" title="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </div>
-
-    <!-- Hero Section (Cover Page) - Redesigned -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Comprehensive Education for All Ages</h1>
-            <p>From early childhood development to adult education, Hekima Hub offers personalized learning experiences for every stage of life. We nurture young minds, support academic success, and empower adults with new skills.</p>
-            
-            <div class="hero-btns">
-                <a href="courses.html" class="btn">Our Courses</a>
-                <a href="about-us.html" class="btn btn-maroon">About Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Learning Formats Section -->
-    <section class="learning-formats">
-        <div class="container">
-            <h2>Flexible Learning Options</h2>
-            <div class="formats-container">
-                <div class="format-card">
-                    <div class="format-icon">
-                        <i class="fas fa-calendar-alt"></i>
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+                <div class="slide-content">
+                    <h2>Data Entry Mastery</h2>
+                    <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy in today's data-driven workplace.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 4 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Beginner</span>
                     </div>
-                    <h3>Full-time Classes</h3>
-                    <p>Intensive programs for rapid skill development</p>
-                </div>
-                
-                <div class="format-card">
-                    <div class="format-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Part-time Classes</h3>
-                    <p>Flexible schedules for working professionals</p>
-                </div>
-                
-                <div class="format-card">
-                    <div class="format-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Remote Learning</h3>
-                    <p>Learn from anywhere with online resources</p>
-                </div>
-                
-                <div class="format-card">
-                    <div class="format-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>In-person Learning</h3>
-                    <p>Face-to-face instruction for personalized attention</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Courses Section -->
-    <section class="featured-courses" id="courses">
-        <div class="container">
-            <h2>Featured Courses</h2>
-            
-            <div class="courses-grid">
-                <!-- Data Entry Course -->
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                    </div>
-                    <div class="course-content">
-                        <h3>Data Entry Mastery</h3>
-                        <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy in today's data-driven workplace.</p>
-                        <a href="data-entry.html" class="btn btn-green">Enroll Now</a>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 4 Weeks</span>
-                            <span><i class="fas fa-user-graduate"></i> Beginner</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Financial Management Course -->
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                    </div>
-                    <div class="course-content">
-                        <h3>Financial Management</h3>
-                        <p>Master budgeting, investment strategies, and financial analysis to make informed decisions for personal and business finances. Learn from industry experts.</p>
-                        <a href="financial-management.html" class="btn btn-maroon">Enroll Now</a>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 4 Weeks</span>
-                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Online Working Course -->
-                <div class="course-card">
-                    <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');">
-                    </div>
-                    <div class="course-content">
-                        <h3>Online Working Mastery</h3>
-                        <p>Master the fundamentals of online work, from data entry basics to advanced online tasking strategies that will help you succeed in the digital workspace.</p>
-                        <a href="Online-working.html" class="btn btn-orange">Enroll Now</a>
-                        <div class="course-meta">
-                            <span><i class="far fa-clock"></i> 4 Weeks</span>
-                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Child Development Section -->
-    <section class="child-development">
-        <div class="container">
-            <h2>Child Developmental Education</h2>
-            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Nurturing young minds through comprehensive developmental programs that build strong foundations for lifelong learning.</p>
-            
-            <div class="development-container">
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Cognitive Development</h3>
-                    <p>Stimulating activities that enhance problem-solving, critical thinking, and memory skills for young learners.</p>
-                </div>
-                
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Language & Communication</h3>
-                    <p>Building vocabulary, expression skills, and communication abilities through interactive learning.</p>
-                </div>
-                
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Social & Emotional Skills</h3>
-                    <p>Developing empathy, cooperation, and emotional intelligence through guided social interactions.</p>
-                </div>
-                
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Creative Expression</h3>
-                    <p>Encouraging imagination and artistic abilities through various creative mediums and activities.</p>
-                </div>
-                
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h3>Physical Development</h3>
-                    <p>Activities that promote motor skills, coordination, and overall physical well-being.</p>
-                </div>
-                
-                <div class="development-card">
-                    <div class="development-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3>Early Literacy & Numeracy</h3>
-                    <p>Foundational skills in reading, writing, and mathematics through play-based learning.</p>
+                    <a href="#" class="btn btn-maroon">Enroll Now - KSh 3,500</a>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20Child%20Developmental%20Education" class="btn btn-green">Learn More About Child Development</a>
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                <div class="slide-content">
+                    <h2>Financial Management</h2>
+                    <p>Master budgeting, investment strategies, and financial analysis to make informed decisions for personal and business finances. Learn from industry experts.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 6 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                    </div>
+                    <a href="#" class="btn btn-maroon">Enroll Now - KSh 6,000</a>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- School Tutoring Section -->
-    <section class="school-tutoring">
-        <div class="container">
-            <h2>Primary & Secondary School Tutoring</h2>
-            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">We offer comprehensive tutoring for primary and secondary school students to help them excel academically and build strong foundations for future success.</p>
             
-            <div class="tutoring-container">
-                <div class="tutoring-card">
-                    <div class="tutoring-icon">
-                        <i class="fas fa-graduation-cap"></i>
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');">
+                <div class="slide-content">
+                    <h2>Online Working Mastery</h2>
+                    <p>Master the fundamentals of online work, from data entry basics to advanced online tasking strategies that will help you succeed in the digital workspace.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 4 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> All Levels</span>
                     </div>
-                    <h3>Primary School Tutoring</h3>
-                    <p>Building strong academic foundations for young learners in all subjects</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Mathematics & English</li>
-                        <li><i class="fas fa-check"></i> Science & Social Studies</li>
-                        <li><i class="fas fa-check"></i> Reading & Writing Skills</li>
-                        <li><i class="fas fa-check"></i> Homework Assistance</li>
-                        <li><i class="fas fa-check"></i> Exam Preparation</li>
-                    </ul>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20Primary%20School%20Tutoring" class="btn btn-green" style="margin-top: 1.5rem;">Learn More</a>
-                </div>
-                
-                <div class="tutoring-card">
-                    <div class="tutoring-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Secondary School Tutoring</h3>
-                    <p>Comprehensive subject support for high school students preparing for national exams</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Mathematics & Sciences</li>
-                        <li><i class="fas fa-check"></i> Languages & Humanities</li>
-                        <li><i class="fas fa-check"></i> KCSE & IGCSE Preparation</li>
-                        <li><i class="fas fa-check"></i> Study Skills Development</li>
-                        <li><i class="fas fa-check"></i> Career Guidance</li>
-                    </ul>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20Secondary%20School%20Tutoring" class="btn btn-maroon" style="margin-top: 1.5rem;">Learn More</a>
+                    <a href="#" class="btn btn-maroon">Enroll Now - KSh 4,500</a>
                 </div>
             </div>
         </div>
+        
+        <div class="slide-indicators">
+            <div class="indicator active"></div>
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+        </div>
     </section>
 
-    <!-- Adult Tutoring Section -->
-    <section class="adult-tutoring">
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
         <div class="container">
-            <h2>Adult Education & Tutoring</h2>
-            <p class="text-center" style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Continuing education opportunities for adults seeking to enhance skills, change careers, or pursue personal development goals.</p>
+            <div class="section-title">
+                <h2>Why Choose Hekima Hub?</h2>
+                <p>Discover what makes our learning platform stand out from the rest</p>
+            </div>
             
-            <div class="adult-container">
-                <div class="adult-card">
-                    <div class="adult-icon">
-                        <i class="fas fa-user-tie"></i>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
                     </div>
-                    <h3>Professional Development</h3>
-                    <p>Skills enhancement and career advancement programs for working adults</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Digital Literacy & Computer Skills</li>
-                        <li><i class="fas fa-check"></i> Business Communication</li>
-                        <li><i class="fas fa-check"></i> Leadership & Management</li>
-                        <li><i class="fas fa-check"></i> Project Management</li>
-                        <li><i class="fas fa-check"></i> Professional Certification Prep</li>
-                    </ul>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20Professional%20Development%20courses" class="btn btn-orange" style="margin-top: 1.5rem;">Explore Programs</a>
+                    <h3>Certified Instructors</h3>
+                    <p>Learn from industry experts with proven track records in their respective fields.</p>
                 </div>
                 
-                <div class="adult-card">
-                    <div class="adult-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3>Academic Support for Adults</h3>
-                    <p>Educational assistance for adults pursuing further studies or returning to school</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> College & University Prep</li>
-                        <li><i class="fas fa-check"></i> GED & Diploma Equivalency</li>
-                        <li><i class="fas fa-check"></i> Research & Writing Skills</li>
-                        <li><i class="fas fa-check"></i> Test Preparation</li>
-                        <li><i class="fas fa-check"></i> Subject-Specific Tutoring</li>
-                    </ul>
-                    <a href="https://wa.me/254727211191?text=Hi,%20I'm%20interested%20in%20Academic%20Support%20for%20Adults" class="btn btn-maroon" style="margin-top: 1.5rem;">Get Support</a>
+                    <h3>Flexible Learning</h3>
+                    <p>Choose from instructor-led, self-paced, or subscription-based learning options.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="container">
-            <div class="mission-content">
-                <h2>Our Passion for Service</h2>
-                <p>At Hekima Hub, education is more than just a service—it's our passion and calling. We believe that every student deserves access to quality education that transforms lives and opens doors to new opportunities.</p>
-                <p>Our relentless commitment to service drives us to go above and beyond for our students. We don't just teach subjects; we mentor, inspire, and empower individuals to reach their full potential.</p>
-                <p>Whether you're a young student struggling with mathematics or a professional seeking to upskill, we approach every learning journey with the same dedication, patience, and personalized attention.</p>
                 
-                <div class="mission-highlights">
-                    <div class="mission-item">
-                        <i class="fas fa-heart"></i>
-                        <h4>Passionate Educators</h4>
-                        <p>Our tutors are not just qualified—they're passionate about making a difference in students' lives.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    
-                    <div class="mission-item">
-                        <i class="fas fa-hand-holding-heart"></i>
-                        <h4>Student-Centered Approach</h4>
-                        <p>We tailor our teaching methods to match each student's unique learning style and pace.</p>
+                    <h3>Affordable Pricing</h3>
+                    <p>Quality education at competitive prices with various payment options available.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    
-                    <div class="mission-item">
-                        <i class="fas fa-trophy"></i>
-                        <h4>Proven Results</h4>
-                        <p>Our track record of student success speaks to our commitment to excellence in education.</p>
-                    </div>
+                    <h3>Community Support</h3>
+                    <p>Join a vibrant community of learners and get support when you need it.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chat CTA Section -->
-    <section class="chat-cta">
+    <!-- Course Categories Section -->
+    <section class="course-categories">
         <div class="container">
-            <div class="chat-box">
-                <h3>Get any Questions?</h3>
-                <p>Our education advisors are here to help you choose the right course and answer any questions you might have about our programs.</p>
-                <a href="https://wa.me/254727211191" class="btn btn-green" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat with us
-                </a>
+            <div class="section-title">
+                <h2>Popular Course Categories</h2>
+                <p>Explore our most sought-after learning paths</p>
             </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Hekima Hub</h2>
-                    <p>Hekima Hub was founded with a vision to make quality education accessible to everyone. Our name "Hekima" means wisdom in Swahili, reflecting our commitment to nurturing knowledge and skills that transform lives.</p>
-                    <p>We specialize in personalized tutoring that adapts to each student's learning style, pace, and goals. Our expert instructors are passionate about helping you achieve your full potential.</p>
-                    <p>Whether you're looking to advance your career, learn new skills, or prepare for exams, Hekima Hub provides the guidance and resources you need to succeed.</p>
-                    
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-text">Students Trained</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-text">Expert Tutors</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-text">Success Rate</div>
-                        </div>
+            
+            <div class="categories-container">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Business & Finance</h3>
+                        <p>Master financial management, business strategy, and entrepreneurship skills to advance your career.</p>
+                        <a href="#" class="btn btn-outline">Explore Courses</a>
                     </div>
                 </div>
                 
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="About Hekima Hub">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Technology & IT</h3>
+                        <p>Learn programming, web development, data science, and other in-demand tech skills.</p>
+                        <a href="#" class="btn btn-outline">Explore Courses</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                    <div class="category-content">
+                        <h3>Creative Arts</h3>
+                        <p>Develop your creative skills in design, photography, writing, and other artistic disciplines.</p>
+                        <a href="#" class="btn btn-outline">Explore Courses</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section class="cta">
+    <!-- Platform Model Section -->
+    <section class="platform-model">
         <div class="container">
-            <h2>Ready to Transform Your Future?</h2>
-            <p>Join thousands of successful students who have accelerated their careers with Hekima Hub's expert-led courses.</p>
-            <a href="courses.html" class="btn">Get Started Today</a>
+            <div class="section-title">
+                <h2>Our Learning Platform Model</h2>
+                <p>Flexible options to match your learning style and schedule</p>
+            </div>
+            
+            <div class="model-container">
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Instructor-Led Courses</h3>
+                    <p>Learn directly from expert instructors with live sessions, personalized feedback, and structured learning paths.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <h3>Self-Paced Learning</h3>
+                    <p>Study at your own pace with pre-recorded lessons, downloadable resources, and lifetime access to course materials.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Subscription Model</h3>
+                    <p>Access multiple courses with timed access, regular content updates, and exclusive community features.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1564,7 +738,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Hekima Hub</h3>
-                    <p style="color: #bbb; font-size: 0.85rem;">Empowering individuals through personalized education and expert guidance to achieve academic and career success.</p>
+                    <p style="color: #bbb; font-size: 0.9rem;">Empowering individuals through personalized education and expert guidance to achieve academic and career success.</p>
                 </div> 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -1582,7 +756,6 @@
                     <ul>
                         <li><a href="data-entry.html">Data Entry Mastery</a></li>
                         <li><a href="online-working.html">Online Working Mastery</a></li>
-                        <li><a href="personal-branding.html">Personal Branding Mastery</a></li>
                         <li><a href="financial-management.html">Financial Management</a></li>
                         <li><a href="web-development.html">Web Development</a></li>
                         <li><a href="project-management.html">Project Management</a></li>
@@ -1596,6 +769,12 @@
                         <li><i class="fas fa-phone"></i> +254 727211191</li>
                         <li><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</li>
                     </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
             
@@ -1606,95 +785,52 @@
     </footer>
 
     <script>
-        // Mobile menu functionality
-        const mobileMenu = document.getElementById('mobile-menu');
-        const sideMenu = document.getElementById('side-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const overlay = document.getElementById('overlay');
+        // Hero Slider Functionality
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentSlide = 0;
         
-        // Toggle side menu
-        mobileMenu.addEventListener('click', function() {
-            sideMenu.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // Close side menu
-        function closeSideMenu() {
-            sideMenu.classList.remove('open');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all indicators
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentSlide = index;
         }
         
-        closeMenu.addEventListener('click', closeSideMenu);
-        overlay.addEventListener('click', closeSideMenu);
-        
-        // Close menu when clicking on links
-        document.querySelectorAll('.side-menu a').forEach(link => {
-            link.addEventListener('click', closeSideMenu);
-        });
-
-        // PWA Installation
-        let deferredPrompt;
-        const pwaPrompt = document.getElementById('pwa-prompt');
-        const installBtn = document.getElementById('install-btn');
-        const dismissBtn = document.getElementById('dismiss-btn');
-        
-        // Show install prompt when app can be installed
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            // Show the install prompt
-            setTimeout(() => {
-                pwaPrompt.classList.add('show');
-            }, 3000);
-        });
-        
-        // Install button click handler
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                // We've used the prompt, and can't use it again, discard it
-                deferredPrompt = null;
-                // Hide the prompt
-                pwaPrompt.classList.remove('show');
+        // Auto slide change
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= slides.length) {
+                next = 0;
             }
-        });
+            showSlide(next);
+        }
         
-        // Dismiss button click handler
-        dismissBtn.addEventListener('click', () => {
-            pwaPrompt.classList.remove('show');
-        });
+        // Set up auto slide change
+        setInterval(nextSlide, 5000);
         
-        // Hide the prompt when app is successfully installed
-        window.addEventListener('appinstalled', () => {
-            pwaPrompt.classList.remove('show');
-            deferredPrompt = null;
-        });
-
-        // Back to Top functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        // Scroll to top when back to top button is clicked
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Add click events to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
             });
+        });
+        
+        // Mobile menu functionality (placeholder)
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.addEventListener('click', function() {
+            alert('Mobile menu would open here');
         });
     </script>
 </body>
