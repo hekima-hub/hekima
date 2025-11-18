@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hekima Hub - Expand Your Knowledge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Identity Services -->
@@ -172,64 +172,73 @@
             text-decoration: none;
         }
 
-        /* Updated User Menu Styles */
+        /* Simplified User Menu Styles */
         .user-menu {
             display: none;
             align-items: center;
-            gap: 0.75rem;
-            background: var(--light);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            min-width: 0;
+            gap: 0.5rem;
+            position: relative;
         }
 
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary);
-            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            flex: 1;
+        .user-avatar:hover {
+            transform: scale(1.05);
         }
 
-        .user-name {
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1rem;
+            min-width: 200px;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .user-dropdown.active {
+            display: block;
+        }
+
+        .user-dropdown-info {
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 0.75rem;
+        }
+
+        .user-dropdown-name {
             font-weight: 600;
             color: var(--dark);
-            font-size: 0.9rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 120px;
+            margin-bottom: 0.25rem;
         }
 
-        .user-email {
-            font-size: 0.75rem;
+        .user-dropdown-email {
+            font-size: 0.8rem;
             color: var(--gray);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 120px;
         }
 
         .logout-btn {
             background: none;
             border: 1px solid var(--accent);
             color: var(--accent);
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            flex-shrink: 0;
-            white-space: nowrap;
+            width: 100%;
         }
 
         .logout-btn:hover {
@@ -1058,17 +1067,6 @@
         }
 
         /* Mobile Styles */
-        @media (max-width: 1024px) {
-            .user-info {
-                display: none;
-            }
-            
-            .user-menu {
-                padding: 0.5rem;
-                gap: 0.5rem;
-            }
-        }
-
         @media (max-width: 768px) {
             .header-container {
                 padding: 1rem;
@@ -1123,20 +1121,9 @@
                 width: 100%;
             }
 
-            .user-menu {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-                padding: 0.75rem;
-            }
-            
-            .user-info {
-                display: flex;
-                align-items: center;
-            }
-            
-            .user-name, .user-email {
-                max-width: 150px;
+            .user-avatar {
+                width: 36px;
+                height: 36px;
             }
         }
 
@@ -1190,18 +1177,19 @@
                 
                 <!-- Auth Buttons (shown when user is not logged in) -->
                 <div class="auth-buttons" id="auth-buttons">
-                    <button class="btn btn-outline" id="login-btn">Log in</button>
-                    <button class="btn btn-primary" id="signup-btn">Sign up</button>
+                    <button class="btn btn-primary" id="signin-btn">Sign In</button>
                 </div>
                 
                 <!-- User Menu (shown when user is logged in) -->
                 <div class="user-menu" id="user-menu">
                     <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
-                    <div class="user-info">
-                        <span class="user-name" id="user-name"></span>
-                        <span class="user-email" id="user-email"></span>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-dropdown-info">
+                            <div class="user-dropdown-name" id="user-dropdown-name"></div>
+                            <div class="user-dropdown-email" id="user-dropdown-email"></div>
+                        </div>
+                        <button class="logout-btn" id="logout-btn">Logout</button>
                     </div>
-                    <button class="logout-btn" id="logout-btn">Logout</button>
                 </div>
                 
                 <button class="menu-toggle" id="menu-toggle">
@@ -1228,77 +1216,22 @@
             <a href="#">Categories</a>
             <a href="#">Instructors</a>
             <a href="#">About</a>
-            <a href="#" id="mobile-login">Log in</a>
-            <a href="#" id="mobile-signup">Sign up</a>
+            <a href="#" id="mobile-signin">Sign In</a>
         </nav>
     </div>
 
     <!-- Auth Modal -->
     <div class="auth-modal" id="auth-modal">
         <div class="auth-content">
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Log In</button>
-                <button class="auth-tab" data-tab="signup">Sign Up</button>
-            </div>
+            <h2 style="margin-bottom: 1.5rem;">Welcome to Hekima Hub</h2>
             
-            <!-- Login Form -->
-            <div class="auth-form active" id="login-form">
-                <button class="google-signin-btn" id="google-login-btn">
-                    <i class="fab fa-google"></i>
-                    Continue with Google
-                </button>
-                
-                <div class="divider">
-                    <span>or</span>
-                </div>
-                
-                <form id="login-email-form">
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" id="login-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" required>
-                    </div>
-                    <button type="submit" class="auth-submit">Log In</button>
-                </form>
-                
-                <div class="auth-footer">
-                    <a href="#">Forgot password?</a>
-                </div>
-            </div>
+            <button class="google-signin-btn" id="google-signin-btn">
+                <i class="fab fa-google"></i>
+                Continue with Google
+            </button>
             
-            <!-- Signup Form -->
-            <div class="auth-form" id="signup-form">
-                <button class="google-signin-btn" id="google-signup-btn">
-                    <i class="fab fa-google"></i>
-                    Sign up with Google
-                </button>
-                
-                <div class="divider">
-                    <span>or</span>
-                </div>
-                
-                <form id="signup-email-form">
-                    <div class="form-group">
-                        <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" required>
-                    </div>
-                    <button type="submit" class="auth-submit">Sign Up</button>
-                </form>
-                
-                <div class="auth-footer">
-                    By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                </div>
+            <div class="auth-footer">
+                By signing in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
             </div>
         </div>
     </div>
@@ -1639,14 +1572,6 @@
             <div class="checkout-form" id="checkout-form">
                 <h3>Checkout Details</h3>
                 <div class="form-group">
-                    <label for="full-name">Full Name</label>
-                    <input type="text" id="full-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" required>
                 </div>
@@ -1832,20 +1757,16 @@
 
         // Auth elements
         const authModal = document.getElementById('auth-modal');
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
+        const signinBtn = document.getElementById('signin-btn');
         const authButtons = document.getElementById('auth-buttons');
         const userMenu = document.getElementById('user-menu');
         const userAvatar = document.getElementById('user-avatar');
-        const userName = document.getElementById('user-name');
-        const userEmail = document.getElementById('user-email');
+        const userDropdown = document.getElementById('user-dropdown');
+        const userDropdownName = document.getElementById('user-dropdown-name');
+        const userDropdownEmail = document.getElementById('user-dropdown-email');
         const logoutBtn = document.getElementById('logout-btn');
-        const authTabs = document.querySelectorAll('.auth-tab');
-        const authForms = document.querySelectorAll('.auth-form');
-        const googleLoginBtn = document.getElementById('google-login-btn');
-        const googleSignupBtn = document.getElementById('google-signup-btn');
-        const mobileLogin = document.getElementById('mobile-login');
-        const mobileSignup = document.getElementById('mobile-signup');
+        const googleSigninBtn = document.getElementById('google-signin-btn');
+        const mobileSignin = document.getElementById('mobile-signin');
 
         // Toast notification
         const toast = document.getElementById('toast');
@@ -1854,7 +1775,7 @@
         // Current course being viewed
         let currentCourseId = null;
 
-        // Updated Google Sign-In with better error handling
+        // Initialize Google Sign-In
         function initializeGoogleSignIn() {
             if (typeof google !== 'undefined' && google.accounts) {
                 google.accounts.id.initialize({
@@ -1863,40 +1784,28 @@
                     error_callback: handleGoogleSignInError
                 });
 
-                // Render Google Sign-In buttons with error handling
+                // Render Google Sign-In button
                 try {
                     google.accounts.id.renderButton(
-                        googleLoginBtn,
-                        { theme: "outline", size: "large", width: "100%", text: "continue_with" }
-                    );
-
-                    google.accounts.id.renderButton(
-                        googleSignupBtn,
-                        { theme: "outline", size: "large", width: "100%", text: "signup_with" }
+                        googleSigninBtn,
+                        { theme: "outline", size: "large", width: "100%" }
                     );
                 } catch (error) {
-                    console.error('Error rendering Google Sign-In buttons:', error);
+                    console.error('Error rendering Google Sign-In button:', error);
                     showToast('Google Sign-In is temporarily unavailable');
                 }
             } else {
                 console.warn('Google Sign-In not available');
-                // Fallback: show message or alternative login
-                document.querySelectorAll('.google-signin-btn').forEach(btn => {
-                    btn.innerHTML = '<i class="fab fa-google"></i> Google Sign-In Unavailable';
-                    btn.style.opacity = '0.6';
-                    btn.style.cursor = 'not-allowed';
-                });
+                googleSigninBtn.innerHTML = '<i class="fab fa-google"></i> Google Sign-In Unavailable';
+                googleSigninBtn.style.opacity = '0.6';
+                googleSigninBtn.style.cursor = 'not-allowed';
             }
         }
 
-        // Add error handler function
+        // Handle Google Sign-In error
         function handleGoogleSignInError(error) {
             console.error('Google Sign-In error:', error);
-            if (error.type === 'id_failed' || error.type === 'popup_closed') {
-                showToast('Google Sign-In was cancelled. Please try again.');
-            } else {
-                showToast('Error with Google Sign-In. Please try another method.');
-            }
+            showToast('Error with Google Sign-In. Please try again.');
         }
 
         // Handle Google Sign-In response
@@ -1921,7 +1830,7 @@
                 authModal.style.display = 'none';
                 
                 // Show success message
-                showToast(`Welcome back, ${userInfo.name}!`);
+                showToast(`Welcome to Hekima Hub, ${userInfo.name}!`);
                 
                 // Save to localStorage
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -1950,11 +1859,9 @@
                 userMenu.style.display = 'flex';
                 
                 // Set user info
-                userName.textContent = currentUser.name;
-                userEmail.textContent = currentUser.email;
-                if (currentUser.picture) {
-                    userAvatar.src = currentUser.picture;
-                }
+                userAvatar.src = currentUser.picture;
+                userDropdownName.textContent = currentUser.name;
+                userDropdownEmail.textContent = currentUser.email;
             } else {
                 // User is logged out
                 authButtons.style.display = 'flex';
@@ -1962,69 +1869,33 @@
             }
         }
 
-        // Debug function for Google Sign-In
-        function debugGoogleSignIn() {
-            console.log('Google Client ID:', GOOGLE_CLIENT_ID);
-            console.log('Google object available:', typeof google !== 'undefined');
-            console.log('Google accounts available:', typeof google !== 'undefined' && google.accounts);
-            console.log('Current origin:', window.location.origin);
-            console.log('Current hostname:', window.location.hostname);
-            
-            // Check if we're on localhost (common issue)
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.log('Running on localhost - make sure this is added to authorized origins in Google Cloud Console');
-            }
-        }
-
         // Auth modal functionality
-        loginBtn.addEventListener('click', () => {
+        signinBtn.addEventListener('click', () => {
             authModal.style.display = 'flex';
-            switchAuthTab('login');
         });
 
-        signupBtn.addEventListener('click', () => {
-            authModal.style.display = 'flex';
-            switchAuthTab('signup');
-        });
-
-        mobileLogin.addEventListener('click', (e) => {
+        mobileSignin.addEventListener('click', (e) => {
             e.preventDefault();
             mobileMenu.classList.remove('active');
             authModal.style.display = 'flex';
-            switchAuthTab('login');
         });
-
-        mobileSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            mobileMenu.classList.remove('active');
-            authModal.style.display = 'flex';
-            switchAuthTab('signup');
-        });
-
-        // Switch between login and signup tabs
-        authTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.getAttribute('data-tab');
-                switchAuthTab(tabName);
-            });
-        });
-
-        function switchAuthTab(tabName) {
-            // Update active tab
-            authTabs.forEach(tab => {
-                tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
-            });
-
-            // Update active form
-            authForms.forEach(form => {
-                form.classList.toggle('active', form.id === `${tabName}-form`);
-            });
-        }
 
         // Close auth modal when clicking outside
         authModal.addEventListener('click', (e) => {
             if (e.target === authModal) {
                 authModal.style.display = 'none';
+            }
+        });
+
+        // User dropdown functionality
+        userAvatar.addEventListener('click', () => {
+            userDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userMenu.contains(e.target)) {
+                userDropdown.classList.remove('active');
             }
         });
 
@@ -2041,17 +1912,6 @@
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 google.accounts.id.disableAutoSelect();
             }
-        });
-
-        // Email form submissions (placeholder functionality)
-        document.getElementById('login-email-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Email login functionality would be implemented here.');
-        });
-
-        document.getElementById('signup-email-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showToast('Email signup functionality would be implemented here.');
         });
 
         // Show course details when clicking on a course card
@@ -2093,6 +1953,12 @@
 
         // Add to cart from course modal
         addToCartBtn.addEventListener('click', function() {
+            if (!currentUser) {
+                showToast('Please sign in to add courses to your cart.');
+                authModal.style.display = 'flex';
+                return;
+            }
+            
             if (currentCourseId) {
                 addToCart(currentCourseId);
             }
@@ -2176,6 +2042,11 @@
         // Cart modal controls
         cartIcon.addEventListener('click', function(e) {
             e.preventDefault();
+            if (!currentUser) {
+                showToast('Please sign in to view your cart.');
+                authModal.style.display = 'flex';
+                return;
+            }
             cartModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
@@ -2205,6 +2076,12 @@
 
         // Checkout process
         checkoutBtn.addEventListener('click', function() {
+            if (!currentUser) {
+                showToast('Please sign in to complete your purchase.');
+                authModal.style.display = 'flex';
+                return;
+            }
+            
             if (cart.length === 0) {
                 showToast('Your cart is empty. Please add courses before checking out.');
                 return;
@@ -2214,12 +2091,10 @@
 
         // WhatsApp checkout
         whatsappCheckout.addEventListener('click', function() {
-            const fullName = document.getElementById('full-name').value;
-            const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const address = document.getElementById('address').value;
             
-            if (!fullName || !email || !phone || !address) {
+            if (!phone || !address) {
                 showToast('Please fill in all the required fields.');
                 return;
             }
@@ -2236,8 +2111,8 @@
             
             cartSummary += `%0ATotal: $${total.toFixed(2)}`;
             
-            // Create WhatsApp message
-            const message = `Hello! I would like to purchase the following courses from Hekima Hub:%0A%0A${cartSummary}%0A%0ACustomer Details:%0AName: ${fullName}%0AEmail: ${email}%0APhone: ${phone}%0AAddress: ${address}`;
+            // Create WhatsApp message with user info
+            const message = `Hello! I would like to purchase the following courses from Hekima Hub:%0A%0A${cartSummary}%0A%0ACustomer Details:%0AName: ${currentUser.name}%0AEmail: ${currentUser.email}%0APhone: ${phone}%0AAddress: ${address}`;
             
             // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/245784599322?text=${message}`, '_blank');
@@ -2250,8 +2125,6 @@
             document.body.style.overflow = 'auto';
             
             // Reset form
-            document.getElementById('full-name').value = '';
-            document.getElementById('email').value = '';
             document.getElementById('phone').value = '';
             document.getElementById('address').value = '';
             
@@ -2353,7 +2226,7 @@
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            if (link.id !== 'mobile-login' && link.id !== 'mobile-signup') {
+            if (link.id !== 'mobile-signin') {
                 link.addEventListener('click', function() {
                     mobileMenu.classList.remove('active');
                     document.body.style.overflow = 'auto';
@@ -2369,9 +2242,6 @@
                 currentUser = JSON.parse(savedUser);
                 updateUserInterface();
             }
-            
-            // Debug Google Sign-In
-            debugGoogleSignIn();
             
             // Initialize Google Sign-In
             initializeGoogleSignIn();
