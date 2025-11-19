@@ -27,6 +27,22 @@
             --white: #ffffff;
         }
 
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Auth Modal Styles */
         .auth-modal {
             display: none;
@@ -51,37 +67,6 @@
             text-align: center;
         }
 
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 1rem;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--gray);
-            border-bottom: 3px solid transparent;
-        }
-
-        .auth-tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
         .google-signin-btn {
             width: 100%;
             padding: 12px;
@@ -97,6 +82,7 @@
             gap: 10px;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
+            min-height: 44px;
         }
 
         .google-signin-btn:hover {
@@ -104,61 +90,9 @@
             border-color: #ccc;
         }
 
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: var(--gray);
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #eee;
-        }
-
-        .divider span {
-            padding: 0 1rem;
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .auth-submit {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .auth-submit:hover {
-            background: var(--secondary);
+        .google-signin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .auth-footer {
@@ -1225,10 +1159,12 @@
         <div class="auth-content">
             <h2 style="margin-bottom: 1.5rem;">Welcome to Hekima Hub</h2>
             
-            <button class="google-signin-btn" id="google-signin-btn">
-                <i class="fab fa-google"></i>
-                Continue with Google
-            </button>
+            <div id="google-signin-container">
+                <div class="google-signin-btn" id="google-signin-btn">
+                    <i class="fab fa-google"></i>
+                    <span id="google-btn-text">Continue with Google</span>
+                </div>
+            </div>
             
             <div class="auth-footer">
                 By signing in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
@@ -1707,6 +1643,7 @@
         // Cart functionality
         let cart = [];
         let currentUser = null;
+        let googleInitialized = false;
 
         // DOM Elements
         const cartModal = document.getElementById('cart-modal');
@@ -1756,6 +1693,7 @@
         const userDropdownEmail = document.getElementById('user-dropdown-email');
         const logoutBtn = document.getElementById('logout-btn');
         const googleSigninBtn = document.getElementById('google-signin-btn');
+        const googleBtnText = document.getElementById('google-btn-text');
         const mobileSignin = document.getElementById('mobile-signin');
 
         // Toast notification
@@ -1765,46 +1703,64 @@
         // Current course being viewed
         let currentCourseId = null;
 
-        // Initialize Google Sign-In
+        // Initialize Google Sign-In with better error handling
         function initializeGoogleSignIn() {
-            if (typeof google !== 'undefined' && google.accounts) {
+            if (typeof google === 'undefined') {
+                console.warn('Google Identity Services not loaded yet, retrying...');
+                setTimeout(initializeGoogleSignIn, 500);
+                return;
+            }
+
+            try {
                 google.accounts.id.initialize({
                     client_id: GOOGLE_CLIENT_ID,
                     callback: handleGoogleSignIn,
-                    error_callback: handleGoogleSignInError
+                    error_callback: handleGoogleSignInError,
+                    ux_mode: 'popup',
+                    auto_select: false
                 });
 
                 // Render Google Sign-In button
-                try {
-                    google.accounts.id.renderButton(
-                        googleSigninBtn,
-                        { theme: "outline", size: "large", width: "100%" }
-                    );
-                } catch (error) {
-                    console.error('Error rendering Google Sign-In button:', error);
-                    showToast('Google Sign-In is temporarily unavailable');
-                }
-            } else {
-                console.warn('Google Sign-In not available');
-                googleSigninBtn.innerHTML = '<i class="fab fa-google"></i> Google Sign-In Unavailable';
-                googleSigninBtn.style.opacity = '0.6';
-                googleSigninBtn.style.cursor = 'not-allowed';
+                google.accounts.id.renderButton(
+                    document.getElementById('google-signin-container'),
+                    { 
+                        theme: "outline", 
+                        size: "large", 
+                        width: "100%",
+                        text: "continue_with",
+                        shape: "rectangular"
+                    }
+                );
+
+                googleInitialized = true;
+                console.log('Google Sign-In initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing Google Sign-In:', error);
+                setupFallbackGoogleButton();
             }
         }
 
-        // Handle Google Sign-In error
-        function handleGoogleSignInError(error) {
-            console.error('Google Sign-In error:', error);
-            showToast('Error with Google Sign-In. Please try again.');
+        // Fallback Google button if initialization fails
+        function setupFallbackGoogleButton() {
+            googleSigninBtn.innerHTML = '<i class="fab fa-google"></i> Continue with Google';
+            googleSigninBtn.onclick = () => {
+                showToast('Google Sign-In is temporarily unavailable. Please try again later.');
+            };
+            googleSigninBtn.style.opacity = '0.7';
         }
 
-        // Handle Google Sign-In response
+        // Handle Google Sign-In
         function handleGoogleSignIn(response) {
+            console.log('Google Sign-In response received');
+            
             try {
-                // Decode the JWT token to get user info
                 const userInfo = parseJwt(response.credential);
                 
-                // Set current user
+                if (!userInfo) {
+                    throw new Error('Invalid token response');
+                }
+                
                 currentUser = {
                     id: userInfo.sub,
                     name: userInfo.name,
@@ -1813,30 +1769,38 @@
                     provider: 'google'
                 };
 
-                // Update UI
                 updateUserInterface();
-                
-                // Close auth modal
                 authModal.style.display = 'none';
-                
-                // Show success message
                 showToast(`Welcome to Hekima Hub, ${userInfo.name}!`);
                 
                 // Save to localStorage
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 
-                console.log('Google Sign-In successful:', userInfo);
+                console.log('User signed in successfully:', currentUser);
+                
             } catch (error) {
                 console.error('Error handling Google Sign-In:', error);
-                showToast('Error signing in with Google. Please try again.');
+                showToast('Error signing in. Please try again.');
             }
         }
 
-        // Helper function to parse JWT token
+        function handleGoogleSignInError(error) {
+            console.error('Google Sign-In error:', error);
+            showToast('Error with Google Sign-In. Please try again.');
+        }
+
+        // Parse JWT token
         function parseJwt(token) {
             try {
-                return JSON.parse(atob(token.split('.')[1]));
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
             } catch (e) {
+                console.error('Error parsing JWT:', e);
                 return null;
             }
         }
@@ -1862,12 +1826,20 @@
         // Auth modal functionality
         signinBtn.addEventListener('click', () => {
             authModal.style.display = 'flex';
+            // Re-initialize Google Sign-In when modal opens
+            if (!googleInitialized) {
+                setTimeout(initializeGoogleSignIn, 100);
+            }
         });
 
         mobileSignin.addEventListener('click', (e) => {
             e.preventDefault();
             mobileMenu.classList.remove('active');
             authModal.style.display = 'flex';
+            // Re-initialize Google Sign-In when modal opens
+            if (!googleInitialized) {
+                setTimeout(initializeGoogleSignIn, 100);
+            }
         });
 
         // Close auth modal when clicking outside
@@ -1901,6 +1873,9 @@
             // Google Sign-Out
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 google.accounts.id.disableAutoSelect();
+                google.accounts.id.revoke(localStorage.getItem('currentUser')?.email, () => {
+                    console.log('Google Sign-Out completed');
+                });
             }
         });
 
@@ -2226,18 +2201,35 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, initializing application...');
+            
             // Check if user is already logged in
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateUserInterface();
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    console.log('Found saved user:', currentUser);
+                } catch (e) {
+                    console.error('Error parsing saved user:', e);
+                    localStorage.removeItem('currentUser');
+                }
             }
             
-            // Initialize Google Sign-In
-            initializeGoogleSignIn();
+            updateUserInterface();
+            
+            // Initialize Google Sign-In with delay to ensure script is loaded
+            setTimeout(initializeGoogleSignIn, 1000);
             
             // Initialize cart
             updateCart();
+        });
+
+        // Additional initialization when window loads completely
+        window.addEventListener('load', () => {
+            console.log('Window fully loaded');
+            if (!googleInitialized) {
+                initializeGoogleSignIn();
+            }
         });
     </script>
 </body>
