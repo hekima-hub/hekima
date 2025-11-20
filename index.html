@@ -796,6 +796,33 @@
             color: var(--dark);
         }
 
+        /* Video Feature */
+        .video-feature {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
         /* Cart Modal */
         .cart-modal {
             display: none;
@@ -875,26 +902,8 @@
 
         /* Checkout Form */
         .checkout-form {
-            display: none;
             margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+            text-align: center;
         }
 
         .btn-whatsapp {
@@ -911,6 +920,7 @@
             transition: background 0.3s ease;
             width: 100%;
             justify-content: center;
+            margin-top: 1rem;
         }
 
         .btn-whatsapp:hover {
@@ -1058,6 +1068,10 @@
             .user-avatar {
                 width: 36px;
                 height: 36px;
+            }
+
+            .video-container iframe {
+                height: 250px;
             }
         }
 
@@ -1367,6 +1381,14 @@
     <section class="why-choose">
         <h2 class="section-title">Why Choose Hekima Hub?</h2>
         <div class="features-grid">
+            <div class="video-feature">
+                <div class="video-container">
+                    <iframe src="https://docs.google.com/videos/d/1jXaZrk3ZXlm5q6UThwqXF3jMvA9MYE0HMmOC5qhiOmg/edit?usp=sharing" 
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <h3 style="margin-top: 1.5rem;">See What Our Students Say</h3>
+                <p>Watch this video to hear from our successful students and see how Hekima Hub has transformed their learning journey.</p>
+            </div>
             <div class="feature">
                 <div class="feature-icon">
                     <i class="fas fa-play-circle"></i>
@@ -1497,19 +1519,7 @@
                 <span>Total:</span>
                 <span id="cart-total">$0.00</span>
             </div>
-            <button class="btn btn-primary" id="checkout-btn">Proceed to Checkout</button>
-            
-            <!-- Checkout Form -->
             <div class="checkout-form" id="checkout-form">
-                <h3>Checkout Details</h3>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" rows="3" required></textarea>
-                </div>
                 <button class="btn btn-whatsapp" id="whatsapp-checkout">
                     <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
                 </button>
@@ -2018,7 +2028,6 @@
 
         closeCart.addEventListener('click', function() {
             cartModal.style.display = 'none';
-            checkoutForm.style.display = 'none';
             document.body.style.overflow = 'auto';
         });
 
@@ -2030,7 +2039,6 @@
         window.addEventListener('click', function(e) {
             if (e.target === cartModal) {
                 cartModal.style.display = 'none';
-                checkoutForm.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
             if (e.target === courseModal) {
@@ -2039,8 +2047,8 @@
             }
         });
 
-        // Checkout process
-        checkoutBtn.addEventListener('click', function() {
+        // WhatsApp checkout
+        whatsappCheckout.addEventListener('click', function() {
             if (!currentUser) {
                 showToast('Please sign in to complete your purchase.');
                 authModal.style.display = 'flex';
@@ -2049,18 +2057,6 @@
             
             if (cart.length === 0) {
                 showToast('Your cart is empty. Please add courses before checking out.');
-                return;
-            }
-            checkoutForm.style.display = 'block';
-        });
-
-        // WhatsApp checkout
-        whatsappCheckout.addEventListener('click', function() {
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            
-            if (!phone || !address) {
-                showToast('Please fill in all the required fields.');
                 return;
             }
             
@@ -2077,7 +2073,7 @@
             cartSummary += `%0ATotal: $${total.toFixed(2)}`;
             
             // Create WhatsApp message with user info
-            const message = `Hello! I would like to purchase the following courses from Hekima Hub:%0A%0A${cartSummary}%0A%0ACustomer Details:%0AName: ${currentUser.name}%0AEmail: ${currentUser.email}%0APhone: ${phone}%0AAddress: ${address}`;
+            const message = `Hello! I would like to purchase the following courses from Hekima Hub:%0A%0A${cartSummary}%0A%0ACustomer Details:%0AName: ${currentUser.name}%0AEmail: ${currentUser.email}`;
             
             // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/254784599322?text=${message}`, '_blank');
@@ -2086,12 +2082,7 @@
             cart = [];
             updateCart();
             cartModal.style.display = 'none';
-            checkoutForm.style.display = 'none';
             document.body.style.overflow = 'auto';
-            
-            // Reset form
-            document.getElementById('phone').value = '';
-            document.getElementById('address').value = '';
             
             showToast('Order completed successfully! Check WhatsApp to finalize your purchase.');
         });
