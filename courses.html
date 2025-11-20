@@ -2,1606 +2,1283 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=5.0, user-scalable=yes">
     <title>Courses - Hekima Hub</title>
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/ncNcvdsr/unnamed.png">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#1a73e8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-TileColor" content="#1a73e8">
-    <meta name="msapplication-tap-highlight" content="no">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Global Styles */
-        :root {
-            --blue: #1a73e8;
-            --maroon: #8b0000;
-            --white: #ffffff;
-            --green: #34a853;
-            --orange: #ff9800;
-            --light-blue: #e8f0fe;
-            --light-maroon: #f5e6e6;
-            --dark-blue: #0d47a1;
-            --dark-maroon: #5a0000;
-            --gray: #5f6368;
-            --light-gray: #f8f9fa;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        
-        html {
-            font-size: 16px;
+
+        :root {
+            --primary: #2E8B57;
+            --primary-dark: #26734d;
+            --secondary: #4169E1;
+            --accent: #FF6B35;
+            --light: #f8f9fa;
+            --dark: #1a202c;
+            --gray: #718096;
+            --success: #38a169;
+            --warning: #ed8936;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         body {
-            background-color: var(--light-gray);
-            color: #333;
-            line-height: 1.5;
-            overflow-x: hidden;
-            font-family: 'Roboto', sans-serif;
-            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
-        }
-        
-        .main-content {
-            transition: filter 0.3s ease;
-        }
-        
-        .main-content.blurred {
-            filter: blur(5px);
-            pointer-events: none;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--blue);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background-color: var(--dark-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .btn-maroon {
-            background-color: var(--maroon);
-        }
-        
-        .btn-maroon:hover {
-            background-color: var(--dark-maroon);
-        }
-        
-        .btn-green {
-            background-color: var(--green);
-        }
-        
-        .btn-orange {
-            background-color: var(--orange);
-        }
-        
-        section {
-            padding: 40px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-            font-weight: 600;
-            line-height: 1.2;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        h2 {
-            font-size: 1.75rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            font-weight: 600;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.75rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--maroon);
-        }
-        
-        h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: var(--gray);
-            font-weight: 400;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
             line-height: 1.6;
+            min-height: 100vh;
+            font-size: 14px;
         }
-        
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
         }
-        
+
+        /* Header with Auth */
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
         }
-        
-        .logo img {
-            height: 50px;
-            transition: transform 0.3s ease;
+
+        .logo-img {
+            height: 40px;
+            width: auto;
         }
-        
-        .logo:hover img {
+
+        /* Auth Elements */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-menu {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .user-avatar:hover {
             transform: scale(1.05);
         }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            position: relative;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        nav ul li a:hover {
-            color: var(--blue);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--blue);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu {
+
+        .user-dropdown {
             display: none;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--blue);
-        }
-        
-        /* Side Menu for Mobile */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: var(--white);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1001;
-            transition: right 0.3s ease;
-            padding: 4rem 1.5rem 1.5rem;
-            overflow-y: auto;
-        }
-        
-        .side-menu.open {
-            right: 0;
-        }
-        
-        .side-menu ul {
-            list-style: none;
-        }
-        
-        .side-menu ul li {
-            margin-bottom: 1rem;
-        }
-        
-        .side-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1.1rem;
-            display: block;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            transition: color 0.3s ease;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        .side-menu ul li a:hover {
-            color: var(--blue);
-        }
-        
-        .side-menu .close-btn {
             position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--blue);
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1rem;
+            min-width: 200px;
+            z-index: 1000;
+            margin-top: 0.5rem;
         }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+
+        .user-dropdown.active {
+            display: block;
+        }
+
+        .user-dropdown-info {
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 0.75rem;
+        }
+
+        .user-dropdown-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .user-dropdown-email {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
+        }
+
+        .logout-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+
+        .btn-primary {
+            background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 120px 0 60px;
-            margin-top: 80px; /* Account for fixed header */
+            border: none;
         }
-        
-        .page-header h1 {
-            color: white;
-            margin-bottom: 1rem;
+
+        .btn-primary:hover {
+            background: var(--secondary);
         }
-        
-        .page-header p {
-            color: rgba(255,255,255,0.9);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1rem;
-        }
-        
-        /* Course Categories */
-        .course-categories {
-            background-color: var(--white);
-        }
-        
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .category-card {
-            background-color: var(--white);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .category-header {
-            padding: 1.25rem;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .category-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--blue);
-        }
-        
-        .category-content {
-            padding: 1.25rem;
-        }
-        
-        .category-content h3 {
-            margin-bottom: 0.75rem;
-            color: var(--dark-blue);
-        }
-        
-        .category-content p {
-            margin-bottom: 1.25rem;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .courses-list {
-            list-style: none;
-            margin-bottom: 1.25rem;
-        }
-        
-        .courses-list li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-        
-        .courses-list li:before {
-            content: '•';
-            color: var(--blue);
-            position: absolute;
-            left: 0;
-        }
-        
-        .courses-list a {
-            text-decoration: none;
-            color: var(--gray);
-            transition: color 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .courses-list a:hover {
-            color: var(--blue);
-        }
-        
-        /* All Courses Section */
-        .all-courses {
-            background-color: var(--light-blue);
-        }
-        
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .course-card {
-            background-color: var(--white);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .course-img {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .course-img::after {
-            content: '';
-            position: absolute;
+
+        /* Auth Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
-        
-        .course-content {
-            padding: 1.25rem;
+
+        .auth-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
         }
-        
-        .course-content h3 {
-            color: var(--dark-blue);
-            margin-bottom: 0.75rem;
+
+        .google-signin-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            color: var(--dark);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
         }
-        
-        .course-content p {
-            margin-bottom: 1.25rem;
-            color: var(--gray);
+
+        .google-signin-btn:hover {
+            background: #f8f9fa;
+            border-color: #ccc;
+        }
+
+        .auth-footer {
+            margin-top: 1.5rem;
             font-size: 0.9rem;
+            color: var(--gray);
         }
-        
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .category-btn:hover:not(.active) {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Courses Grid */
+        .courses-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            height: 200px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--light);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .course-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
         .course-meta {
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
-            color: #777;
-            font-size: 0.85rem;
-        }
-        
-        /* Enrollment Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1002;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            padding: 20px;
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .enrollment-modal {
-            background-color: var(--white);
-            border-radius: 8px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            z-index: 1003;
-        }
-        
-        .modal-overlay.active .enrollment-modal {
-            transform: translateY(0);
-        }
-        
-        .modal-header {
-            background: linear-gradient(to right, var(--blue), var(--maroon));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px 8px 0 0;
-            position: relative;
-        }
-        
-        .modal-header h2 {
-            color: white;
-            margin-bottom: 0.5rem;
-            text-align: left;
-        }
-        
-        .modal-header h2::after {
-            display: none;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .modal-close:hover {
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark-blue);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .btn-cancel {
-            background-color: #f1f1f1;
-            color: #333;
-        }
-        
-        .btn-cancel:hover {
-            background-color: #e0e0e0;
-        }
-        
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 4px;
             margin-bottom: 1rem;
-            display: none;
-        }
-        
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(to right, var(--blue), var(--maroon));
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .cta h2::after {
-            background-color: white;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.9);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1a1a2e;
-            color: white;
-            padding: 2rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            position: relative;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background-color: var(--orange);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-column ul li a {
-            color: #bbb;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--orange);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
             font-size: 0.9rem;
+            color: var(--gray);
         }
-        
-        .social-links a:hover {
-            background-color: var(--orange);
+
+        .course-duration, .course-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .course-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 1rem;
+        }
+
+        .bestseller {
+            background: var(--warning);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--secondary);
             transform: translateY(-2px);
         }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 0.8rem;
+
+        .add-to-cart-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
         }
-        
-        /* PWA Install Prompt */
-        .pwa-install-prompt {
+
+        /* Cart */
+        .cart-icon {
+            position: relative;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Toast Notification */
+        .toast {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--white);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1002;
-            display: none;
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        .pwa-install-prompt.show {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-        
-        .pwa-install-prompt p {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .pwa-install-btns {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .pwa-install-btns button {
-            flex: 1;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .pwa-install-btns .install-btn {
-            background-color: var(--blue);
+            right: 20px;
+            background: var(--primary);
             color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1001;
         }
-        
-        .pwa-install-btns .dismiss-btn {
-            background-color: #eee;
-            color: #333;
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-        
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 1024px) {
+            .container {
+                padding: 12px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .page-title {
+                font-size: 2rem;
             }
         }
-        
+
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: row;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
+            body {
+                font-size: 13px;
             }
             
             .page-header {
-                padding: 100px 0 40px;
-                margin-top: 70px;
+                padding: 2rem 1.5rem;
             }
             
-            .page-header h1 {
-                font-size: 1.75rem;
+            .page-title {
+                font-size: 1.8rem;
             }
             
-            .btn {
-                width: 100%;
-                max-width: 220px;
-                margin-bottom: 0.5rem;
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 1rem;
             }
             
-            h1 {
-                font-size: 1.75rem;
+            .category-nav {
+                padding: 0.5rem 0;
             }
             
-            h2 {
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .page-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .page-title {
                 font-size: 1.5rem;
             }
             
-            section {
-                padding: 30px 0;
-            }
-            
-            .categories-grid,
-            .courses-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .category-content,
-            .course-content {
-                padding: 1rem;
-            }
-            
-            .footer-content {
-                gap: 1rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .side-menu {
-                width: 260px;
-            }
-            
-            .logo img {
-                height: 45px;
-            }
-            
-            .pwa-install-prompt {
-                width: 90%;
-            }
-            
-            .modal-body {
-                padding: 1rem;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            html {
-                font-size: 14px;
-            }
-            
-            .page-header h1 {
+            .section-title {
                 font-size: 1.4rem;
             }
             
-            .page-header p {
-                font-size: 0.9rem;
+            .course-card {
+                margin: 0 0.5rem;
             }
-        /* Add these responsive styles for the modal */
-        @media (max-width: 768px) {
-            .modal-overlay {
-                padding: 10px;
-                align-items: flex-start;
-                padding-top: 20px;
-            }
-            
-            .enrollment-modal {
-                max-height: 95vh;
-                margin-top: 20px;
-            }
-            
-            .modal-header {
-                padding: 1rem;
-            }
-            
-            .modal-header h2 {
-                font-size: 1.3rem;
-                padding-right: 2rem;
-            }
-            
-            .modal-body {
-                padding: 1rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            
-            .form-group {
-                margin-bottom: 1rem;
-            }
-            
-            .form-control {
-                padding: 10px 12px;
-                font-size: 16px; /* Prevents zoom on iOS */
-            }
-            
-            textarea.form-control {
-                min-height: 80px;
-            }
-            
-            .form-actions {
-                flex-direction: column-reverse;
-                gap: 0.75rem;
-                margin-top: 1.5rem;
-            }
-            
-            .form-actions .btn {
-                width: 100%;
-                margin: 0;
-            }
-            
-            .modal-close {
-                top: 0.75rem;
-                right: 0.75rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .modal-overlay {
-                padding: 5px;
-            }
-            
-            .enrollment-modal {
-                border-radius: 6px;
-            }
-            
-            .modal-header {
-                padding: 0.75rem;
-            }
-            
-            .modal-header h2 {
-                font-size: 1.2rem;
-            }
-            
-            .modal-header p {
-                font-size: 0.9rem;
-            }
-            
-            .modal-body {
-                padding: 0.75rem;
-            }
-            
-            .success-message,
-            .error-message {
-                padding: 0.75rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .modal-header h2 {
-                font-size: 1.1rem;
-            }
-            
-            .modal-header p {
-                font-size: 0.85rem;
-            }
-            
-            .form-control {
-                font-size: 14px;
-            }
-        }
-
-        /* Ensure modal is always centered and scrollable on very small screens */
-        .modal-overlay {
-            overflow-y: auto;
-        }
-
-        .enrollment-modal {
-            margin: auto;
-        }
         }
     </style>
 </head>
 <body>
-    <!-- Main Content Wrapper -->
-    <div class="main-content" id="main-content">
-        <!-- Header & Navigation -->
-        <header>
-            <div class="container header-container">
-                <div class="logo">
-                    <a href="home.html">
-                        <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
-                    </a>
-                </div>
-                
-                <nav>
-                    <ul id="nav-menu">
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="courses.html" class="active">Courses</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="https://classroom.google.com">E-Learning</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="mobile-menu" id="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
+    <!-- Header with Auth -->
+    <div class="container">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/zv1G6fvB/Whats-App-Image-2025-11-18-at-16-22-32-removebg-preview.webp" alt="Hekima Hub Logo" class="logo-img">
+                <span>Hekima Hub</span>
+            </a>
+            
+            <div class="auth-buttons" id="auth-buttons">
+                <a href="#" class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+                <button class="btn btn-primary" id="signin-btn">Sign In</button>
             </div>
-        </header>
-
-        <!-- Side Menu for Mobile -->
-        <div class="side-menu" id="side-menu">
-            <div class="close-btn" id="close-menu">
-                <i class="fas fa-times"></i>
-            </div>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="courses.html" class="active">Courses</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="https://classroom.google.com">E-Learning</a></li>
-            </ul>
-        </div>
-        
-        <!-- Overlay for mobile menu -->
-        <div class="overlay" id="overlay"></div>
-
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1>Our Courses</h1>
-                <p>Explore our comprehensive range of courses designed to help you develop in-demand skills and advance your career.</p>
-            </div>
-        </section>
-
-        <!-- Course Categories -->
-        <section class="course-categories">
-            <div class="container">
-                <h2>Course Categories</h2>
-                
-                <div class="categories-grid">
-                    <!-- Business & Finance -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3>Business & Finance</h3>
-                        </div>
-                        <div class="category-content">
-                            <p>Master business strategies, financial management, and leadership skills to excel in today's competitive business environment.</p>
-                            
-                            <ul class="courses-list">
-                                <li><a href="financial-management.html">Financial Management</a></li>
-                                <li><a href="effective-leadership.html">Effective Leadership</a></li>
-                                <li><a href="business-strategy.html">Business Strategy</a></li>
-                                <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
-                            </ul>
-                            
-                            <a href="business-finance-courses.html" class="btn btn-maroon">View All Business Courses</a>
-                        </div>
+            
+            <div class="user-menu" id="user-menu">
+                <a href="#" class="cart-icon" id="user-cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="user-cart-count">0</span>
+                </a>
+                <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="user-dropdown-info">
+                        <div class="user-dropdown-name" id="user-dropdown-name"></div>
+                        <div class="user-dropdown-email" id="user-dropdown-email"></div>
                     </div>
-                    
-                    <!-- Technology & IT -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3>Technology & IT</h3>
-                        </div>
-                        <div class="category-content">
-                            <p>Develop technical skills in programming, data analysis, and IT management to thrive in the digital economy.</p>
-                            
-                            <ul class="courses-list">
-                                <li><a href="data-entry.html">Data Entry Mastery</a></li>
-                                <li><a href="web-development.html">Web Development</a></li>
-                                <li><a href="data-analytics.html">Data Analytics</a></li>
-                                <li><a href="cybersecurity.html">Cybersecurity Fundamentals</a></li>
-                            </ul>
-                            
-                            <a href="technology-courses.html" class="btn">View All Tech Courses</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Professional Development -->
-                    <div class="category-card">
-                        <div class="category-header">
-                            <div class="category-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <h3>Professional Development</h3>
-                        </div>
-                        <div class="category-content">
-                            <p>Enhance your professional skills with courses focused on communication, project management, and career advancement.</p>
-                            
-                            <ul class="courses-list">
-                                <li><a href="personal-branding.html">Personal Branding Mastery</a></li>
-                                <li><a href="communication-skills.html">Effective Communication</a></li>
-                                <li><a href="project-management.html">Project Management</a></li>
-                                <li><a href="public-speaking.html">Public Speaking</a></li>
-                            </ul>
-                            
-                            <a href="professional-development-courses.html" class="btn btn-green">View All Professional Courses</a>
-                        </div>
-                    </div>
+                    <button class="logout-btn" id="logout-btn">Logout</button>
                 </div>
-            </div>
-        </section>
-
-        <!-- All Courses Section -->
-        <section class="all-courses">
-            <div class="container">
-                <h2>All Courses</h2>
-                
-                <div class="courses-grid">
-                    <!-- Data Entry Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Data Entry Mastery</h3>
-                            <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost your productivity and accuracy in today's data-driven workplace.</p>
-                            <button class="btn btn-green enroll-btn" data-course="Data Entry Mastery">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 4 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Online Working Mastery Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Online Working Mastery</h3>
-                            <p>Master the fundamentals of online work, from data entry basics to advanced online tasking strategies that will help you succeed in the digital workspace.</p>
-                            <button class="btn btn-maroon enroll-btn" data-course="Online Working Mastery">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 4 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Financial Management Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Financial Management</h3>
-                            <p>Master budgeting, investment strategies, and financial analysis to make informed decisions for personal and business finances. Learn from industry experts.</p>
-                            <button class="btn btn-maroon enroll-btn" data-course="Financial Management">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 4 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Effective Leadership Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Effective Leadership</h3>
-                            <p>Develop essential leadership skills, team management techniques, and communication strategies to inspire and guide others toward shared goals.</p>
-                            <button class="btn btn-orange enroll-btn" data-course="Effective Leadership">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 10 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> All Levels</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Web Development Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Web Development</h3>
-                            <p>Learn HTML, CSS, JavaScript and modern frameworks to build responsive websites and web applications from scratch.</p>
-                            <button class="btn enroll-btn" data-course="Web Development">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 12 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Data Analytics Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Data Analytics</h3>
-                            <p>Learn to collect, process, and analyze data to derive insights and support decision-making processes in business contexts.</p>
-                            <button class="btn btn-green enroll-btn" data-course="Data Analytics">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 10 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Management Course -->
-                    <div class="course-card">
-                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
-                        </div>
-                        <div class="course-content">
-                            <h3>Project Management</h3>
-                            <p>Master project planning, execution, and monitoring techniques to deliver successful projects on time and within budget.</p>
-                            <button class="btn btn-maroon enroll-btn" data-course="Project Management">Enroll Now</button>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock"></i> 8 Weeks</span>
-                                <span><i class="fas fa-user-graduate"></i> All Levels</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Start Learning?</h2>
-                <p>Join thousands of students who have transformed their careers with Hekima Hub's expert-led courses.</p>
-                <a href="https://classroom.google.com" class="btn">Access E-Learning Platform</a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-column">
-                        <h3>Hekima Hub</h3>
-                        <p style="color: #bbb; font-size: 0.85rem;">Empowering students through personalized education and expert guidance to achieve academic and career success.</p>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="courses.html">Courses</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h3>Popular Courses</h3>
-                        <ul>
-                            <li><a href="data-entry.html">Data Entry Mastery</a></li>
-                            <li><a href="online-working.html">Online Working Mastery</a></li>
-                            <li><a href="personal-branding.html">Personal Branding Mastery</a></li>
-                            <li><a href="financial-management.html">Financial Management</a></li>
-                            <li><a href="web-development.html">Web Development</a></li>
-                            <li><a href="project-management.html">Project Management</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h3>Contact Info</h3>
-                        <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
-                            <li><i class="fas fa-phone"></i> +254 727211191</li>
-                            <li><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Hekima Hub. All Rights Reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div> <!-- End of main-content -->
-
-    <!-- Enrollment Modal (Outside main content) -->
-    <div class="modal-overlay" id="enrollment-modal">
-        <div class="enrollment-modal">
-            <div class="modal-header">
-                <h2 id="modal-course-title">Enroll in Course</h2>
-                <p id="modal-course-description">Complete the form below to enroll in this course</p>
-                <button class="modal-close" id="modal-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="success-message" id="success-message">
-                    <i class="fas fa-check-circle"></i> Thank you for your enrollment! We'll contact you shortly.
-                </div>
-                <div class="error-message" id="error-message">
-                    <i class="fas fa-exclamation-circle"></i> There was an error submitting your enrollment. Please try again.
-                </div>
-                
-                <form id="enrollment-form">
-                    <input type="hidden" id="course-name" name="courseName">
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" name="firstName" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="education">Highest Education Level</label>
-                        <select id="education" name="education" class="form-control">
-                            <option value="">Select Education Level</option>
-                            <option value="High School">High School</option>
-                            <option value="Diploma">Diploma</option>
-                            <option value="Bachelor's Degree">Bachelor's Degree</option>
-                            <option value="Master's Degree">Master's Degree</option>
-                            <option value="PhD">PhD</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Previous Experience (if any)</label>
-                        <textarea id="experience" name="experience" class="form-control" rows="3" placeholder="Briefly describe any relevant experience"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="goals">Learning Goals</label>
-                        <textarea id="goals" name="goals" class="form-control" rows="3" placeholder="What do you hope to achieve with this course?"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="referral">How did you hear about us?</label>
-                        <select id="referral" name="referral" class="form-control">
-                            <option value="">Select an option</option>
-                            <option value="Search Engine">Search Engine</option>
-                            <option value="Social Media">Social Media</option>
-                            <option value="Friend/Colleague">Friend/Colleague</option>
-                            <option value="Advertisement">Advertisement</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-cancel" id="cancel-enrollment">Cancel</button>
-                        <button type="submit" class="btn btn-green" id="submit-enrollment">
-                            <i class="fas fa-paper-plane"></i> Submit Enrollment
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
-    <!-- PWA Install Prompt -->
-    <div class="pwa-install-prompt" id="pwa-prompt">
-        <p>Install Hekima Hub app for a better experience?</p>
-        <div class="pwa-install-btns">
-            <button class="install-btn" id="install-btn">Install</button>
-            <button class="dismiss-btn" id="dismiss-btn">Not Now</button>
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-content">
+            <h2 style="margin-bottom: 1.5rem;">Sign In to Hekima Hub</h2>
+            
+            <div id="google-signin-container">
+                <div class="google-signin-btn" id="google-signin-btn">
+                    <i class="fab fa-google"></i>
+                    <span id="google-btn-text">Continue with Google</span>
+                </div>
+            </div>
+            
+            <div class="auth-footer">
+                Sign in to add courses to your cart and access premium features
+            </div>
         </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Explore Our Courses</h1>
+            <p class="page-subtitle">Discover expert-led courses across various categories to expand your knowledge</p>
+        </div>
+
+        <!-- Category Navigation -->
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">All Courses</button>
+            <button class="category-btn" data-category="technology">Technology</button>
+            <button class="category-btn" data-category="business">Business</button>
+            <button class="category-btn" data-category="languages">Languages</button>
+            <button class="category-btn" data-category="music">Music</button>
+            <button class="category-btn" data-category="photography">Photography</button>
+            <button class="category-btn" data-category="health">Health & Fitness</button>
+            <button class="category-btn" data-category="finance">Finance</button>
+            <button class="category-btn" data-category="leadership">Leadership</button>
+        </div>
+
+        <!-- Courses Sections -->
+        <div id="courses-container">
+            <!-- Technology Courses -->
+            <section class="courses-section" data-category="technology">
+                <h2 class="section-title">
+                    <i class="fas fa-laptop-code"></i>
+                    Technology Courses
+                </h2>
+                <div class="courses-grid">
+                    <!-- Data Entry Course -->
+                    <div class="course-card" data-course="data-entry">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Bestseller</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Data Entry Mastery</h3>
+                            <p class="course-description">Master accurate and efficient data entry with essential skills for data management and productivity techniques.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 4 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$27.99</span>
+                                <span class="original-price">$79.99</span>
+                                <span class="bestseller">Bestseller</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="data-entry">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Web Development Course -->
+                    <div class="course-card" data-course="web-development">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Popular</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Introduction to Web Development</h3>
+                            <p class="course-description">Learn HTML, CSS, and JavaScript to build responsive websites from scratch. Perfect for beginners.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 6 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$49.99</span>
+                                <span class="original-price">$99.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="web-development">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Graphic Design Course -->
+                    <div class="course-card" data-course="graphic-design">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">New</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Graphic Design & Graphic Arts</h3>
+                            <p class="course-description">Unleash your creativity with design principles, color theory, and industry-standard tools.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 8 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$59.99</span>
+                                <span class="original-price">$119.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="graphic-design">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business Courses -->
+            <section class="courses-section" data-category="business">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    Business Courses
+                </h2>
+                <div class="courses-grid">
+                    <!-- Personal Finance Course -->
+                    <div class="course-card" data-course="personal-finance">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Bestseller</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Personal Finance Management</h3>
+                            <p class="course-description">Take control of your financial future with budgeting, investing, and wealth-building strategies.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 6 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> All Levels</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$69.99</span>
+                                <span class="original-price">$99.99</span>
+                                <span class="bestseller">Bestseller</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="personal-finance">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project Management Course -->
+                    <div class="course-card" data-course="project-management">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Popular</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Introduction to Project Management</h3>
+                            <p class="course-description">Learn essential project management methodologies and tools to deliver successful projects.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 5 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$54.99</span>
+                                <span class="original-price">$89.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="project-management">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Principles of Management Course -->
+                    <div class="course-card" data-course="principles-management">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">New</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Principles of Management</h3>
+                            <p class="course-description">Master fundamental management principles and leadership techniques for organizational success.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 4 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$44.99</span>
+                                <span class="original-price">$79.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="principles-management">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Languages Courses -->
+            <section class="courses-section" data-category="languages">
+                <h2 class="section-title">
+                    <i class="fas fa-language"></i>
+                    Language Courses
+                </h2>
+                <div class="courses-grid">
+                    <!-- English Course -->
+                    <div class="course-card" data-course="english-mastery">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Bestseller</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">English: Beginner to Mastery</h3>
+                            <p class="course-description">Comprehensive English course covering grammar, vocabulary, and conversation skills from beginner to advanced.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 12 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> All Levels</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$149.99</span>
+                                <span class="bestseller">Bestseller</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="english-mastery">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- French Course -->
+                    <div class="course-card" data-course="french-intro">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Popular</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Introduction to French Language</h3>
+                            <p class="course-description">Start your French journey with basic vocabulary, grammar, and essential conversation skills.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 8 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$49.99</span>
+                                <span class="original-price">$89.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="french-intro">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Swahili Course -->
+                    <div class="course-card" data-course="swahili-fluency">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">New</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Swahili Fluency Course</h3>
+                            <p class="course-description">Achieve fluency in Swahili with comprehensive lessons on grammar, vocabulary, and cultural context.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 10 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner to Intermediate</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$59.99</span>
+                                <span class="original-price">$99.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="swahili-fluency">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Music Courses -->
+            <section class="courses-section" data-category="music">
+                <h2 class="section-title">
+                    <i class="fas fa-music"></i>
+                    Music Courses
+                </h2>
+                <div class="courses-grid">
+                    <!-- Guitar Course -->
+                    <div class="course-card" data-course="acoustic-guitar">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Popular</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Introduction to Acoustic Guitar</h3>
+                            <p class="course-description">Learn guitar fundamentals, chords, strumming patterns, and play your first songs in weeks.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 6 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$39.99</span>
+                                <span class="original-price">$69.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="acoustic-guitar">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keyboard Course -->
+                    <div class="course-card" data-course="beginner-keyboard">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">Bestseller</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Beginner Keyboard Mastery</h3>
+                            <p class="course-description">Master keyboard fundamentals, notes, chords, and play beautiful melodies from day one.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 8 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$44.99</span>
+                                <span class="original-price">$79.99</span>
+                                <span class="bestseller">Bestseller</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="beginner-keyboard">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Saxophone Course -->
+                    <div class="course-card" data-course="saxophone-basics">
+                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
+                            <div class="course-badge">New</div>
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Basics of Saxophone</h3>
+                            <p class="course-description">Learn saxophone fundamentals, breathing techniques, and play your first melodies with confidence.</p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 7 weeks</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">$54.99</span>
+                                <span class="original-price">$89.99</span>
+                            </div>
+                            <button class="add-to-cart-btn" data-course="saxophone-basics">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More sections for Photography, Health, Finance, and Leadership would follow the same pattern -->
+            
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
     </div>
 
     <script>
-        // Mobile menu functionality
-        const mobileMenu = document.getElementById('mobile-menu');
-        const sideMenu = document.getElementById('side-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const overlay = document.getElementById('overlay');
-        const mainContent = document.getElementById('main-content');
-        
-        // Toggle side menu
-        mobileMenu.addEventListener('click', function() {
-            sideMenu.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // Close side menu
-        function closeSideMenu() {
-            sideMenu.classList.remove('open');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        closeMenu.addEventListener('click', closeSideMenu);
-        overlay.addEventListener('click', closeSideMenu);
-        
-        // Close menu when clicking on links
-        document.querySelectorAll('.side-menu a').forEach(link => {
-            link.addEventListener('click', closeSideMenu);
-        });
+        // Replace with your actual Google Client ID
+        const GOOGLE_CLIENT_ID = '230366555128-bkm4jhc3c14scafm8808uk8u456u6cfk.apps.googleusercontent.com';
 
-        // PWA Installation
-        let deferredPrompt;
-        const pwaPrompt = document.getElementById('pwa-prompt');
-        const installBtn = document.getElementById('install-btn');
-        const dismissBtn = document.getElementById('dismiss-btn');
-        
-        // Show install prompt when app can be installed
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            // Show the install prompt
-            setTimeout(() => {
-                pwaPrompt.classList.add('show');
-            }, 3000);
-        });
-        
-        // Install button click handler
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                // We've used the prompt, and can't use it again, discard it
-                deferredPrompt = null;
-                // Hide the prompt
-                pwaPrompt.classList.remove('show');
-            }
-        });
-        
-        // Dismiss button click handler
-        dismissBtn.addEventListener('click', () => {
-            pwaPrompt.classList.remove('show');
-        });
-        
-        // Hide the prompt when app is successfully installed
-        window.addEventListener('appinstalled', () => {
-            pwaPrompt.classList.remove('show');
-            deferredPrompt = null;
-        });
+        // Course data
+        const courses = {
+            'data-entry': { title: 'Data Entry Mastery', price: 27.99, category: 'technology' },
+            'web-development': { title: 'Introduction to Web Development', price: 49.99, category: 'technology' },
+            'graphic-design': { title: 'Graphic Design & Graphic Arts', price: 59.99, category: 'technology' },
+            'personal-finance': { title: 'Personal Finance Management', price: 69.99, category: 'business' },
+            'project-management': { title: 'Introduction to Project Management', price: 54.99, category: 'business' },
+            'principles-management': { title: 'Principles of Management', price: 44.99, category: 'business' },
+            'english-mastery': { title: 'English: Beginner to Mastery', price: 89.99, category: 'languages' },
+            'french-intro': { title: 'Introduction to French Language', price: 49.99, category: 'languages' },
+            'swahili-fluency': { title: 'Swahili Fluency Course', price: 59.99, category: 'languages' },
+            'acoustic-guitar': { title: 'Introduction to Acoustic Guitar', price: 39.99, category: 'music' },
+            'beginner-keyboard': { title: 'Beginner Keyboard Mastery', price: 44.99, category: 'music' },
+            'saxophone-basics': { title: 'Basics of Saxophone', price: 54.99, category: 'music' }
+        };
 
-        // Enrollment Modal Functionality
-        const enrollmentModal = document.getElementById('enrollment-modal');
-        const modalClose = document.getElementById('modal-close');
-        const cancelEnrollment = document.getElementById('cancel-enrollment');
-        const enrollmentForm = document.getElementById('enrollment-form');
-        const courseNameInput = document.getElementById('course-name');
-        const modalCourseTitle = document.getElementById('modal-course-title');
-        const modalCourseDescription = document.getElementById('modal-course-description');
-        const successMessage = document.getElementById('success-message');
-        const errorMessage = document.getElementById('error-message');
-        
-        // Open enrollment modal when enroll button is clicked
-        document.querySelectorAll('.enroll-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const courseName = this.getAttribute('data-course');
-                courseNameInput.value = courseName;
-                modalCourseTitle.textContent = `Enroll in ${courseName}`;
-                modalCourseDescription.textContent = `Complete the form below to enroll in ${courseName}`;
-                
-                // Reset form and messages
-                enrollmentForm.reset();
-                successMessage.style.display = 'none';
-                errorMessage.style.display = 'none';
-                
-                // Show modal and blur background
-                enrollmentModal.classList.add('active');
-                mainContent.classList.add('blurred');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Close enrollment modal
-        function closeEnrollmentModal() {
-            enrollmentModal.classList.remove('active');
-            mainContent.classList.remove('blurred');
-            document.body.style.overflow = 'auto';
-        }
-        
-        modalClose.addEventListener('click', closeEnrollmentModal);
-        cancelEnrollment.addEventListener('click', closeEnrollmentModal);
-        
-        // Close modal when clicking outside
-        enrollmentModal.addEventListener('click', function(e) {
-            if (e.target === enrollmentModal) {
-                closeEnrollmentModal();
+        // User state
+        let currentUser = null;
+        let googleInitialized = false;
+        let cart = [];
+
+        // DOM Elements
+        const authModal = document.getElementById('auth-modal');
+        const signinBtn = document.getElementById('signin-btn');
+        const authButtons = document.getElementById('auth-buttons');
+        const userMenu = document.getElementById('user-menu');
+        const userAvatar = document.getElementById('user-avatar');
+        const userDropdown = document.getElementById('user-dropdown');
+        const userDropdownName = document.getElementById('user-dropdown-name');
+        const userDropdownEmail = document.getElementById('user-dropdown-email');
+        const logoutBtn = document.getElementById('logout-btn');
+        const googleSigninBtn = document.getElementById('google-signin-btn');
+        const googleBtnText = document.getElementById('google-btn-text');
+        const cartIcon = document.getElementById('cart-icon');
+        const userCartIcon = document.getElementById('user-cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const userCartCount = document.getElementById('user-cart-count');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const courseSections = document.querySelectorAll('.courses-section');
+
+        // Initialize Google Sign-In
+        function initializeGoogleSignIn() {
+            if (typeof google === 'undefined') {
+                console.warn('Google Identity Services not loaded yet, retrying...');
+                setTimeout(initializeGoogleSignIn, 500);
+                return;
             }
-        });
-        
-        // Form submission
-        enrollmentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+
+            try {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleGoogleSignIn,
+                    error_callback: handleGoogleSignInError,
+                    ux_mode: 'popup',
+                    auto_select: false
+                });
+
+                google.accounts.id.renderButton(
+                    document.getElementById('google-signin-container'),
+                    { 
+                        theme: "outline", 
+                        size: "large", 
+                        width: "100%",
+                        text: "continue_with",
+                        shape: "rectangular"
+                    }
+                );
+
+                googleInitialized = true;
+                console.log('Google Sign-In initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing Google Sign-In:', error);
+                setupFallbackGoogleButton();
+            }
+        }
+
+        function setupFallbackGoogleButton() {
+            googleSigninBtn.innerHTML = '<i class="fab fa-google"></i> Continue with Google';
+            googleSigninBtn.onclick = () => {
+                showToast('Google Sign-In is temporarily unavailable. Please try again later.');
+            };
+            googleSigninBtn.style.opacity = '0.7';
+        }
+
+        // Handle Google Sign-In
+        function handleGoogleSignIn(response) {
+            console.log('Google Sign-In response received');
             
-            // Get form data
-            const formData = new FormData(enrollmentForm);
-            const data = Object.fromEntries(formData);
-            
-            // Show loading state
-            const submitBtn = document.getElementById('submit-enrollment');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            submitBtn.disabled = true;
-            
-            // Replace with your Google Apps Script Web App URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwcRF0WytJ4a2iKkAfLozZOfu_YPBt7GTA5iegCOk01QpbQTlHL3QA0WdSFOuSPyWuo/exec';
-            
-            // Send data to Google Sheets via Apps Script
-            fetch(scriptURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message
-                    successMessage.style.display = 'block';
-                    enrollmentForm.reset();
-                    
-                    // Close modal after 3 seconds
-                    setTimeout(() => {
-                        closeEnrollmentModal();
-                    }, 3000);
-                } else {
-                    throw new Error('Network response was not ok');
+            try {
+                const userInfo = parseJwt(response.credential);
+                
+                if (!userInfo) {
+                    throw new Error('Invalid token response');
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.style.display = 'block';
-            })
-            .finally(() => {
-                // Reset button state
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-        // Add this to your existing JavaScript to handle mobile viewport
-        function adjustModalForMobile() {
-            const modal = document.querySelector('.enrollment-modal');
-            const viewportHeight = window.innerHeight;
-            
-            if (viewportHeight < 600) {
-                modal.style.maxHeight = '95vh';
-                modal.style.marginTop = '10px';
-                modal.style.marginBottom = '10px';
-            } else {
-                modal.style.maxHeight = '90vh';
-                modal.style.marginTop = '0';
-                modal.style.marginBottom = '0';
+                
+                currentUser = {
+                    id: userInfo.sub,
+                    name: userInfo.name,
+                    email: userInfo.email,
+                    picture: userInfo.picture,
+                    provider: 'google'
+                };
+
+                updateUserInterface();
+                authModal.style.display = 'none';
+                showToast(`Welcome to Hekima Hub, ${userInfo.name}!`);
+                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                localStorage.setItem('userCart', JSON.stringify(cart));
+                
+            } catch (error) {
+                console.error('Error handling Google Sign-In:', error);
+                showToast('Error signing in. Please try again.');
             }
         }
 
-        // Call this when modal opens
-        document.querySelectorAll('.enroll-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // ... your existing code ...
+        function handleGoogleSignInError(error) {
+            console.error('Google Sign-In error:', error);
+            showToast('Error with Google Sign-In. Please try again.');
+        }
+
+        // Parse JWT token
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                console.error('Error parsing JWT:', e);
+                return null;
+            }
+        }
+
+        // Update UI based on authentication state
+        function updateUserInterface() {
+            if (currentUser) {
+                authButtons.style.display = 'none';
+                userMenu.style.display = 'flex';
                 
-                // Adjust for mobile after a brief delay to ensure modal is rendered
-                setTimeout(adjustModalForMobile, 100);
+                userAvatar.src = currentUser.picture;
+                userDropdownName.textContent = currentUser.name;
+                userDropdownEmail.textContent = currentUser.email;
+            } else {
+                authButtons.style.display = 'flex';
+                userMenu.style.display = 'none';
+            }
+            updateCartDisplay();
+        }
+
+        // Cart functionality
+        function addToCart(courseId) {
+            if (!currentUser) {
+                showToast('Please sign in to add courses to your cart.');
+                authModal.style.display = 'flex';
+                return;
+            }
+
+            const course = courses[courseId];
+            const existingItem = cart.find(item => item.id === courseId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: courseId,
+                    title: course.title,
+                    price: course.price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            showToast(`${course.title} added to cart!`);
+            
+            // Save to localStorage
+            localStorage.setItem('userCart', JSON.stringify(cart));
+        }
+
+        function updateCartDisplay() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            userCartCount.textContent = totalItems;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Category filtering
+        function filterCourses(category) {
+            courseSections.forEach(section => {
+                if (category === 'all' || section.dataset.category === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Event Listeners
+        signinBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            if (!googleInitialized) {
+                setTimeout(initializeGoogleSignIn, 100);
+            }
+        });
+
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+
+        userAvatar.addEventListener('click', () => {
+            userDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenu.contains(e.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            cart = [];
+            updateUserInterface();
+            showToast('You have been logged out successfully.');
+            
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('userCart');
+            
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+            }
+        });
+
+        // Add to cart buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                const courseId = button.dataset.course;
+                addToCart(courseId);
+            }
+        });
+
+        // Category buttons
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterCourses(btn.dataset.category);
             });
         });
 
-        // Also adjust on window resize
-        window.addEventListener('resize', adjustModalForMobile);
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, initializing application...');
+            
+            // Check for saved user and cart
+            const savedUser = localStorage.getItem('currentUser');
+            const savedCart = localStorage.getItem('userCart');
+            
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    console.log('Found saved user:', currentUser);
+                } catch (e) {
+                    console.error('Error parsing saved user:', e);
+                    localStorage.removeItem('currentUser');
+                }
+            }
+            
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    console.log('Found saved cart:', cart);
+                } catch (e) {
+                    console.error('Error parsing saved cart:', e);
+                    localStorage.removeItem('userCart');
+                }
+            }
+            
+            updateUserInterface();
+            setTimeout(initializeGoogleSignIn, 1000);
+        });
+
+        window.addEventListener('load', () => {
+            console.log('Window fully loaded');
+            if (!googleInitialized) {
+                initializeGoogleSignIn();
+            }
+        });
     </script>
 </body>
 </html>
