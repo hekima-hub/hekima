@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Courses - Hekima Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -478,8 +478,8 @@
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
         }
 
         .course-card {
@@ -498,7 +498,7 @@
         }
 
         .course-image {
-            height: 200px;
+            height: 180px;
             position: relative;
             background-size: cover;
             background-position: center;
@@ -518,11 +518,11 @@
         }
 
         .course-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
         .course-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--dark);
@@ -559,7 +559,7 @@
         }
 
         .current-price {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary);
         }
@@ -933,6 +933,19 @@
             .section-title {
                 font-size: 1.4rem;
             }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .course-card {
+                margin-bottom: 1rem;
+            }
+            
+            .course-content {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
@@ -948,7 +961,7 @@
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="courses.html" class="active">Courses</a>
-                <a href="#">Categories</a>
+                <a href="categories.html">Categories</a>
                 <a href="#">Instructors</a>
                 <a href="#">About</a>
             </nav>
@@ -1004,7 +1017,7 @@
         <nav class="mobile-nav-links">
             <a href="index.html">Home</a>
             <a href="courses.html" class="active">Courses</a>
-            <a href="#">Categories</a>
+            <a href="categories.html">Categories</a>
             <a href="#">Instructors</a>
             <a href="#">About</a>
             <a href="#" id="mobile-signin">Sign In</a>
