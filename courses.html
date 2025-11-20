@@ -208,6 +208,61 @@
             color: var(--primary);
         }
 
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            padding: 2rem;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
         /* Auth Elements */
         .auth-buttons {
             display: flex;
@@ -641,24 +696,6 @@
             margin-top: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
         .btn-whatsapp {
             background: #25D366;
             color: white;
@@ -931,10 +968,6 @@
                 
                 <!-- User Menu (shown when user is logged in) -->
                 <div class="user-menu" id="user-menu">
-                    <a href="#" class="cart-icon" id="user-cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="user-cart-count">0</span>
-                    </a>
                     <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
                     <div class="user-dropdown" id="user-dropdown">
                         <div class="user-dropdown-info">
@@ -951,6 +984,27 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/zv1G6fvB/Whats-App-Image-2025-11-18-at-16-22-32-removebg-preview.webp" alt="Hekima Hub Logo" class="logo-img">
+                <span>Hekima Hub</span>
+            </a>
+            <button class="close-menu" id="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html">Home</a>
+            <a href="courses.html" class="active">Courses</a>
+            <a href="#">Categories</a>
+            <a href="#">Instructors</a>
+            <a href="#">About</a>
+            <a href="#" id="mobile-signin">Sign In</a>
+        </nav>
+    </div>
 
     <!-- Auth Modal -->
     <div class="auth-modal" id="auth-modal">
@@ -986,7 +1040,8 @@
             
             <!-- Checkout Form -->
             <div class="checkout-form" id="checkout-form">
-                <h3>Checkout Details</h3>
+                <h3>Complete Your Order</h3>
+                <p>Your order will be processed via WhatsApp using your account information.</p>
                 <button class="btn btn-whatsapp" id="whatsapp-checkout">
                     <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
                 </button>
@@ -1221,9 +1276,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- More course sections would follow the same pattern -->
-            
         </div>
     </div>
 
@@ -1314,8 +1366,45 @@
                     'Build an emergency fund and insurance portfolio'
                 ],
                 category: 'business'
+            },
+            'project-management': {
+                title: 'Introduction to Project Management',
+                price: 54.99,
+                originalPrice: 89.99,
+                duration: '5 weeks',
+                students: '9,300+ students',
+                level: 'Beginner',
+                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                description: 'Learn essential project management methodologies and tools to deliver successful projects.',
+                objectives: [
+                    'Understand project management fundamentals',
+                    'Learn to create project plans and schedules',
+                    'Master stakeholder management techniques',
+                    'Develop risk management strategies',
+                    'Learn to use project management software',
+                    'Understand project budgeting and cost control'
+                ],
+                category: 'business'
+            },
+            'principles-management': {
+                title: 'Principles of Management',
+                price: 44.99,
+                originalPrice: 79.99,
+                duration: '4 weeks',
+                students: '7,100+ students',
+                level: 'Beginner',
+                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                description: 'Master fundamental management principles and leadership techniques for organizational success.',
+                objectives: [
+                    'Understand management theories and principles',
+                    'Learn effective leadership styles',
+                    'Develop communication and motivation skills',
+                    'Master decision-making processes',
+                    'Learn team building and conflict resolution',
+                    'Understand organizational structure and culture'
+                ],
+                category: 'business'
             }
-            // Add more courses as needed...
         };
 
         // User state
@@ -1337,9 +1426,7 @@
         const googleSigninBtn = document.getElementById('google-signin-btn');
         const googleBtnText = document.getElementById('google-btn-text');
         const cartIcon = document.getElementById('cart-icon');
-        const userCartIcon = document.getElementById('user-cart-icon');
         const cartCount = document.getElementById('cart-count');
-        const userCartCount = document.getElementById('user-cart-count');
         const cartModal = document.getElementById('cart-modal');
         const closeCart = document.getElementById('close-cart');
         const cartItems = document.getElementById('cart-items');
@@ -1347,8 +1434,6 @@
         const checkoutBtn = document.getElementById('checkout-btn');
         const checkoutForm = document.getElementById('checkout-form');
         const whatsappCheckout = document.getElementById('whatsapp-checkout');
-        const phoneInput = document.getElementById('phone');
-        const addressInput = document.getElementById('address');
         const courseModal = document.getElementById('course-modal');
         const closeCourse = document.getElementById('close-course');
         const courseDetailHeader = document.getElementById('course-detail-header');
@@ -1365,6 +1450,10 @@
         const toastMessage = document.getElementById('toast-message');
         const categoryBtns = document.querySelectorAll('.category-btn');
         const courseSections = document.querySelectorAll('.courses-section');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileSignin = document.getElementById('mobile-signin');
 
         // Initialize Google Sign-In
         function initializeGoogleSignIn() {
@@ -1512,7 +1601,6 @@
         function updateCartDisplay() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartCount.textContent = totalItems;
-            userCartCount.textContent = totalItems;
             
             // Update cart modal
             updateCartModal();
@@ -1588,7 +1676,6 @@
 
         // WhatsApp Checkout
         function processWhatsAppCheckout() {
-
             // Format cart items for message
             let cartSummary = '🎓 *HEKIMA HUB ORDER SUMMARY* 🎓%0A%0A';
             let total = 0;
@@ -1607,7 +1694,7 @@
             const customerDetails = `👤 *CUSTOMER DETAILS*%0A`;
             const customerInfo = `Name: ${currentUser.name}%0AEmail: ${currentUser.email}`;
             
-            const finalMessage = `${cartSummary}${customerDetails}Please confirm this order and provide payment instructions.`;
+            const finalMessage = `${cartSummary}${customerDetails}${customerInfo}%0A%0APlease confirm this order and provide payment instructions.`;
             
             // Open WhatsApp with pre-filled message
             window.open(`https://wa.me/254784599322?text=${finalMessage}`, '_blank');
@@ -1618,8 +1705,6 @@
             cartModal.style.display = 'none';
             checkoutForm.style.display = 'none';
             document.body.style.overflow = 'auto';
-            
-            // Reset form
             
             showToast('Order completed successfully! Check WhatsApp to finalize your purchase.');
             localStorage.removeItem('userCart');
@@ -1648,6 +1733,15 @@
 
         // Event Listeners
         signinBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            if (!googleInitialized) {
+                setTimeout(initializeGoogleSignIn, 100);
+            }
+        });
+
+        mobileSignin.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileMenu.classList.remove('active');
             authModal.style.display = 'flex';
             if (!googleInitialized) {
                 setTimeout(initializeGoogleSignIn, 100);
@@ -1687,12 +1781,11 @@
         // Cart functionality
         cartIcon.addEventListener('click', (e) => {
             e.preventDefault();
-            cartModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-
-        userCartIcon.addEventListener('click', (e) => {
-            e.preventDefault();
+            if (!currentUser) {
+                showToast('Please sign in to view your cart.');
+                authModal.style.display = 'flex';
+                return;
+            }
             cartModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
@@ -1737,6 +1830,15 @@
             }
         });
 
+        // Add to cart buttons on course cards
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                const courseId = button.dataset.course;
+                addToCart(courseId);
+            }
+        });
+
         closeCourse.addEventListener('click', () => {
             courseModal.style.display = 'none';
             document.body.style.overflow = 'auto';
@@ -1764,12 +1866,24 @@
             });
         });
 
-        // Add to cart buttons on course cards
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
-                const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
-                const courseId = button.dataset.course;
-                addToCart(courseId);
+        // Mobile menu functionality
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            if (link.id !== 'mobile-signin') {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
             }
         });
 
