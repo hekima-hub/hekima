@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Courses - Hekima Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -38,6 +38,7 @@
             line-height: 1.6;
             min-height: 100vh;
             font-size: 14px;
+            overflow-x: hidden;
         }
 
         .container {
@@ -914,6 +915,10 @@
                 width: 36px;
                 height: 36px;
             }
+            
+            .mobile-menu {
+                display: flex;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1613,6 +1618,7 @@
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p>Your cart is empty</p>';
                 checkoutBtn.style.display = 'none';
+                checkoutForm.style.display = 'none';
             } else {
                 checkoutBtn.style.display = 'block';
                 cart.forEach(item => {
@@ -1676,6 +1682,12 @@
 
         // WhatsApp Checkout
         function processWhatsAppCheckout() {
+            // Prevent empty orders
+            if (cart.length === 0) {
+                showToast('Your cart is empty. Please add courses before checking out.');
+                return;
+            }
+
             // Format cart items for message
             let cartSummary = '🎓 *HEKIMA HUB ORDER SUMMARY* 🎓%0A%0A';
             let total = 0;
