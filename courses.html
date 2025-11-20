@@ -20,12 +20,13 @@
             --primary: #2E8B57;
             --primary-dark: #26734d;
             --secondary: #4169E1;
-            --accent: #FF6B35;
-            --light: #f8f9fa;
-            --dark: #1a202c;
-            --gray: #718096;
-            --success: #38a169;
-            --warning: #ed8936;
+            --accent: #800000;
+            --highlight: #FFD700;
+            --dark: #1c1d1f;
+            --light: #f7f9fa;
+            --gray: #6a6f73;
+            --success: #1e6055;
+            --white: #ffffff;
             --border-radius: 12px;
             --shadow: 0 10px 30px rgba(0,0,0,0.08);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -45,16 +46,23 @@
             padding: 15px;
         }
 
-        /* Header with Auth */
+        /* Header - Matching Homepage Style */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            background: white;
             padding: 1rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo {
@@ -70,6 +78,134 @@
         .logo-img {
             height: 40px;
             width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 7px 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: var(--secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .cart, .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
         }
 
         /* Auth Elements */
@@ -150,24 +286,6 @@
         .logout-btn:hover {
             background: var(--accent);
             color: white;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary);
         }
 
         /* Auth Modal */
@@ -397,8 +515,8 @@
         }
 
         .bestseller {
-            background: var(--warning);
-            color: white;
+            background: var(--highlight);
+            color: #593d00;
             padding: 3px 8px;
             border-radius: 3px;
             font-size: 0.7rem;
@@ -430,31 +548,6 @@
             background: var(--gray);
             cursor: not-allowed;
             transform: none;
-        }
-
-        /* Cart */
-        .cart-icon {
-            position: relative;
-            color: var(--dark);
-            text-decoration: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
         }
 
         /* Cart Modal */
@@ -737,120 +830,127 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 12px;
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
             }
-            
-            .courses-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            .nav-links {
+                display: none;
             }
-            
+
+            .search-bar {
+                display: none;
+            }
+
+            .header-actions .auth-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
             .page-title {
                 font-size: 2rem;
             }
-        }
 
-        @media (max-width: 768px) {
-            body {
-                font-size: 13px;
-            }
-            
-            .page-header {
-                padding: 2rem 1.5rem;
-            }
-            
-            .page-title {
-                font-size: 1.8rem;
-            }
-            
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-                padding: 1rem;
-            }
-            
-            .category-nav {
-                padding: 0.5rem 0;
-            }
-            
-            .category-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
             .courses-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .course-detail-actions {
                 flex-direction: column;
                 align-items: stretch;
             }
-            
+
             .course-detail-actions .btn {
                 width: 100%;
+            }
+
+            .user-avatar {
+                width: 36px;
+                height: 36px;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
             .page-header {
                 padding: 1.5rem 1rem;
             }
-            
+
             .page-title {
                 font-size: 1.5rem;
             }
-            
+
             .section-title {
                 font-size: 1.4rem;
-            }
-            
-            .course-card {
-                margin: 0 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Auth -->
-    <div class="container">
+    <!-- Header - Matching Homepage -->
+    <header>
         <div class="header-container">
             <a href="index.html" class="logo">
                 <img src="https://i.postimg.cc/zv1G6fvB/Whats-App-Image-2025-11-18-at-16-22-32-removebg-preview.webp" alt="Hekima Hub Logo" class="logo-img">
                 <span>Hekima Hub</span>
             </a>
             
-            <div class="auth-buttons" id="auth-buttons">
-                <a href="#" class="cart-icon" id="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cart-count">0</span>
-                </a>
-                <button class="btn btn-primary" id="signin-btn">Sign In</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html" class="active">Courses</a>
+                <a href="#">Categories</a>
+                <a href="#">Instructors</a>
+                <a href="#">About</a>
+            </nav>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for anything" id="search-input">
+                <button id="search-button"><i class="fas fa-search"></i></button>
             </div>
             
-            <div class="user-menu" id="user-menu">
-                <a href="#" class="cart-icon" id="user-cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="user-cart-count">0</span>
-                </a>
-                <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
-                <div class="user-dropdown" id="user-dropdown">
-                    <div class="user-dropdown-info">
-                        <div class="user-dropdown-name" id="user-dropdown-name"></div>
-                        <div class="user-dropdown-email" id="user-dropdown-email"></div>
-                    </div>
-                    <button class="logout-btn" id="logout-btn">Logout</button>
+            <div class="header-actions">
+                <div class="cart">
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
                 </div>
+                
+                <!-- Auth Buttons (shown when user is not logged in) -->
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn btn-primary" id="signin-btn">Sign In</button>
+                </div>
+                
+                <!-- User Menu (shown when user is logged in) -->
+                <div class="user-menu" id="user-menu">
+                    <a href="#" class="cart-icon" id="user-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="user-cart-count">0</span>
+                    </a>
+                    <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-dropdown-info">
+                            <div class="user-dropdown-name" id="user-dropdown-name"></div>
+                            <div class="user-dropdown-email" id="user-dropdown-email"></div>
+                        </div>
+                        <button class="logout-btn" id="logout-btn">Logout</button>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-    </div>
+    </header>
 
     <!-- Auth Modal -->
     <div class="auth-modal" id="auth-modal">
@@ -889,11 +989,11 @@
                 <h3>Checkout Details</h3>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required>
+                    <input type="tel" id="phone" placeholder="+254 XXX XXX XXX" required>
                 </div>
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" rows="3" required></textarea>
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" rows="3" placeholder="Enter your complete address for course materials delivery" required></textarea>
                 </div>
                 <button class="btn btn-whatsapp" id="whatsapp-checkout">
                     <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
@@ -1130,86 +1230,7 @@
                 </div>
             </section>
 
-            <!-- Languages Courses -->
-            <section class="courses-section" data-category="languages">
-                <h2 class="section-title">
-                    <i class="fas fa-language"></i>
-                    Language Courses
-                </h2>
-                <div class="courses-grid">
-                    <!-- English Course -->
-                    <div class="course-card" data-course="english-mastery">
-                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
-                            <div class="course-badge">Bestseller</div>
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">English: Beginner to Mastery</h3>
-                            <p class="course-description">Comprehensive English course covering grammar, vocabulary, and conversation skills from beginner to advanced.</p>
-                            <div class="course-meta">
-                                <span class="course-duration"><i class="far fa-clock"></i> 12 weeks</span>
-                                <span class="course-level"><i class="fas fa-signal"></i> All Levels</span>
-                            </div>
-                            <div class="course-price">
-                                <span class="current-price">$89.99</span>
-                                <span class="original-price">$149.99</span>
-                                <span class="bestseller">Bestseller</span>
-                            </div>
-                            <button class="add-to-cart-btn" data-course="english-mastery">
-                                <i class="fas fa-cart-plus"></i>
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- French Course -->
-                    <div class="course-card" data-course="french-intro">
-                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
-                            <div class="course-badge">Popular</div>
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">Introduction to French Language</h3>
-                            <p class="course-description">Start your French journey with basic vocabulary, grammar, and essential conversation skills.</p>
-                            <div class="course-meta">
-                                <span class="course-duration"><i class="far fa-clock"></i> 8 weeks</span>
-                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                            <div class="course-price">
-                                <span class="current-price">$49.99</span>
-                                <span class="original-price">$89.99</span>
-                            </div>
-                            <button class="add-to-cart-btn" data-course="french-intro">
-                                <i class="fas fa-cart-plus"></i>
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Swahili Course -->
-                    <div class="course-card" data-course="swahili-fluency">
-                        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
-                            <div class="course-badge">New</div>
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">Swahili Fluency Course</h3>
-                            <p class="course-description">Achieve fluency in Swahili with comprehensive lessons on grammar, vocabulary, and cultural context.</p>
-                            <div class="course-meta">
-                                <span class="course-duration"><i class="far fa-clock"></i> 10 weeks</span>
-                                <span class="course-level"><i class="fas fa-signal"></i> Beginner to Intermediate</span>
-                            </div>
-                            <div class="course-price">
-                                <span class="current-price">$59.99</span>
-                                <span class="original-price">$99.99</span>
-                            </div>
-                            <button class="add-to-cart-btn" data-course="swahili-fluency">
-                                <i class="fas fa-cart-plus"></i>
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- More sections would follow the same pattern -->
+            <!-- More course sections would follow the same pattern -->
             
         </div>
     </div>
@@ -1301,25 +1322,6 @@
                     'Build an emergency fund and insurance portfolio'
                 ],
                 category: 'business'
-            },
-            'english-mastery': {
-                title: 'English: Beginner to Mastery',
-                price: 89.99,
-                originalPrice: 149.99,
-                duration: '12 weeks',
-                students: '23,100+ students',
-                level: 'All Levels',
-                image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                description: 'Comprehensive English course covering grammar, vocabulary, pronunciation, and conversation skills from absolute beginner to advanced proficiency.',
-                objectives: [
-                    'Master English grammar and sentence structure',
-                    'Build extensive vocabulary for daily communication',
-                    'Improve pronunciation and speaking confidence',
-                    'Develop reading comprehension skills',
-                    'Enhance writing abilities for various contexts',
-                    'Practice real-world conversation scenarios'
-                ],
-                category: 'languages'
             }
             // Add more courses as needed...
         };
@@ -1353,12 +1355,13 @@
         const checkoutBtn = document.getElementById('checkout-btn');
         const checkoutForm = document.getElementById('checkout-form');
         const whatsappCheckout = document.getElementById('whatsapp-checkout');
+        const phoneInput = document.getElementById('phone');
+        const addressInput = document.getElementById('address');
         const courseModal = document.getElementById('course-modal');
         const closeCourse = document.getElementById('close-course');
         const courseDetailHeader = document.getElementById('course-detail-header');
         const courseDetailTitle = document.getElementById('course-detail-title');
         const courseDetailDuration = document.getElementById('course-detail-duration');
-        const courseDetailRating = document.getElementById('course-detail-rating');
         const courseDetailStudents = document.getElementById('course-detail-students');
         const courseDetailLevel = document.getElementById('course-detail-level');
         const courseDetailDescription = document.getElementById('course-detail-description');
@@ -1529,7 +1532,9 @@
             
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p>Your cart is empty</p>';
+                checkoutBtn.style.display = 'none';
             } else {
+                checkoutBtn.style.display = 'block';
                 cart.forEach(item => {
                     const itemTotal = item.price * item.quantity;
                     total += itemTotal;
@@ -1587,6 +1592,59 @@
             // Show the modal
             courseModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+        }
+
+        // WhatsApp Checkout
+        function processWhatsAppCheckout() {
+            const phone = phoneInput.value.trim();
+            const address = addressInput.value.trim();
+            
+            if (!phone) {
+                showToast('Please enter your phone number.');
+                return;
+            }
+            
+            if (!address) {
+                showToast('Please enter your delivery address.');
+                return;
+            }
+
+            // Format cart items for message
+            let cartSummary = '🎓 *HEKIMA HUB ORDER SUMMARY* 🎓%0A%0A';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                cartSummary += `📚 *${item.title}*%0A`;
+                cartSummary += `   Quantity: ${item.quantity}%0A`;
+                cartSummary += `   Price: $${itemTotal.toFixed(2)}%0A%0A`;
+            });
+            
+            cartSummary += `💰 *TOTAL: $${total.toFixed(2)}*%0A%0A`;
+            
+            // Customer details
+            const customerDetails = `👤 *CUSTOMER DETAILS*%0A`;
+            const customerInfo = `Name: ${currentUser.name}%0AEmail: ${currentUser.email}%0APhone: ${phone}%0AAddress: ${address}%0A%0A`;
+            
+            const finalMessage = `${cartSummary}${customerDetails}${customerInfo}Please confirm this order and provide payment instructions.`;
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/254784599322?text=${finalMessage}`, '_blank');
+            
+            // Reset cart and close modal
+            cart = [];
+            updateCartDisplay();
+            cartModal.style.display = 'none';
+            checkoutForm.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Reset form
+            phoneInput.value = '';
+            addressInput.value = '';
+            
+            showToast('Order completed successfully! Check WhatsApp to finalize your purchase.');
+            localStorage.removeItem('userCart');
         }
 
         // Show toast notification
@@ -1667,6 +1725,22 @@
             document.body.style.overflow = 'auto';
         });
 
+        checkoutBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                showToast('Please sign in to complete your purchase.');
+                authModal.style.display = 'flex';
+                return;
+            }
+            
+            if (cart.length === 0) {
+                showToast('Your cart is empty. Please add courses before checking out.');
+                return;
+            }
+            checkoutForm.style.display = 'block';
+        });
+
+        whatsappCheckout.addEventListener('click', processWhatsAppCheckout);
+
         // Course card clicks
         document.addEventListener('click', (e) => {
             const courseCard = e.target.closest('.course-card');
@@ -1710,6 +1784,15 @@
                 btn.classList.add('active');
                 filterCourses(btn.dataset.category);
             });
+        });
+
+        // Add to cart buttons on course cards
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                const courseId = button.dataset.course;
+                addToCart(courseId);
+            }
         });
 
         // Initialize when DOM is loaded
