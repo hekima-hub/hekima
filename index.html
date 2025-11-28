@@ -27,6 +27,8 @@
             --white: #ffffff;
             --vpay-navy: #001f3f;
             --vpay-navy-light: #003366;
+            --error: #dc3545;
+            --warning: #ffc107;
         }
 
         /* V-PAY Integration Styles */
@@ -350,6 +352,11 @@
             background: #5a6268;
         }
 
+        .vpay-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .vpay-loading {
             text-align: center;
             padding: 2rem;
@@ -379,6 +386,18 @@
         .vpay-success-icon {
             font-size: 4rem;
             color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .vpay-error {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .vpay-error-icon {
+            font-size: 4rem;
+            color: var(--error);
             margin-bottom: 1rem;
         }
 
@@ -415,6 +434,16 @@
 
         .vpay-receipt-value {
             color: var(--gray);
+        }
+
+        .vpay-offline-notice {
+            background: var(--warning);
+            color: #856404;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 0.9rem;
         }
 
         /* Loading States */
@@ -1340,6 +1369,15 @@
             background: var(--primary);
         }
 
+        .toast-error {
+            background: var(--error);
+        }
+
+        .toast-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -1716,6 +1754,26 @@
                     <button class="vpay-btn vpay-btn-primary" id="vpay-success-close">
                         Continue Shopping
                     </button>
+                </div>
+
+                <!-- Error State -->
+                <div class="vpay-error" id="vpay-error">
+                    <div class="vpay-error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Payment Processing Failed</h3>
+                    <p id="vpay-error-message">There was an error processing your payment. Please try again.</p>
+                    <div class="vpay-offline-notice" id="vpay-offline-notice" style="display: none;">
+                        <i class="fas fa-wifi"></i> You are currently offline. Your payment has been saved and will be processed when you're back online.
+                    </div>
+                    <div class="vpay-buttons">
+                        <button class="vpay-btn vpay-btn-secondary" id="vpay-error-retry">
+                            <i class="fas fa-redo"></i> Try Again
+                        </button>
+                        <button class="vpay-btn vpay-btn-primary" id="vpay-error-close">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2114,6 +2172,7 @@
                     }
                 ]
             },
+            // Updated script URL that supports CORS
             scriptUrl: 'https://script.google.com/macros/s/AKfycbycDPMAhgMwuuchAlTMT0hGGgIMpcUejdeapcSAVk9raWITFJpLKdQaxbociiS3a16CAg/exec',
             receiptConfig: {
                 sendEmail: true,
@@ -2127,6 +2186,7 @@
         let vpaySelectedMethod = '';
         let vpayCurrentAmount = 0;
         let vpayCurrentReceipt = null;
+        let pendingPayments = [];
 
         // V-PAY DOM Elements
         const vpayModal = document.getElementById('vpay-modal');
@@ -2136,12 +2196,14 @@
         const vpayConfirmStep = document.getElementById('vpay-confirm-step');
         const vpayLoading = document.getElementById('vpay-loading');
         const vpaySuccess = document.getElementById('vpay-success');
+        const vpayError = document.getElementById('vpay-error');
         const vpayAmountInput = document.getElementById('vpay-amount');
         const vpayMethodsContainer = document.getElementById('vpay-methods-container');
         const vpaySummaryBusiness = document.getElementById('vpay-summary-business');
         const vpaySummaryAmount = document.getElementById('vpay-summary-amount');
         const vpaySummaryMethod = document.getElementById('vpay-summary-method');
         const vpayTransactionId = document.getElementById('vpay-transaction-id');
+        const vpayOfflineNotice = document.getElementById('vpay-offline-notice');
 
         // V-PAY Receipt Elements
         const receiptId = document.getElementById('receipt-id');
@@ -2158,6 +2220,8 @@
         const vpayBackToPayment = document.getElementById('vpay-back-to-payment');
         const vpaySubmitPayment = document.getElementById('vpay-submit-payment');
         const vpaySuccessClose = document.getElementById('vpay-success-close');
+        const vpayErrorRetry = document.getElementById('vpay-error-retry');
+        const vpayErrorClose = document.getElementById('vpay-error-close');
 
         // V-PAY Step Indicators
         const vpayStep1 = document.getElementById('vpay-step-1');
@@ -2196,6 +2260,11 @@
             // V-PAY Modal Controls
             vpayClose.addEventListener('click', closeVPayModal);
             vpaySuccessClose.addEventListener('click', closeVPayModal);
+            vpayErrorClose.addEventListener('click', closeVPayModal);
+            vpayErrorRetry.addEventListener('click', function() {
+                vpayError.style.display = 'none';
+                vpayConfirmStep.style.display = 'block';
+            });
 
             // V-PAY Step Navigation
             vpayContinueToPayment.addEventListener('click', goToVPayStep2);
@@ -2210,6 +2279,9 @@
                     closeVPayModal();
                 }
             });
+
+            // Check for pending payments on load
+            checkPendingPayments();
         }
 
         // Open V-PAY Modal
@@ -2254,6 +2326,7 @@
             vpayConfirmStep.style.display = 'none';
             vpayLoading.style.display = 'none';
             vpaySuccess.style.display = 'none';
+            vpayError.style.display = 'none';
 
             // Show current step
             if (vpayCurrentStep === 1) {
@@ -2376,7 +2449,7 @@
             });
         }
 
-        // Enhanced Process V-PAY Payment with Receipt Generation
+        // Enhanced Process V-PAY Payment with proper Google Sheets integration
         async function processVPayPayment() {
             const transactionId = vpayTransactionId.value.trim();
             
@@ -2418,47 +2491,123 @@
             try {
                 console.log('🔄 Sending payment data to Google Apps Script...');
                 
+                // Use fetch with proper error handling
                 const response = await fetch(VPAY_CONFIG.scriptUrl, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(formData)
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log('✅ Payment processed successfully:', result);
                 
-                console.log('✅ POST request sent (no-cors mode)');
-                
-                // Save to localStorage
-                saveVPayTransaction(formData);
-                
-                // Generate and display receipt
-                generateReceipt(formData, courseDetails);
-                
-                // Show success with receipt
-                vpayLoading.style.display = 'none';
-                vpaySuccess.style.display = 'block';
-                
-                // Clear cart if payment was for cart items
-                if (cart.length > 0) {
-                    cart = [];
-                    updateCart();
+                if (result.success) {
+                    // Payment successfully recorded in Google Sheets
+                    saveVPayTransaction(formData, false); // Not offline
+                    generateReceipt(formData, courseDetails);
+                    
+                    // Show success
+                    vpayLoading.style.display = 'none';
+                    vpaySuccess.style.display = 'block';
+                    
+                    // Clear cart if payment was for cart items
+                    if (cart.length > 0) {
+                        cart = [];
+                        updateCart();
+                    }
+                    
+                    showToast('Payment submitted successfully! Receipt sent to your email.');
+                } else {
+                    throw new Error(result.message || 'Payment processing failed');
                 }
                 
-                showToast('Payment submitted successfully! Receipt sent to your email.');
-                
             } catch (error) {
-                console.error('❌ Error:', error);
+                console.error('❌ Error processing payment:', error);
                 
-                // Save offline and generate receipt
-                saveVPayTransaction(formData);
-                generateReceipt(formData, courseDetails);
-                
-                // Show success anyway (offline mode)
-                vpayLoading.style.display = 'none';
-                vpaySuccess.style.display = 'block';
-                
-                showToast('Payment details saved. You will receive confirmation shortly.');
+                // Check if we're offline
+                if (!navigator.onLine) {
+                    // Save as pending payment for when we're back online
+                    savePendingPayment(formData);
+                    saveVPayTransaction(formData, true); // Mark as offline
+                    generateReceipt(formData, courseDetails);
+                    
+                    // Show success with offline notice
+                    vpayLoading.style.display = 'none';
+                    vpaySuccess.style.display = 'block';
+                    document.getElementById('vpay-success-message').textContent = 
+                        'Payment saved offline. It will be processed when you are back online.';
+                    
+                    showToast('Payment saved offline. Will process when online.', 'warning');
+                } else {
+                    // Show error for online failures
+                    vpayLoading.style.display = 'none';
+                    vpayError.style.display = 'block';
+                    document.getElementById('vpay-error-message').textContent = 
+                        'There was an error processing your payment. Please try again.';
+                    
+                    showToast('Payment processing failed. Please try again.', 'error');
+                }
+            }
+        }
+
+        // Save pending payment for retry
+        function savePendingPayment(formData) {
+            const pendingKey = `vpay_pending_${currentUser.id}`;
+            let pending = JSON.parse(localStorage.getItem(pendingKey) || '[]');
+            pending.push({
+                ...formData,
+                retryCount: 0,
+                lastRetry: new Date().toISOString()
+            });
+            localStorage.setItem(pendingKey, JSON.stringify(pending));
+        }
+
+        // Check and retry pending payments
+        async function checkPendingPayments() {
+            if (!currentUser || !navigator.onLine) return;
+            
+            const pendingKey = `vpay_pending_${currentUser.id}`;
+            let pending = JSON.parse(localStorage.getItem(pendingKey) || '[]');
+            
+            if (pending.length === 0) return;
+            
+            console.log(`🔄 Processing ${pending.length} pending payments...`);
+            
+            const successfulPayments = [];
+            
+            for (const payment of pending) {
+                try {
+                    const response = await fetch(VPAY_CONFIG.scriptUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payment)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        if (result.success) {
+                            successfulPayments.push(payment);
+                            console.log(`✅ Processed pending payment: ${payment.receiptId}`);
+                        }
+                    }
+                } catch (error) {
+                    console.error(`❌ Failed to process pending payment: ${payment.receiptId}`, error);
+                }
+            }
+            
+            // Remove successful payments from pending list
+            if (successfulPayments.length > 0) {
+                pending = pending.filter(p => !successfulPayments.some(sp => sp.receiptId === p.receiptId));
+                localStorage.setItem(pendingKey, JSON.stringify(pending));
+                console.log(`✅ Completed processing ${successfulPayments.length} pending payments`);
             }
         }
 
@@ -2526,14 +2675,15 @@
         }
 
         // Save V-PAY transaction
-        function saveVPayTransaction(formData) {
+        function saveVPayTransaction(formData, isOffline = false) {
             const userTransactionsKey = `vpay_transactions_${currentUser.id}`;
             let payments = JSON.parse(localStorage.getItem(userTransactionsKey) || '[]');
             
             const paymentRecord = {
                 ...formData,
-                offline: true,
-                offlineTimestamp: new Date().toISOString(),
+                offline: isOffline,
+                processed: !isOffline,
+                timestamp: new Date().toISOString(),
                 id: Date.now().toString()
             };
             
@@ -2799,13 +2949,13 @@
                 
             } catch (error) {
                 console.error('Error handling Google Sign-In:', error);
-                showToast('Error signing in. Please try again.');
+                showToast('Error signing in. Please try again.', 'error');
             }
         }
 
         function handleGoogleSignInError(error) {
             console.error('Google Sign-In error:', error);
-            showToast('Error with Google Sign-In. Please try again.');
+            showToast('Error with Google Sign-In. Please try again.', 'error');
         }
 
         // Parse JWT token
@@ -3014,9 +3164,17 @@
         }
 
         // Show toast notification
-        function showToast(message) {
+        function showToast(message, type = 'success') {
             toastMessage.textContent = message;
-            toast.classList.add('show', 'toast-success');
+            toast.className = 'toast';
+            
+            if (type === 'success') {
+                toast.classList.add('show', 'toast-success');
+            } else if (type === 'error') {
+                toast.classList.add('show', 'toast-error');
+            } else if (type === 'warning') {
+                toast.classList.add('show', 'toast-warning');
+            }
             
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -3225,6 +3383,16 @@
             
             // Initialize V-PAY
             initializeVPay();
+
+            // Listen for online/offline events
+            window.addEventListener('online', function() {
+                console.log('App is online, checking pending payments...');
+                checkPendingPayments();
+            });
+
+            window.addEventListener('offline', function() {
+                console.log('App is offline');
+            });
         });
 
         // Additional initialization when window loads completely
