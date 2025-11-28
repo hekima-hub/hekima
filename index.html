@@ -25,6 +25,8 @@
             --gray: #6a6f73;
             --success: #1e6055;
             --white: #ffffff;
+            --vpay-navy: #001f3f;
+            --vpay-navy-light: #003366;
         }
 
         /* V-PAY Integration Styles */
@@ -117,7 +119,7 @@
         }
 
         .vpay-header {
-            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            background: linear-gradient(135deg, var(--vpay-navy) 0%, var(--vpay-navy-light) 100%);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -146,7 +148,7 @@
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            border-left: 4px solid #001f3f;
+            border-left: 4px solid var(--vpay-navy);
         }
 
         .vpay-amount-input {
@@ -182,7 +184,7 @@
         }
 
         .vpay-method-card.active {
-            border-color: #001f3f;
+            border-color: var(--vpay-navy);
             background: #f8f9fa;
         }
 
@@ -195,16 +197,16 @@
 
         .vpay-method-icon {
             font-size: 1.2rem;
-            color: #001f3f;
+            color: var(--vpay-navy);
         }
 
         .vpay-method-name {
             font-weight: 600;
-            color: #001f3f;
+            color: var(--vpay-navy);
         }
 
         .vpay-details-card {
-            background: #001f3f;
+            background: var(--vpay-navy);
             color: white;
             padding: 1rem;
             border-radius: 6px;
@@ -292,7 +294,7 @@
         }
 
         .vpay-step-indicator.active .vpay-step-number {
-            background: #001f3f;
+            background: var(--vpay-navy);
         }
 
         .vpay-step-indicator.completed .vpay-step-number {
@@ -307,7 +309,7 @@
         }
 
         .vpay-step-indicator.active .vpay-step-label {
-            color: #001f3f;
+            color: var(--vpay-navy);
         }
 
         .vpay-buttons {
@@ -331,12 +333,12 @@
         }
 
         .vpay-btn-primary {
-            background: #001f3f;
+            background: var(--vpay-navy);
             color: white;
         }
 
         .vpay-btn-primary:hover {
-            background: #003366;
+            background: var(--vpay-navy-light);
         }
 
         .vpay-btn-secondary {
@@ -356,7 +358,7 @@
 
         .vpay-spinner {
             border: 3px solid #f3f3f3;
-            border-top: 3px solid #001f3f;
+            border-top: 3px solid var(--vpay-navy);
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -380,30 +382,50 @@
             margin-bottom: 1rem;
         }
 
-        /* Loading States */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        /* Loading States */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .vpay-receipt {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: left;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .vpay-receipt h4 {
+            color: var(--vpay-navy);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .vpay-receipt-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vpay-receipt-item:last-child {
+            border-bottom: none;
+        }
+
+        .vpay-receipt-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .vpay-receipt-value {
+            color: var(--gray);
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
         /* Auth Modal Styles */
@@ -1661,6 +1683,36 @@
                     </div>
                     <h3>Payment Submitted Successfully!</h3>
                     <p id="vpay-success-message">Your payment has been processed and a receipt has been sent to your email.</p>
+                    
+                    <!-- Receipt Details -->
+                    <div class="vpay-receipt" id="vpay-receipt">
+                        <h4>Payment Receipt</h4>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Receipt ID:</span>
+                            <span class="vpay-receipt-value" id="receipt-id"></span>
+                        </div>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Business:</span>
+                            <span class="vpay-receipt-value" id="receipt-business"></span>
+                        </div>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Amount:</span>
+                            <span class="vpay-receipt-value" id="receipt-amount"></span>
+                        </div>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Payment Method:</span>
+                            <span class="vpay-receipt-value" id="receipt-method"></span>
+                        </div>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Date:</span>
+                            <span class="vpay-receipt-value" id="receipt-date"></span>
+                        </div>
+                        <div class="vpay-receipt-item">
+                            <span class="vpay-receipt-label">Courses:</span>
+                            <span class="vpay-receipt-value" id="receipt-courses"></span>
+                        </div>
+                    </div>
+                    
                     <button class="vpay-btn vpay-btn-primary" id="vpay-success-close">
                         Continue Shopping
                     </button>
@@ -1996,6 +2048,7 @@
                                 <li><i class="fas fa-check"></i> Secure payment processing</li>
                                 <li><i class="fas fa-check"></i> Instant email confirmation</li>
                                 <li><i class="fas fa-check"></i> M-PESA integration</li>
+                                <li><i class="fas fa-check"></i> Digital receipt generation</li>
                             </ul>
                         </div>
                     </div>
@@ -2028,6 +2081,7 @@
                             <li><i class="fas fa-check"></i> Secure payment processing</li>
                             <li><i class="fas fa-check"></i> Instant email confirmation</li>
                             <li><i class="fas fa-check"></i> M-PESA integration</li>
+                            <li><i class="fas fa-check"></i> Digital receipt generation</li>
                         </ul>
                     </div>
                 </div>
@@ -2045,7 +2099,7 @@
     </div>
 
     <script>
-        // V-PAY Configuration
+        // Enhanced V-PAY Configuration
         const VPAY_CONFIG = {
             business: {
                 name: "Hekima Hub",
@@ -2060,13 +2114,19 @@
                     }
                 ]
             },
-            scriptUrl: 'https://script.google.com/macros/s/AKfycbycDPMAhgMwuuchAlTMT0hGGgIMpcUejdeapcSAVk9raWITFJpLKdQaxbociiS3a16CAg/exec'
+            scriptUrl: 'https://script.google.com/macros/s/AKfycbycDPMAhgMwuuchAlTMT0hGGgIMpcUejdeapcSAVk9raWITFJpLKdQaxbociiS3a16CAg/exec',
+            receiptConfig: {
+                sendEmail: true,
+                includeCourseDetails: true,
+                autoGenerateReceipt: true
+            }
         };
 
         // V-PAY State
         let vpayCurrentStep = 1;
         let vpaySelectedMethod = '';
         let vpayCurrentAmount = 0;
+        let vpayCurrentReceipt = null;
 
         // V-PAY DOM Elements
         const vpayModal = document.getElementById('vpay-modal');
@@ -2082,6 +2142,14 @@
         const vpaySummaryAmount = document.getElementById('vpay-summary-amount');
         const vpaySummaryMethod = document.getElementById('vpay-summary-method');
         const vpayTransactionId = document.getElementById('vpay-transaction-id');
+
+        // V-PAY Receipt Elements
+        const receiptId = document.getElementById('receipt-id');
+        const receiptBusiness = document.getElementById('receipt-business');
+        const receiptAmount = document.getElementById('receipt-amount');
+        const receiptMethod = document.getElementById('receipt-method');
+        const receiptDate = document.getElementById('receipt-date');
+        const receiptCourses = document.getElementById('receipt-courses');
 
         // V-PAY Buttons
         const vpayContinueToPayment = document.getElementById('vpay-continue-to-payment');
@@ -2174,6 +2242,7 @@
             vpayCurrentStep = 1;
             vpaySelectedMethod = '';
             vpayTransactionId.value = '';
+            vpayCurrentReceipt = null;
             updateVPaySteps();
         }
 
@@ -2307,7 +2376,7 @@
             });
         }
 
-        // Process V-PAY payment
+        // Enhanced Process V-PAY Payment with Receipt Generation
         async function processVPayPayment() {
             const transactionId = vpayTransactionId.value.trim();
             
@@ -2320,6 +2389,12 @@
             vpayConfirmStep.style.display = 'none';
             vpayLoading.style.display = 'block';
 
+            // Generate unique receipt ID
+            const receiptId = 'HH-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+            
+            // Get course details for receipt
+            const courseDetails = getCourseDetailsForReceipt();
+            
             const formData = {
                 timestamp: new Date().toLocaleString('en-KE'),
                 customerName: currentUser.name,
@@ -2331,10 +2406,13 @@
                 amount: vpayCurrentAmount,
                 paymentMethod: getVPayMethodName(vpaySelectedMethod),
                 transactionId: transactionId,
-                notes: `Courses: ${getCourseNames()}`,
+                notes: `Courses: ${courseDetails.names}`,
                 status: 'pending_verification',
                 userId: currentUser.id,
-                receiptId: 'VPAY-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+                receiptId: receiptId,
+                courseDetails: courseDetails.details,
+                totalCourses: courseDetails.count,
+                receiptConfig: VPAY_CONFIG.receiptConfig
             };
 
             try {
@@ -2354,7 +2432,10 @@
                 // Save to localStorage
                 saveVPayTransaction(formData);
                 
-                // Show success
+                // Generate and display receipt
+                generateReceipt(formData, courseDetails);
+                
+                // Show success with receipt
                 vpayLoading.style.display = 'none';
                 vpaySuccess.style.display = 'block';
                 
@@ -2369,8 +2450,9 @@
             } catch (error) {
                 console.error('❌ Error:', error);
                 
-                // Save offline
+                // Save offline and generate receipt
                 saveVPayTransaction(formData);
+                generateReceipt(formData, courseDetails);
                 
                 // Show success anyway (offline mode)
                 vpayLoading.style.display = 'none';
@@ -2380,14 +2462,61 @@
             }
         }
 
-        // Get course names for notes
-        function getCourseNames() {
+        // Generate receipt details
+        function generateReceipt(formData, courseDetails) {
+            // Update receipt elements
+            document.getElementById('receipt-id').textContent = formData.receiptId;
+            document.getElementById('receipt-business').textContent = formData.paymentDestination;
+            document.getElementById('receipt-amount').textContent = `KES ${formData.amount}`;
+            document.getElementById('receipt-method').textContent = formData.paymentMethod;
+            document.getElementById('receipt-date').textContent = formData.timestamp;
+            document.getElementById('receipt-courses').textContent = courseDetails.names;
+            
+            // Store receipt for potential download/email
+            vpayCurrentReceipt = {
+                id: formData.receiptId,
+                business: formData.paymentDestination,
+                amount: formData.amount,
+                method: formData.paymentMethod,
+                date: formData.timestamp,
+                courses: courseDetails.names,
+                customer: currentUser.name,
+                email: currentUser.email
+            };
+        }
+
+        // Get course details for receipt
+        function getCourseDetailsForReceipt() {
             if (cart.length > 0) {
-                return cart.map(item => item.title).join(', ');
+                const names = cart.map(item => item.title).join(', ');
+                const details = cart.map(item => ({
+                    title: item.title,
+                    price: item.price,
+                    quantity: item.quantity,
+                    total: item.price * item.quantity
+                }));
+                return {
+                    names: names,
+                    details: details,
+                    count: cart.length
+                };
             } else if (currentCourseId && courses[currentCourseId]) {
-                return courses[currentCourseId].title;
+                return {
+                    names: courses[currentCourseId].title,
+                    details: [{
+                        title: courses[currentCourseId].title,
+                        price: courses[currentCourseId].price,
+                        quantity: 1,
+                        total: courses[currentCourseId].price
+                    }],
+                    count: 1
+                };
             }
-            return 'Course Purchase';
+            return {
+                names: 'Course Purchase',
+                details: [],
+                count: 0
+            };
         }
 
         // Get V-PAY method name
