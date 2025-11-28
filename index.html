@@ -27,6 +27,369 @@
             --white: #ffffff;
         }
 
+        /* V-PAY Integration Styles */
+        .vpay-payment-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vpay-payment-option:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .vpay-payment-option.active {
+            border-color: var(--primary);
+            background: #e8f5e8;
+        }
+
+        .vpay-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .vpay-features {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .vpay-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vpay-features li {
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vpay-features i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .vpay-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .vpay-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .vpay-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            z-index: 10;
+        }
+
+        .vpay-header {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .vpay-header h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .vpay-body {
+            padding: 2rem;
+        }
+
+        .vpay-step {
+            display: none;
+        }
+
+        .vpay-step.active {
+            display: block;
+        }
+
+        .vpay-business-info {
+            background: #e7f3ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #001f3f;
+        }
+
+        .vpay-amount-input {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .vpay-amount-input input {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .vpay-payment-methods {
+            margin: 1.5rem 0;
+        }
+
+        .vpay-method-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vpay-method-card.active {
+            border-color: #001f3f;
+            background: #f8f9fa;
+        }
+
+        .vpay-method-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .vpay-method-icon {
+            font-size: 1.2rem;
+            color: #001f3f;
+        }
+
+        .vpay-method-name {
+            font-weight: 600;
+            color: #001f3f;
+        }
+
+        .vpay-details-card {
+            background: #001f3f;
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vpay-details-text {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+
+        .vpay-copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vpay-copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .vpay-summary {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .vpay-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vpay-summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .vpay-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .vpay-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+
+        .vpay-step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vpay-step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .vpay-step-indicator.active .vpay-step-number {
+            background: #001f3f;
+        }
+
+        .vpay-step-indicator.completed .vpay-step-number {
+            background: var(--primary);
+        }
+
+        .vpay-step-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .vpay-step-indicator.active .vpay-step-label {
+            color: #001f3f;
+        }
+
+        .vpay-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .vpay-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .vpay-btn-primary {
+            background: #001f3f;
+            color: white;
+        }
+
+        .vpay-btn-primary:hover {
+            background: #003366;
+        }
+
+        .vpay-btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .vpay-btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .vpay-loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .vpay-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #001f3f;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .vpay-success {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .vpay-success-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
         /* Loading States */
         .loading {
             display: inline-block;
@@ -1186,6 +1549,126 @@
         </div>
     </div>
 
+    <!-- V-PAY Modal -->
+    <div class="vpay-modal" id="vpay-modal">
+        <div class="vpay-modal-content">
+            <button class="vpay-close" id="vpay-close">&times;</button>
+            <div class="vpay-header">
+                <h3>Secure Payment with V-PAY</h3>
+                <p>Complete your purchase safely and securely</p>
+            </div>
+            <div class="vpay-body">
+                <div class="vpay-steps">
+                    <div class="vpay-step-indicator active" id="vpay-step-1">
+                        <div class="vpay-step-number">1</div>
+                        <div class="vpay-step-label">Amount</div>
+                    </div>
+                    <div class="vpay-step-indicator" id="vpay-step-2">
+                        <div class="vpay-step-number">2</div>
+                        <div class="vpay-step-label">Payment</div>
+                    </div>
+                    <div class="vpay-step-indicator" id="vpay-step-3">
+                        <div class="vpay-step-number">3</div>
+                        <div class="vpay-step-label">Confirm</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Amount -->
+                <div class="vpay-step active" id="vpay-amount-step">
+                    <div class="vpay-business-info">
+                        <h4>Hekima Hub</h4>
+                        <p>Complete your course purchase</p>
+                    </div>
+                    <div class="vpay-amount-input">
+                        <input type="number" id="vpay-amount" placeholder="0" min="1" value="0" readonly>
+                    </div>
+                    <div style="text-align: center; color: var(--gray); margin-bottom: 1.5rem;">
+                        Amount in Kenyan Shillings (KES)
+                    </div>
+                    <button class="vpay-btn vpay-btn-primary" id="vpay-continue-to-payment">
+                        Continue to Payment <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div class="vpay-step" id="vpay-payment-step">
+                    <div class="vpay-business-info">
+                        <h4>Hekima Hub</h4>
+                        <p>Choose your payment method</p>
+                    </div>
+                    <div class="vpay-payment-methods" id="vpay-methods-container">
+                        <!-- Payment methods will be loaded here -->
+                    </div>
+                    <div class="vpay-buttons">
+                        <button class="vpay-btn vpay-btn-secondary" id="vpay-back-to-amount">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="vpay-btn vpay-btn-primary" id="vpay-continue-to-confirm">
+                            Continue <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div class="vpay-step" id="vpay-confirm-step">
+                    <div class="vpay-business-info">
+                        <h4>Payment Summary</h4>
+                    </div>
+                    <div class="vpay-summary">
+                        <div class="vpay-summary-item">
+                            <span>Business:</span>
+                            <span id="vpay-summary-business">Hekima Hub</span>
+                        </div>
+                        <div class="vpay-summary-item">
+                            <span>Amount:</span>
+                            <span id="vpay-summary-amount">KES 0</span>
+                        </div>
+                        <div class="vpay-summary-item">
+                            <span>Payment Method:</span>
+                            <span id="vpay-summary-method">-</span>
+                        </div>
+                    </div>
+                    <div style="margin: 1.5rem 0;">
+                        <label for="vpay-transaction-id" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">
+                            Transaction Reference Number
+                        </label>
+                        <input type="text" id="vpay-transaction-id" placeholder="Enter M-PESA transaction code" 
+                               style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px;">
+                        <small style="color: var(--gray); margin-top: 0.5rem; display: block;">
+                            Enter the code you received after making the payment
+                        </small>
+                    </div>
+                    <div class="vpay-buttons">
+                        <button class="vpay-btn vpay-btn-secondary" id="vpay-back-to-payment">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="vpay-btn vpay-btn-primary" id="vpay-submit-payment">
+                            <i class="fas fa-paper-plane"></i> Submit Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div class="vpay-loading" id="vpay-loading">
+                    <div class="vpay-spinner"></div>
+                    <div>Processing your payment...</div>
+                </div>
+
+                <!-- Success State -->
+                <div class="vpay-success" id="vpay-success" style="display: none;">
+                    <div class="vpay-success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Payment Submitted Successfully!</h3>
+                    <p id="vpay-success-message">Your payment has been processed and a receipt has been sent to your email.</p>
+                    <button class="vpay-btn vpay-btn-primary" id="vpay-success-close">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -1502,6 +1985,20 @@
                         <span class="original-price" id="course-detail-original-price">$0.00</span>
                     </div>
                     <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                    <!-- V-PAY Payment Option -->
+                    <div class="vpay-payment-option" id="vpay-payment-option">
+                        <div class="vpay-logo">
+                            <i class="fas fa-wallet"></i>
+                            <span>Pay with V-PAY</span>
+                        </div>
+                        <div class="vpay-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Secure payment processing</li>
+                                <li><i class="fas fa-check"></i> Instant email confirmation</li>
+                                <li><i class="fas fa-check"></i> M-PESA integration</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1520,6 +2017,20 @@
                 <span id="cart-total">$0.00</span>
             </div>
             <div class="checkout-form" id="checkout-form">
+                <!-- V-PAY Payment Option in Cart -->
+                <div class="vpay-payment-option" id="vpay-cart-option">
+                    <div class="vpay-logo">
+                        <i class="fas fa-wallet"></i>
+                        <span>Pay with V-PAY</span>
+                    </div>
+                    <div class="vpay-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Secure payment processing</li>
+                            <li><i class="fas fa-check"></i> Instant email confirmation</li>
+                            <li><i class="fas fa-check"></i> M-PESA integration</li>
+                        </ul>
+                    </div>
+                </div>
                 <button class="btn btn-whatsapp" id="whatsapp-checkout">
                     <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
                 </button>
@@ -1534,6 +2045,375 @@
     </div>
 
     <script>
+        // V-PAY Configuration
+        const VPAY_CONFIG = {
+            business: {
+                name: "Hekima Hub",
+                email: "finance.hekimahub@gmail.com",
+                sheetName: "Hekima Hub Payments",
+                paymentMethods: [
+                    {
+                        type: 'mpesa-till',
+                        name: 'Lipa Na M-PESA',
+                        details: '9442155',
+                        description: 'Till Number'
+                    }
+                ]
+            },
+            scriptUrl: 'https://script.google.com/macros/s/AKfycbycDPMAhgMwuuchAlTMT0hGGgIMpcUejdeapcSAVk9raWITFJpLKdQaxbociiS3a16CAg/exec'
+        };
+
+        // V-PAY State
+        let vpayCurrentStep = 1;
+        let vpaySelectedMethod = '';
+        let vpayCurrentAmount = 0;
+
+        // V-PAY DOM Elements
+        const vpayModal = document.getElementById('vpay-modal');
+        const vpayClose = document.getElementById('vpay-close');
+        const vpayAmountStep = document.getElementById('vpay-amount-step');
+        const vpayPaymentStep = document.getElementById('vpay-payment-step');
+        const vpayConfirmStep = document.getElementById('vpay-confirm-step');
+        const vpayLoading = document.getElementById('vpay-loading');
+        const vpaySuccess = document.getElementById('vpay-success');
+        const vpayAmountInput = document.getElementById('vpay-amount');
+        const vpayMethodsContainer = document.getElementById('vpay-methods-container');
+        const vpaySummaryBusiness = document.getElementById('vpay-summary-business');
+        const vpaySummaryAmount = document.getElementById('vpay-summary-amount');
+        const vpaySummaryMethod = document.getElementById('vpay-summary-method');
+        const vpayTransactionId = document.getElementById('vpay-transaction-id');
+
+        // V-PAY Buttons
+        const vpayContinueToPayment = document.getElementById('vpay-continue-to-payment');
+        const vpayBackToAmount = document.getElementById('vpay-back-to-amount');
+        const vpayContinueToConfirm = document.getElementById('vpay-continue-to-confirm');
+        const vpayBackToPayment = document.getElementById('vpay-back-to-payment');
+        const vpaySubmitPayment = document.getElementById('vpay-submit-payment');
+        const vpaySuccessClose = document.getElementById('vpay-success-close');
+
+        // V-PAY Step Indicators
+        const vpayStep1 = document.getElementById('vpay-step-1');
+        const vpayStep2 = document.getElementById('vpay-step-2');
+        const vpayStep3 = document.getElementById('vpay-step-3');
+
+        // V-PAY Payment Options
+        const vpayPaymentOption = document.getElementById('vpay-payment-option');
+        const vpayCartOption = document.getElementById('vpay-cart-option');
+
+        // Initialize V-PAY
+        function initializeVPay() {
+            // Set up event listeners for V-PAY options
+            vpayPaymentOption.addEventListener('click', function() {
+                if (!currentUser) {
+                    showToast('Please sign in to use V-PAY.');
+                    authModal.style.display = 'flex';
+                    return;
+                }
+                openVPayModal();
+            });
+
+            vpayCartOption.addEventListener('click', function() {
+                if (!currentUser) {
+                    showToast('Please sign in to use V-PAY.');
+                    authModal.style.display = 'flex';
+                    return;
+                }
+                if (cart.length === 0) {
+                    showToast('Your cart is empty. Please add courses before paying.');
+                    return;
+                }
+                openVPayModal();
+            });
+
+            // V-PAY Modal Controls
+            vpayClose.addEventListener('click', closeVPayModal);
+            vpaySuccessClose.addEventListener('click', closeVPayModal);
+
+            // V-PAY Step Navigation
+            vpayContinueToPayment.addEventListener('click', goToVPayStep2);
+            vpayBackToAmount.addEventListener('click', goToVPayStep1);
+            vpayContinueToConfirm.addEventListener('click', goToVPayStep3);
+            vpayBackToPayment.addEventListener('click', goToVPayStep2);
+            vpaySubmitPayment.addEventListener('click', processVPayPayment);
+
+            // Close modal when clicking outside
+            vpayModal.addEventListener('click', function(e) {
+                if (e.target === vpayModal) {
+                    closeVPayModal();
+                }
+            });
+        }
+
+        // Open V-PAY Modal
+        function openVPayModal() {
+            // Calculate total amount from cart or use course price
+            if (cart.length > 0) {
+                vpayCurrentAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            } else if (currentCourseId && courses[currentCourseId]) {
+                vpayCurrentAmount = courses[currentCourseId].price;
+            }
+            
+            // Convert USD to KES (approximate conversion)
+            vpayCurrentAmount = Math.round(vpayCurrentAmount * 130); // 1 USD = 130 KES
+            
+            vpayAmountInput.value = vpayCurrentAmount;
+            vpayModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            resetVPayFlow();
+        }
+
+        // Close V-PAY Modal
+        function closeVPayModal() {
+            vpayModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetVPayFlow();
+        }
+
+        // Reset V-PAY flow
+        function resetVPayFlow() {
+            vpayCurrentStep = 1;
+            vpaySelectedMethod = '';
+            vpayTransactionId.value = '';
+            updateVPaySteps();
+        }
+
+        // Update V-PAY steps
+        function updateVPaySteps() {
+            // Hide all steps
+            vpayAmountStep.style.display = 'none';
+            vpayPaymentStep.style.display = 'none';
+            vpayConfirmStep.style.display = 'none';
+            vpayLoading.style.display = 'none';
+            vpaySuccess.style.display = 'none';
+
+            // Show current step
+            if (vpayCurrentStep === 1) {
+                vpayAmountStep.style.display = 'block';
+            } else if (vpayCurrentStep === 2) {
+                vpayPaymentStep.style.display = 'block';
+                loadVPayPaymentMethods();
+            } else if (vpayCurrentStep === 3) {
+                vpayConfirmStep.style.display = 'block';
+                updateVPaySummary();
+            }
+
+            // Update step indicators
+            vpayStep1.className = 'vpay-step-indicator';
+            vpayStep2.className = 'vpay-step-indicator';
+            vpayStep3.className = 'vpay-step-indicator';
+
+            if (vpayCurrentStep >= 1) vpayStep1.classList.add('active');
+            if (vpayCurrentStep >= 2) vpayStep2.classList.add('active');
+            if (vpayCurrentStep >= 3) vpayStep3.classList.add('active');
+
+            if (vpayCurrentStep > 1) vpayStep1.classList.add('completed');
+            if (vpayCurrentStep > 2) vpayStep2.classList.add('completed');
+        }
+
+        // V-PAY Step Navigation
+        function goToVPayStep1() {
+            vpayCurrentStep = 1;
+            updateVPaySteps();
+        }
+
+        function goToVPayStep2() {
+            if (vpayCurrentAmount < 1) {
+                showToast('Please enter a valid amount');
+                return;
+            }
+            vpayCurrentStep = 2;
+            updateVPaySteps();
+        }
+
+        function goToVPayStep3() {
+            if (!vpaySelectedMethod) {
+                showToast('Please select a payment method');
+                return;
+            }
+            vpayCurrentStep = 3;
+            updateVPaySteps();
+        }
+
+        // Load V-PAY payment methods
+        function loadVPayPaymentMethods() {
+            vpayMethodsContainer.innerHTML = '';
+            
+            VPAY_CONFIG.business.paymentMethods.forEach((method, index) => {
+                const isActive = index === 0 && !vpaySelectedMethod;
+                if (isActive) vpaySelectedMethod = method.type;
+                
+                const methodCard = document.createElement('div');
+                methodCard.className = `vpay-method-card ${vpaySelectedMethod === method.type ? 'active' : ''}`;
+                methodCard.innerHTML = `
+                    <div class="vpay-method-header">
+                        <div class="vpay-method-icon">
+                            <i class="${getVPayMethodIcon(method.type)}"></i>
+                        </div>
+                        <div class="vpay-method-name">${method.name}</div>
+                    </div>
+                    <div class="vpay-details-card">
+                        <div class="vpay-details-text">${method.description}: ${method.details}</div>
+                        <button class="vpay-copy-btn" onclick="copyToClipboard('${method.details}')">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                `;
+                
+                methodCard.addEventListener('click', function() {
+                    vpaySelectedMethod = method.type;
+                    document.querySelectorAll('.vpay-method-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+                
+                vpayMethodsContainer.appendChild(methodCard);
+            });
+        }
+
+        // Get V-PAY method icon
+        function getVPayMethodIcon(methodType) {
+            const icons = {
+                'mpesa-till': 'fas fa-store',
+                'mpesa-send': 'fas fa-paper-plane',
+                'airtel': 'fas fa-bolt',
+                'paypal': 'fab fa-paypal'
+            };
+            return icons[methodType] || 'fas fa-money-bill-wave';
+        }
+
+        // Update V-PAY summary
+        function updateVPaySummary() {
+            vpaySummaryBusiness.textContent = VPAY_CONFIG.business.name;
+            vpaySummaryAmount.textContent = `KES ${vpayCurrentAmount}`;
+            
+            const method = VPAY_CONFIG.business.paymentMethods.find(m => m.type === vpaySelectedMethod);
+            vpaySummaryMethod.textContent = method ? method.name : vpaySelectedMethod;
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                showToast('Copied to clipboard!');
+            }).catch(function() {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Copied to clipboard!');
+            });
+        }
+
+        // Process V-PAY payment
+        async function processVPayPayment() {
+            const transactionId = vpayTransactionId.value.trim();
+            
+            if (!transactionId) {
+                showToast('Please enter your transaction reference number');
+                return;
+            }
+
+            // Show loading
+            vpayConfirmStep.style.display = 'none';
+            vpayLoading.style.display = 'block';
+
+            const formData = {
+                timestamp: new Date().toLocaleString('en-KE'),
+                customerName: currentUser.name,
+                customerEmail: currentUser.email,
+                paymentDestination: VPAY_CONFIG.business.name,
+                businessEmail: VPAY_CONFIG.business.email,
+                sheetName: VPAY_CONFIG.business.sheetName,
+                paymentCategory: 'course_purchase',
+                amount: vpayCurrentAmount,
+                paymentMethod: getVPayMethodName(vpaySelectedMethod),
+                transactionId: transactionId,
+                notes: `Courses: ${getCourseNames()}`,
+                status: 'pending_verification',
+                userId: currentUser.id,
+                receiptId: 'VPAY-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+            };
+
+            try {
+                console.log('🔄 Sending payment data to Google Apps Script...');
+                
+                const response = await fetch(VPAY_CONFIG.scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                console.log('✅ POST request sent (no-cors mode)');
+                
+                // Save to localStorage
+                saveVPayTransaction(formData);
+                
+                // Show success
+                vpayLoading.style.display = 'none';
+                vpaySuccess.style.display = 'block';
+                
+                // Clear cart if payment was for cart items
+                if (cart.length > 0) {
+                    cart = [];
+                    updateCart();
+                }
+                
+                showToast('Payment submitted successfully! Receipt sent to your email.');
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                
+                // Save offline
+                saveVPayTransaction(formData);
+                
+                // Show success anyway (offline mode)
+                vpayLoading.style.display = 'none';
+                vpaySuccess.style.display = 'block';
+                
+                showToast('Payment details saved. You will receive confirmation shortly.');
+            }
+        }
+
+        // Get course names for notes
+        function getCourseNames() {
+            if (cart.length > 0) {
+                return cart.map(item => item.title).join(', ');
+            } else if (currentCourseId && courses[currentCourseId]) {
+                return courses[currentCourseId].title;
+            }
+            return 'Course Purchase';
+        }
+
+        // Get V-PAY method name
+        function getVPayMethodName(methodType) {
+            const method = VPAY_CONFIG.business.paymentMethods.find(m => m.type === methodType);
+            return method ? method.name : methodType;
+        }
+
+        // Save V-PAY transaction
+        function saveVPayTransaction(formData) {
+            const userTransactionsKey = `vpay_transactions_${currentUser.id}`;
+            let payments = JSON.parse(localStorage.getItem(userTransactionsKey) || '[]');
+            
+            const paymentRecord = {
+                ...formData,
+                offline: true,
+                offlineTimestamp: new Date().toISOString(),
+                id: Date.now().toString()
+            };
+            
+            payments.push(paymentRecord);
+            localStorage.setItem(userTransactionsKey, JSON.stringify(payments));
+            
+            console.log('💾 V-PAY payment saved to localStorage:', paymentRecord);
+        }
+
         // Replace with your actual Google Client ID
         const GOOGLE_CLIENT_ID = '230366555128-bkm4jhc3c14scafm8808uk8u456u6cfk.apps.googleusercontent.com';
 
@@ -2213,6 +3093,9 @@
             
             // Initialize cart
             updateCart();
+            
+            // Initialize V-PAY
+            initializeVPay();
         });
 
         // Additional initialization when window loads completely
