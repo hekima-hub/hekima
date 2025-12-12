@@ -2,2021 +2,2226 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hekima Hub - Student eLearning Platform</title>
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/ncNcvdsr/unnamed.png">
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#1a73e8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Hekima Hub">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-TileColor" content="#1a73e8">
-    <meta name="msapplication-tap-highlight" content="no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    <title>Hekima Hub - Student Learning Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/dracula.min.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/clike/clike.min.js"></script>
     <style>
-        /* Modern CSS Variables */
-        :root {
-            --blue: #1a73e8;
-            --maroon: #8b0000;
-            --white: #ffffff;
-            --green: #34a853;
-            --orange: #ff9800;
-            --light-blue: #e8f0fe;
-            --light-maroon: #f5e6e6;
-            --dark-blue: #0d47a1;
-            --dark-maroon: #5a0000;
-            --gray: #5f6368;
-            --light-gray: #f8f9fa;
-            --dark-gray: #3c4043;
-            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            --gradient-primary: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
-            --gradient-secondary: linear-gradient(135deg, #8b0000 0%, #5a0000 100%);
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
+
+        :root {
+            --primary: #2E8B57;
+            --secondary: #4169E1;
+            --accent: #800000;
+            --highlight: #FFD700;
+            --dark: #1c1d1f;
+            --light: #f7f9fa;
+            --gray: #6a6f73;
+            --success: #1e6055;
+            --white: #ffffff;
+            --error: #dc3545;
+            --warning: #ffc107;
+            --code-bg: #282a36;
         }
-        
+
         body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
         }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px 24px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(26, 115, 232, 0.3);
-            min-height: 48px;
-            flex-shrink: 0;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
-        }
-        
-        .btn-maroon {
-            background: var(--gradient-secondary);
-            box-shadow: 0 2px 6px rgba(139, 0, 0, 0.3);
-        }
-        
-        .btn-maroon:hover {
-            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--blue);
-            color: var(--blue);
-            box-shadow: none;
-        }
-        
-        .btn-outline:hover {
-            background: var(--blue);
-            color: white;
-        }
-        
-        .btn-small {
-            padding: 10px 18px;
-            font-size: 0.875rem;
-            min-height: 42px;
-        }
-        
-        section {
-            padding: 60px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-            font-weight: 700;
-            line-height: 1.2;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            font-weight: 700;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: var(--gray);
-            font-weight: 400;
-            line-height: 1.6;
-        }
-        
-        /* Modern Header */
+
+        /* Header - Matching your existing design */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            position: fixed;
-            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            transition: var(--transition);
         }
-        
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            transition: var(--transition);
-        }
-        
-        .logo:hover img {
-            transform: scale(1.05);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 500;
-            font-size: 1rem;
-            transition: var(--transition);
-            position: relative;
-            font-family: 'Inter', sans-serif;
-            padding: 0.5rem 0;
-        }
-        
-        nav ul li a:hover {
-            color: var(--blue);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: var(--transition);
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        nav ul li a.active {
-            color: var(--blue);
-        }
-        
-        nav ul li a.active::after {
-            width: 100%;
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--blue);
-            background: none;
-            border: none;
-            padding: 0.5rem;
-        }
-        
-        /* Side Menu for Mobile */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: var(--white);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1001;
-            transition: var(--transition);
-            padding: 4rem 1.5rem 1.5rem;
-            overflow-y: auto;
-        }
-        
-        .side-menu.open {
-            right: 0;
-        }
-        
-        .side-menu ul {
-            list-style: none;
-        }
-        
-        .side-menu ul li {
-            margin-bottom: 1rem;
-        }
-        
-        .side-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1.1rem;
-            display: block;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #eee;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .side-menu ul li a:hover {
-            color: var(--blue);
-        }
-        
-        .side-menu .close-btn {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--blue);
-            background: none;
-            border: none;
-            padding: 0.5rem;
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 85vh;
-            background: linear-gradient(rgba(26, 115, 232, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 400;
-            line-height: 1.6;
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-        }
-        
-        /* Dashboard Section */
-        .dashboard {
-            background-color: var(--white);
-            padding: 60px 0;
-        }
-        
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #eee;
-            overflow-x: auto;
-            padding-bottom: 2px;
-        }
-        
-        .tab-btn {
-            padding: 12px 24px;
-            background: none;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gray);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            white-space: nowrap;
-            min-height: 48px;
-            flex-shrink: 0;
-        }
-        
-        .tab-btn.active {
-            color: var(--blue);
-        }
-        
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 3px 3px 0 0;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Scheduled Classes Section */
-        .scheduled-classes {
-            margin-bottom: 3rem;
-        }
-        
-        .classes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .class-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            border: 1px solid #f0f0f0;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .class-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .class-header {
-            padding: 1.5rem;
-            background: var(--gradient-primary);
-            color: white;
-        }
-        
-        .class-header h3 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        .class-meta {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
-            flex-wrap: wrap;
-        }
-        
-        .class-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .class-description {
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        
-        .class-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            gap: 1rem;
-        }
-        
-        .class-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        
-        .status-live {
-            background-color: var(--green);
-            animation: pulse 2s infinite;
-        }
-        
-        .status-upcoming {
-            background-color: var(--orange);
-        }
-        
-        .status-completed {
-            background-color: var(--gray);
-        }
-        
-        /* Google Tools Section */
-        .google-tools {
-            background-color: var(--light-gray);
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .tool-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            border: 1px solid #f0f0f0;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .tool-icon {
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: var(--blue);
-            background: var(--light-blue);
-        }
-        
-        .tool-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .tool-content h3 {
-            color: var(--dark-blue);
-            margin-bottom: 0.75rem;
-        }
-        
-        .tool-content p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-        
-        /* Class Detail Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1002;
-            overflow-y: auto;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            background-color: var(--white);
-            margin: 5% auto;
-            padding: 0;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: modalSlideIn 0.3s ease;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
+            gap: 10px;
             font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-            z-index: 1;
-            background: rgba(255,255,255,0.8);
-            width: 40px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
             height: 40px;
-            border-radius: 50%;
+            width: auto;
+        }
+
+        /* Authentication Area */
+        .auth-area {
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            border: none;
+            gap: 1rem;
         }
-        
-        .close-modal:hover {
-            color: var(--maroon);
-            background: rgba(255,255,255,1);
-            transform: rotate(90deg);
-        }
-        
-        .modal-header {
-            padding: 2rem 2rem 1rem;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-        }
-        
-        .modal-header h2 {
-            color: white;
-            text-align: left;
-            margin-bottom: 0.5rem;
-        }
-        
-        .modal-header h2::after {
-            display: none;
-        }
-        
-        .modal-body {
-            padding: 2rem;
-        }
-        
-        .class-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .detail-group h4 {
-            color: var(--dark-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .detail-item {
+
+        .user-info {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            background: var(--light-gray);
+            cursor: pointer;
+            padding: 0.5rem;
             border-radius: 8px;
+            transition: background 0.3s ease;
         }
-        
-        .detail-item i {
-            color: var(--blue);
-            font-size: 1.1rem;
-            width: 20px;
+
+        .user-info:hover {
+            background: var(--light);
         }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            padding: 0 2rem 2rem;
-            flex-wrap: wrap;
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
         }
-        
-        /* Google Classroom Modal Styles */
-        .classroom-content {
-            max-height: 60vh;
-            overflow-y: auto;
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark);
         }
-        
-        .classroom-class {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+
+        .sign-in-prompt {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .sign-in-prompt h2 {
+            color: var(--primary);
             margin-bottom: 1rem;
-            overflow: hidden;
         }
-        
-        .classroom-class-header {
-            background: var(--light-blue);
-            padding: 1rem;
+
+        .sign-in-prompt p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .google-signin-btn {
+            padding: 12px 24px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            color: var(--dark);
+            font-weight: 500;
+            cursor: pointer;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            min-height: 44px;
         }
-        
-        .classroom-class-body {
-            padding: 1rem;
+
+        .google-signin-btn:hover {
+            background: #f8f9fa;
+            border-color: #ccc;
         }
-        
-        .assignment-list {
-            list-style: none;
+
+        /* Main Dashboard Layout */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 2rem;
         }
-        
-        .assignment-item {
-            padding: 0.75rem;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
-        
-        .assignment-item:last-child {
+
+        .sidebar-section {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-section:last-child {
             border-bottom: none;
         }
-        
-        .assignment-due {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-        
-        .assignment-status {
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-completed {
-            background: #d1edff;
-            color: var(--blue);
-        }
-        
-        .status-overdue {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        /* Google Meet Modal Styles */
-        .meet-sessions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .meet-session {
-            background: var(--white);
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-        
-        .meet-session:hover {
-            box-shadow: var(--card-shadow);
-            transform: translateY(-2px);
-        }
-        
-        .meet-session.live {
-            border-left: 4px solid var(--green);
-        }
-        
-        .meet-session.upcoming {
-            border-left: 4px solid var(--orange);
-        }
-        
-        .session-time {
+
+        .sidebar-title {
             font-size: 0.9rem;
+            text-transform: uppercase;
             color: var(--gray);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
             margin-bottom: 0.5rem;
         }
-        
-        .session-participants {
+
+        .sidebar-nav a {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: var(--gray);
+            gap: 10px;
+            padding: 0.75rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
-        
-        /* Virtual Meeting Container */
-        .virtual-meeting {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            z-index: 1003;
-            flex-direction: column;
+
+        .sidebar-nav a:hover {
+            background: var(--light);
+            color: var(--primary);
         }
-        
-        .meeting-header {
-            background: #2d2d2d;
+
+        .sidebar-nav a.active {
+            background: var(--primary);
             color: white;
-            padding: 1rem;
+        }
+
+        .sidebar-nav a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
         }
-        
-        .meeting-controls {
-            display: flex;
-            gap: 1rem;
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 700;
         }
-        
-        .control-btn {
-            background: #3d3d3d;
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--highlight);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        /* Progress Section */
+        .progress-card {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
+            gap: 8px;
         }
-        
-        .control-btn:hover {
-            background: #4d4d4d;
-        }
-        
-        .control-btn.end-call {
-            background: #d32f2f;
-        }
-        
-        .control-btn.end-call:hover {
-            background: #b71c1c;
-        }
-        
-        .meeting-content {
-            flex: 1;
-            display: flex;
-            padding: 1rem;
-            gap: 1rem;
-        }
-        
-        .video-container {
-            flex: 1;
-            background: #000;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
             overflow: hidden;
         }
-        
-        .video-placeholder {
-            color: white;
-            text-align: center;
+
+        .progress-fill {
+            height: 100%;
+            background: var(--highlight);
+            border-radius: 4px;
+            width: 65%;
+            transition: width 0.5s ease;
         }
-        
-        .video-placeholder i {
-            font-size: 4rem;
+
+        /* Notes Section */
+        .notes-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .notes-toolbar {
+            display: flex;
+            gap: 0.5rem;
             margin-bottom: 1rem;
+        }
+
+        .note-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .note-btn:hover {
+            background: var(--light);
+        }
+
+        .note-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .notes-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .note-item {
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .note-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .note-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .note-item h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .note-item .note-date {
+            font-size: 0.8rem;
             opacity: 0.7;
         }
-        
-        .participants-sidebar {
-            width: 300px;
-            background: #2d2d2d;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-y: auto;
+
+        .note-editor {
+            display: none;
         }
-        
-        .participant-list {
-            list-style: none;
+
+        .note-editor.active {
+            display: block;
         }
-        
-        .participant-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            color: white;
-            border-bottom: 1px solid #3d3d3d;
+
+        .note-title-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
-        
-        .participant-item:last-child {
-            border-bottom: none;
+
+        .note-content-textarea {
+            width: 100%;
+            height: 200px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            resize: vertical;
+            margin-bottom: 1rem;
         }
-        
-        .participant-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        /* Resources Section */
-        .resources {
-            background-color: var(--white);
-        }
-        
-        .resources-grid {
+
+        /* Assignments Section */
+        .assignments-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
+            margin-top: 2rem;
         }
-        
-        .resource-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            transition: var(--transition);
-            box-shadow: var(--card-shadow);
-            border: 1px solid #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+
+        .assignment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
-        
-        .resource-card:hover {
+
+        .assignment-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
-        
-        .resource-icon {
-            font-size: 3rem;
-            color: var(--blue);
-            margin-bottom: 1.5rem;
-            background: var(--light-blue);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+
+        .assignment-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-        }
-        
-        .resource-card h3 {
-            color: var(--dark-blue);
             margin-bottom: 1rem;
         }
-        
-        /* CTA Section */
-        .cta {
-            background: var(--gradient-primary);
+
+        .assignment-subject {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 5rem 0;
-            position: relative;
-            overflow: hidden;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
-        
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cta h2::after {
-            background-color: white;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.9);
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1a1a2e;
-            color: white;
-            padding: 3rem 0 1.5rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            position: relative;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-column ul li a {
-            color: #bbb;
-            text-decoration: none;
+
+        .assignment-due {
+            color: var(--gray);
             font-size: 0.9rem;
-            transition: var(--transition);
+        }
+
+        .assignment-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .assignment-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .assignment-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
             display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Coding Environment */
+        .coding-container {
+            background: var(--code-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .coding-header {
+            background: #1e1f29;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .language-selector select {
+            padding: 8px 16px;
+            background: #444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .coding-actions {
+            display: flex;
             gap: 0.5rem;
         }
-        
-        .footer-column ul li a:hover {
-            color: var(--orange);
-            transform: translateX(5px);
+
+        .code-btn {
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        
-        .social-links {
+
+        .code-btn:hover {
+            background: var(--secondary);
+        }
+
+        .code-editor {
+            height: 400px;
+        }
+
+        .CodeMirror {
+            height: 100% !important;
+            font-size: 14px;
+        }
+
+        .output-container {
+            background: #1e1f29;
+            padding: 1rem;
+            border-top: 1px solid #444;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .output-title {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .output-content {
+            color: #f8f8f2;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        /* Games Section */
+        .games-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .game-content {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .game-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .game-tag {
+            padding: 4px 8px;
+            background: var(--light);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Data Entry Game - Special Styling */
+        .data-entry-game {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 100px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--highlight);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .game-area {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .text-to-type {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .typing-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .typing-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .game-controls {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
         }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
+
+        .game-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn-primary {
+            background: var(--primary);
             color: white;
-            transition: var(--transition);
+        }
+
+        .game-btn-primary:hover {
+            background: var(--secondary);
+        }
+
+        .game-btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .game-btn-secondary:hover {
+            background: var(--light);
+        }
+
+        /* Puzzles Section */
+        .puzzles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .puzzle-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .puzzle-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .puzzle-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .puzzle-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
             font-size: 1rem;
         }
-        
-        .social-links a:hover {
-            background-color: var(--orange);
-            transform: translateY(-3px);
+
+        .puzzle-hint {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
         }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
+
+        .puzzle-hint.active {
+            display: block;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .resource-description {
+            color: var(--gray);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
         }
-        
-        @keyframes modalSlideIn {
-            from { 
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
         }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
-        
-        /* Responsive Design */
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1001;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Auth Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 1200px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: row;
+            .dashboard {
+                grid-template-columns: 250px 1fr;
             }
             
-            nav ul {
+            .right-sidebar {
                 display: none;
             }
-            
-            .mobile-menu {
-                display: block;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: 1rem;
             }
             
-            .hero h1 {
-                font-size: 2.25rem;
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .header-container {
+                padding: 1rem;
             }
             
-            .hero-btns {
+            .assignments-grid,
+            .games-grid,
+            .puzzles-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-stats {
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
             }
-            
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                margin-bottom: 0.5rem;
-                justify-content: center;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.75rem;
-            }
-            
-            section {
-                padding: 40px 0;
-            }
-            
-            .hero {
-                padding-top: 70px;
-                height: 70vh;
-                min-height: 500px;
-            }
-            
-            .classes-grid, .tools-grid, .resources-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-            
-            .class-details {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .dashboard-header {
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
             }
             
-            .dashboard-tabs {
-                width: 100%;
-                overflow-x: auto;
-            }
-            
-            .class-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .class-footer .btn {
-                width: 100%;
-            }
-            
-            .modal-footer {
+            .game-controls {
                 flex-direction: column;
             }
             
-            .modal-footer .btn {
+            .game-btn {
                 width: 100%;
-            }
-            
-            .meet-sessions {
-                grid-template-columns: 1fr;
-            }
-            
-            .meeting-content {
-                flex-direction: column;
-            }
-            
-            .participants-sidebar {
-                width: 100%;
-                max-height: 200px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
-            
-            .class-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .btn-small {
-                padding: 12px 16px;
-                font-size: 0.85rem;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            html {
-                font-size: 14px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 12px 16px;
-                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="home.html">
-                    <img src="https://i.postimg.cc/BbqKHJvt/Whats-App-Image-2025-11-07-at-12-10-58-removebg-preview.png" alt="Hekima Hub Logo">
-                </a>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="https://i.postimg.cc/zv1G6fvB/Whats-App-Image-2025-11-18-at-16-22-32-removebg-preview.webp" alt="Hekima Hub Logo" class="logo-img">
+                <span>Hekima Hub</span>
+            </a>
+            
+            <div class="auth-area" id="auth-area">
+                <!-- User info will be populated here -->
             </div>
-            
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="#" class="active">E-Learning</a></li>
-                </ul>
-            </nav>
-            
-            <button class="mobile-menu" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
-    <!-- Side Menu for Mobile -->
-    <div class="side-menu" id="side-menu">
-        <button class="close-btn" id="close-menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="#" class="active">E-Learning</a></li>
-        </ul>
-    </div>
-    
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Virtual Meeting Container -->
-    <div class="virtual-meeting" id="virtual-meeting">
-        <div class="meeting-header">
-            <div class="meeting-title">
-                <h3 id="meeting-name">Financial Management - Live Session</h3>
-                <p id="meeting-time">Live Now • 18 participants</p>
-            </div>
-            <div class="meeting-controls">
-                <button class="control-btn" id="mute-audio">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="control-btn" id="mute-video">
-                    <i class="fas fa-video"></i>
-                </button>
-                <button class="control-btn" id="share-screen">
-                    <i class="fas fa-desktop"></i>
-                </button>
-                <button class="control-btn end-call" id="end-call">
-                    <i class="fas fa-phone-slash"></i>
-                </button>
-            </div>
-        </div>
-        <div class="meeting-content">
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <i class="fas fa-user-circle"></i>
-                    <p>Your video is off</p>
-                    <p>Dr. Williams is presenting</p>
+    <!-- Main Content -->
+    <main>
+        <!-- Sign In Prompt (shown when not logged in) -->
+        <div class="sign-in-prompt" id="signin-prompt">
+            <h2>Welcome to Hekima Hub Learning Portal</h2>
+            <p>Please sign in with your Google account to access all learning features, interactive games, assignments, and coding environment.</p>
+            <div id="google-signin-container">
+                <div class="google-signin-btn" id="google-signin-btn">
+                    <i class="fab fa-google"></i>
+                    <span id="google-btn-text">Sign In with Google</span>
                 </div>
             </div>
-            <div class="participants-sidebar">
-                <h4>Participants (18)</h4>
-                <ul class="participant-list">
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: var(--green);">DW</div>
-                        <div>
-                            <div>Dr. Williams (Host)</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Presenting</div>
+        </div>
+
+        <!-- Dashboard (shown when logged in) -->
+        <div class="dashboard" id="dashboard" style="display: none;">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Navigation</div>
+                    <ul class="sidebar-nav">
+                        <li><a href="#dashboard" class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#assignments" data-section="assignments"><i class="fas fa-tasks"></i> Assignments</a></li>
+                        <li><a href="#notes" data-section="notes"><i class="fas fa-sticky-note"></i> Notes</a></li>
+                        <li><a href="#coding" data-section="coding"><i class="fas fa-code"></i> Coding Lab</a></li>
+                        <li><a href="#games" data-section="games"><i class="fas fa-gamepad"></i> Learning Games</a></li>
+                        <li><a href="#puzzles" data-section="puzzles"><i class="fas fa-puzzle-piece"></i> Puzzles</a></li>
+                        <li><a href="#resources" data-section="resources"><i class="fas fa-book"></i> Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title">My Courses</div>
+                    <ul class="sidebar-nav">
+                        <li><a href="#"><i class="fas fa-chart-bar"></i> Data Entry Mastery</a></li>
+                        <li><a href="#"><i class="fas fa-user-tie"></i> Personal Branding</a></li>
+                        <li><a href="#"><i class="fas fa-coins"></i> Personal Finance</a></li>
+                        <li><a href="#"><i class="fas fa-paint-brush"></i> Graphic Design</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Dashboard Section -->
+                <div class="content-section active" id="dashboard-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Welcome Back, <span id="user-greeting">Student</span></h2>
+                        <div style="color: var(--gray);">Today: <span id="current-date"></span></div>
+                    </div>
+                    
+                    <div class="data-entry-game">
+                        <div class="game-header">
+                            <h3 style="color: white; margin-bottom: 0;">Data Entry Challenge</h3>
+                            <div class="game-stats">
+                                <div class="stat-box">
+                                    <div class="stat-value" id="typing-speed">0</div>
+                                    <div class="stat-label">WPM</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="accuracy-rate">100%</div>
+                                    <div class="stat-label">Accuracy</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value" id="streak-count">0</div>
+                                    <div class="stat-label">Streak</div>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: var(--blue);">Y</div>
-                        <div>You</div>
-                    </li>
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: var(--orange);">SJ</div>
-                        <div>Sarah Johnson</div>
-                    </li>
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: var(--maroon);">MK</div>
-                        <div>Michael Kim</div>
-                    </li>
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: #6a1b9a;">AR</div>
-                        <div>Amira Rahman</div>
-                    </li>
-                    <li class="participant-item">
-                        <div class="participant-avatar" style="background: #00838f;">TJ</div>
-                        <div>Thomas Jones</div>
-                    </li>
+                        
+                        <div class="game-area">
+                            <div class="text-to-type" id="text-to-type">
+                                Enter the following data accurately: John Doe, Age: 25, Location: Nairobi, Email: johndoe@example.com, Phone: +254 712 345 678
+                            </div>
+                            
+                            <textarea class="typing-input" id="typing-input" 
+                                     placeholder="Type the text exactly as shown above..." 
+                                     rows="3"></textarea>
+                            
+                            <div class="game-controls">
+                                <button class="game-btn game-btn-primary" id="check-typing">Check Accuracy</button>
+                                <button class="game-btn game-btn-secondary" id="new-challenge">New Challenge</button>
+                                <button class="game-btn game-btn-secondary" id="toggle-timer">Start Timer (60s)</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                            <h3 style="margin-bottom: 1rem; color: var(--dark);">Upcoming Assignments</h3>
+                            <div id="upcoming-assignments">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                            <h3 style="margin-bottom: 1rem; color: var(--dark);">Recent Notes</h3>
+                            <div id="recent-notes">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assignments Section -->
+                <div class="content-section" id="assignments-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Assignments</h2>
+                        <button class="game-btn game-btn-primary" id="new-assignment-btn">New Assignment</button>
+                    </div>
+                    
+                    <div class="assignments-grid" id="assignments-container">
+                        <!-- Assignments will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Notes Section -->
+                <div class="content-section" id="notes-section">
+                    <div class="notes-container">
+                        <div class="section-header">
+                            <h2 class="section-title">My Notes</h2>
+                            <div class="notes-toolbar">
+                                <button class="note-btn active" data-action="all">All Notes</button>
+                                <button class="note-btn" data-action="favorites">Favorites</button>
+                                <button class="note-btn" data-action="new">+ New Note</button>
+                            </div>
+                        </div>
+                        
+                        <div class="notes-list" id="notes-list">
+                            <!-- Notes will be loaded here -->
+                        </div>
+                        
+                        <div class="note-editor" id="note-editor">
+                            <input type="text" class="note-title-input" id="note-title" placeholder="Note Title">
+                            <textarea class="note-content-textarea" id="note-content" placeholder="Start typing your note here..."></textarea>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="game-btn game-btn-primary" id="save-note">Save Note</button>
+                                <button class="game-btn game-btn-secondary" id="cancel-note">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coding Lab Section -->
+                <div class="content-section" id="coding-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Coding Lab</h2>
+                        <div style="color: var(--gray);">Practice your programming skills</div>
+                    </div>
+                    
+                    <div class="coding-container">
+                        <div class="coding-header">
+                            <div class="language-selector">
+                                <select id="language-select">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="html">HTML</option>
+                                    <option value="css">CSS</option>
+                                    <option value="java">Java</option>
+                                </select>
+                            </div>
+                            <div class="coding-actions">
+                                <button class="code-btn" id="run-code">Run Code</button>
+                                <button class="code-btn" id="clear-code">Clear</button>
+                                <button class="code-btn" id="save-code">Save</button>
+                            </div>
+                        </div>
+                        
+                        <div class="code-editor">
+                            <textarea id="code-input">// Write your code here
+console.log("Hello, Hekima Hub!");</textarea>
+                        </div>
+                        
+                        <div class="output-container">
+                            <div class="output-title">Output:</div>
+                            <div class="output-content" id="code-output"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--dark);">Coding Challenges</h3>
+                        <div class="puzzles-grid">
+                            <div class="puzzle-card">
+                                <div class="puzzle-title">Challenge 1: FizzBuzz</div>
+                                <div class="puzzle-description">Write a program that prints numbers from 1 to 100. For multiples of 3, print "Fizz" instead of the number. For multiples of 5, print "Buzz". For multiples of both, print "FizzBuzz".</div>
+                                <button class="game-btn game-btn-secondary" onclick="loadCodingChallenge(1)">Try This Challenge</button>
+                            </div>
+                            
+                            <div class="puzzle-card">
+                                <div class="puzzle-title">Challenge 2: Palindrome Checker</div>
+                                <div class="puzzle-description">Write a function that checks if a given string is a palindrome (reads the same forwards and backwards).</div>
+                                <button class="game-btn game-btn-secondary" onclick="loadCodingChallenge(2)">Try This Challenge</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Games Section -->
+                <div class="content-section" id="games-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Learning Games</h2>
+                        <div style="color: var(--gray);">Interactive games to enhance your skills</div>
+                    </div>
+                    
+                    <div class="games-container">
+                        <div class="games-grid">
+                            <div class="game-card" onclick="loadGame('data-entry')">
+                                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                                <div class="game-content">
+                                    <div class="game-title">Data Entry Pro</div>
+                                    <div class="game-description">Test and improve your typing speed, accuracy, and data entry skills with real-world scenarios.</div>
+                                    <div class="game-tags">
+                                        <span class="game-tag">Typing</span>
+                                        <span class="game-tag">Accuracy</span>
+                                        <span class="game-tag">Speed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="game-card" onclick="loadGame('memory')">
+                                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                                <div class="game-content">
+                                    <div class="game-title">Memory Match</div>
+                                    <div class="game-description">Improve your memory by matching pairs of cards with programming concepts and terms.</div>
+                                    <div class="game-tags">
+                                        <span class="game-tag">Memory</span>
+                                        <span class="game-tag">Programming</span>
+                                        <span class="game-tag">Concepts</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="game-card" onclick="loadGame('quiz')">
+                                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                                <div class="game-content">
+                                    <div class="game-title">Tech Quiz</div>
+                                    <div class="game-description">Test your knowledge of technology, programming, and computer science concepts.</div>
+                                    <div class="game-tags">
+                                        <span class="game-tag">Quiz</span>
+                                        <span class="game-tag">Technology</span>
+                                        <span class="game-tag">Knowledge</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="game-card" onclick="loadGame('logic')">
+                                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                                <div class="game-content">
+                                    <div class="game-title">Logic Puzzles</div>
+                                    <div class="game-description">Solve logical puzzles that will sharpen your problem-solving and critical thinking skills.</div>
+                                    <div class="game-tags">
+                                        <span class="game-tag">Logic</span>
+                                        <span class="game-tag">Puzzles</span>
+                                        <span class="game-tag">Thinking</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Puzzles Section -->
+                <div class="content-section" id="puzzles-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Brain Teasers & Puzzles</h2>
+                        <div style="color: var(--gray);">Challenge your problem-solving skills</div>
+                    </div>
+                    
+                    <div class="puzzles-grid">
+                        <div class="puzzle-card">
+                            <div class="puzzle-title">Puzzle 1: The Data Entry Challenge</div>
+                            <div class="puzzle-description">Find and correct all errors in this dataset:</div>
+                            <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-family: monospace;">
+                                Name: jane doe, Age: twenty-five, Email: jane@email, Phone: 0712345678
+                            </div>
+                            <input type="text" class="puzzle-input" placeholder="Enter corrected data here...">
+                            <button class="game-btn game-btn-primary" onclick="checkPuzzle(1)">Check Answer</button>
+                            <button class="game-btn game-btn-secondary" onclick="toggleHint(1)">Show Hint</button>
+                            <div class="puzzle-hint" id="hint-1">
+                                <strong>Hint:</strong> Check for proper capitalization, correct age format, valid email structure, and proper phone number formatting.
+                            </div>
+                        </div>
+                        
+                        <div class="puzzle-card">
+                            <div class="puzzle-title">Puzzle 2: Pattern Recognition</div>
+                            <div class="puzzle-description">What comes next in this sequence?</div>
+                            <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-family: monospace; text-align: center;">
+                                2, 4, 8, 16, 32, ?
+                            </div>
+                            <input type="text" class="puzzle-input" placeholder="Enter the next number...">
+                            <button class="game-btn game-btn-primary" onclick="checkPuzzle(2)">Check Answer</button>
+                        </div>
+                        
+                        <div class="puzzle-card">
+                            <div class="puzzle-title">Puzzle 3: Logic Grid</div>
+                            <div class="puzzle-description">Three students took different courses. From the clues below, determine who took which course.</div>
+                            <div style="background: var(--light); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
+                                1. Anna didn't take Data Entry<br>
+                                2. The Graphic Design student isn't Ben<br>
+                                3. Chris took either Finance or Graphic Design
+                            </div>
+                            <input type="text" class="puzzle-input" placeholder="Your answer (e.g., Anna: Finance, Ben: Data Entry, Chris: Graphic Design)">
+                            <button class="game-btn game-btn-primary" onclick="checkPuzzle(3)">Check Answer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="content-section" id="resources-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Learning Resources</h2>
+                        <div style="color: var(--gray);">Tools and materials to support your learning</div>
+                    </div>
+                    
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="resource-title">Course Materials</div>
+                            <div class="resource-description">Download PDFs, slides, and study guides for all your enrolled courses.</div>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="resource-title">Video Library</div>
+                            <div class="resource-description">Access recorded lectures, tutorials, and demonstrations from expert instructors.</div>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="resource-title">Code Snippets</div>
+                            <div class="resource-description">Library of reusable code examples and templates for various programming languages.</div>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="resource-title">Progress Analytics</div>
+                            <div class="resource-description">Track your learning progress, completion rates, and skill development over time.</div>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="resource-title">Study Groups</div>
+                            <div class="resource-description">Join virtual study groups and collaborate with fellow students on course projects.</div>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="resource-title">Q&A Forum</div>
+                            <div class="resource-description">Get answers to your questions from instructors and the student community.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="right-sidebar">
+                <div class="progress-card">
+                    <div class="progress-title">
+                        <i class="fas fa-chart-line"></i>
+                        Learning Progress
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="main-progress"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>65% Complete</span>
+                        <span>12/18 Lessons</span>
+                    </div>
+                </div>
+                
+                <div style="padding: 1.5rem;">
+                    <div class="sidebar-title">Today's Goals</div>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                            <span>Complete Data Entry Exercise</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;">
+                            <i class="far fa-circle" style="color: var(--gray);"></i>
+                            <span>Submit Week 3 Assignment</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;">
+                            <i class="far fa-circle" style="color: var(--gray);"></i>
+                            <span>Practice 30-min Coding</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="sidebar-title" style="margin-top: 2rem;">Achievements</div>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <div style="background: var(--highlight); color: #593d00; padding: 8px; border-radius: 8px; text-align: center; flex: 1;">
+                            <div style="font-weight: bold;">5</div>
+                            <div style="font-size: 0.8rem;">Games Won</div>
+                        </div>
+                        <div style="background: var(--primary); color: white; padding: 8px; border-radius: 8px; text-align: center; flex: 1;">
+                            <div style="font-weight: bold;">12</div>
+                            <div style="font-size: 0.8rem;">Assignments</div>
+                        </div>
+                        <div style="background: var(--secondary); color: white; padding: 8px; border-radius: 8px; text-align: center; flex: 1;">
+                            <div style="font-weight: bold;">3</div>
+                            <div style="font-size: 0.8rem;">Streak Days</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">Hekima Hub</div>
+                <p>Wisdom for the curious mind. Expand your knowledge with interactive learning experiences.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Learning Portal</h4>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#assignments">Assignments</a></li>
+                    <li><a href="#coding">Coding Lab</a></li>
+                    <li><a href="#games">Learning Games</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Instructors</a></li>
+                    <li><a href="#">Technical Support</a></li>
+                    <li><a href="#">FAQ</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Student eLearning Platform</h1>
-            <p>Access your courses, join virtual classes, and utilize powerful learning tools - all in one modern digital environment.</p>
-            
-            <div class="hero-btns">
-                <a href="#dashboard" class="btn">Go to Dashboard</a>
-                <a href="#scheduled-classes" class="btn btn-outline">View My Classes</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dashboard Section -->
-    <section class="dashboard" id="dashboard">
-        <div class="container">
-            <div class="dashboard-header">
-                <h2>Student Dashboard</h2>
-                <div class="user-info">
-                    <span class="btn btn-outline"><i class="fas fa-user-graduate"></i> Student Portal</span>
-                </div>
-            </div>
-            
-            <!-- Student View Tab -->
-            <div class="tab-content active" id="student-tab">
-                <div class="scheduled-classes" id="scheduled-classes">
-                    <h3>My Scheduled Classes</h3>
-                    <div class="classes-grid">
-                        <!-- Data Entry Class -->
-                        <div class="class-card" data-class="data-entry">
-                            <div class="class-header">
-                                <h3>Data Entry Mastery</h3>
-                                <div class="class-meta">
-                                    <span><i class="far fa-clock"></i> Mon & Wed, 10:00 AM</span>
-                                    <span><i class="fas fa-user-tie"></i> Mr. Johnson</span>
-                                </div>
-                            </div>
-                            <div class="class-body">
-                                <div class="class-description">
-                                    <p>Learn efficient data entry techniques, keyboard shortcuts, and data management skills to boost productivity.</p>
-                                </div>
-                                <div class="class-footer">
-                                    <div class="class-status">
-                                        <span class="status-indicator status-upcoming"></span>
-                                        <span>Starts in 2 days</span>
-                                    </div>
-                                    <button class="btn btn-maroon view-class-btn">View Class</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Financial Management Class -->
-                        <div class="class-card" data-class="financial-management">
-                            <div class="class-header">
-                                <h3>Financial Management</h3>
-                                <div class="class-meta">
-                                    <span><i class="far fa-clock"></i> Tue & Thu, 2:00 PM</span>
-                                    <span><i class="fas fa-user-tie"></i> Dr. Williams</span>
-                                </div>
-                            </div>
-                            <div class="class-body">
-                                <div class="class-description">
-                                    <p>Master budgeting, investment strategies, and financial analysis for informed decision-making.</p>
-                                </div>
-                                <div class="class-footer">
-                                    <div class="class-status">
-                                        <span class="status-indicator status-live"></span>
-                                        <span>Live Now</span>
-                                    </div>
-                                    <button class="btn btn-maroon join-meeting-btn" data-meeting="financial-management">Join Class</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Web Development Class -->
-                        <div class="class-card" data-class="web-development">
-                            <div class="class-header">
-                                <h3>Web Development</h3>
-                                <div class="class-meta">
-                                    <span><i class="far fa-clock"></i> Fri, 3:00 PM</span>
-                                    <span><i class="fas fa-user-tie"></i> Ms. Garcia</span>
-                                </div>
-                            </div>
-                            <div class="class-body">
-                                <div class="class-description">
-                                    <p>Learn HTML, CSS, JavaScript and build responsive websites from scratch.</p>
-                                </div>
-                                <div class="class-footer">
-                                    <div class="class-status">
-                                        <span class="status-indicator status-upcoming"></span>
-                                        <span>Tomorrow</span>
-                                    </div>
-                                    <button class="btn btn-maroon view-class-btn">View Class</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="google-tools">
-                    <h3>Learning Tools</h3>
-                    <div class="tools-grid">
-                        <div class="tool-card" data-modal="classroom-modal">
-                            <div class="tool-icon">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <div class="tool-content">
-                                <h3>Google Classroom</h3>
-                                <p>Access your virtual classrooms, assignments, and course materials in one centralized location.</p>
-                                <span class="btn">Open Classroom</span>
-                            </div>
-                        </div>
-                        
-                        <div class="tool-card" data-modal="meet-modal">
-                            <div class="tool-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <div class="tool-content">
-                                <h3>Google Meet</h3>
-                                <p>Join live virtual classes, tutoring sessions, and collaborate with peers in real-time.</p>
-                                <span class="btn">Join Session</span>
-                            </div>
-                        </div>
-                        
-                        <div class="tool-card" data-modal="drive-modal">
-                            <div class="tool-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <div class="tool-content">
-                                <h3>Google Drive</h3>
-                                <p>Store and access your learning materials, assignments, and collaborative projects.</p>
-                                <span class="btn">Open Drive</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google Classroom Modal -->
-    <div id="classroom-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="modal-header">
-                <h2>Google Classroom</h2>
-                <p>Your virtual learning environment</p>
-            </div>
-            <div class="modal-body">
-                <div class="classroom-content">
-                    <h3>Your Classes</h3>
-                    
-                    <div class="classroom-class">
-                        <div class="classroom-class-header">
-                            <h4>Data Entry Mastery</h4>
-                            <span class="btn btn-small">Active</span>
-                        </div>
-                        <div class="classroom-class-body">
-                            <p><strong>Instructor:</strong> Mr. Johnson</p>
-                            <p><strong>Class Code:</strong> abc123def</p>
-                            
-                            <h5>Recent Assignments</h5>
-                            <ul class="assignment-list">
-                                <li class="assignment-item">
-                                    <div>
-                                        <strong>Week 3: Data Accuracy Exercise</strong>
-                                        <div class="assignment-due">Due: Nov 15, 2025</div>
-                                    </div>
-                                    <span class="assignment-status status-pending">Pending</span>
-                                </li>
-                                <li class="assignment-item">
-                                    <div>
-                                        <strong>Keyboard Shortcuts Quiz</strong>
-                                        <div class="assignment-due">Due: Nov 12, 2025</div>
-                                    </div>
-                                    <span class="assignment-status status-completed">Completed</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="classroom-class">
-                        <div class="classroom-class-header">
-                            <h4>Financial Management</h4>
-                            <span class="btn btn-small">Active</span>
-                        </div>
-                        <div class="classroom-class-body">
-                            <p><strong>Instructor:</strong> Dr. Williams</p>
-                            <p><strong>Class Code:</strong> xyz789ghi</p>
-                            
-                            <h5>Recent Assignments</h5>
-                            <ul class="assignment-list">
-                                <li class="assignment-item">
-                                    <div>
-                                        <strong>Investment Portfolio Analysis</strong>
-                                        <div class="assignment-due">Due: Nov 18, 2025</div>
-                                    </div>
-                                    <span class="assignment-status status-pending">Pending</span>
-                                </li>
-                                <li class="assignment-item">
-                                    <div>
-                                        <strong>Budget Planning Exercise</strong>
-                                        <div class="assignment-due">Due: Nov 10, 2025</div>
-                                    </div>
-                                    <span class="assignment-status status-completed">Completed</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="https://classroom.google.com" class="btn" target="_blank"><i class="fab fa-google"></i> Open Google Classroom</a>
-                <button class="btn btn-outline close-modal-btn">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Google Meet Modal -->
-    <div id="meet-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="modal-header">
-                <h2>Google Meet</h2>
-                <p>Join virtual classes and meetings</p>
-            </div>
-            <div class="modal-body">
-                <div class="meet-sessions">
-                    <div class="meet-session live">
-                        <h4>Financial Management - Live Session</h4>
-                        <div class="session-time">
-                            <i class="far fa-clock"></i> Live Now • Ends in 45 minutes
-                        </div>
-                        <p><strong>Host:</strong> Dr. Williams</p>
-                        <p><strong>Topic:</strong> Investment Strategies & Portfolio Management</p>
-                        <div class="session-participants">
-                            <i class="fas fa-users"></i> 18 participants joined
-                        </div>
-                        <button class="btn join-meeting-btn" data-meeting="financial-management" style="margin-top: 1rem; width: 100%;">Join Meeting</button>
-                    </div>
-                    
-                    <div class="meet-session upcoming">
-                        <h4>Data Entry Mastery - Next Session</h4>
-                        <div class="session-time">
-                            <i class="far fa-clock"></i> Tomorrow, 10:00 AM - 11:30 AM
-                        </div>
-                        <p><strong>Host:</strong> Mr. Johnson</p>
-                        <p><strong>Topic:</strong> Advanced Data Validation Techniques</p>
-                        <div class="session-participants">
-                            <i class="fas fa-user-plus"></i> Join 15 minutes early
-                        </div>
-                    </div>
-                    
-                    <div class="meet-session upcoming">
-                        <h4>Web Development Workshop</h4>
-                        <div class="session-time">
-                            <i class="far fa-clock"></i> Friday, 3:00 PM - 5:00 PM
-                        </div>
-                        <p><strong>Host:</strong> Ms. Garcia</p>
-                        <p><strong>Topic:</strong> CSS Grid and Flexbox</p>
-                        <div class="session-participants">
-                            <i class="fas fa-user-plus"></i> All students invited
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 2rem; padding: 1rem; background: var(--light-blue); border-radius: 8px;">
-                    <h4>Quick Join</h4>
-                    <p>Enter a meeting code to join immediately:</p>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                        <input type="text" placeholder="Enter meeting code" style="flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;">
-                        <button class="btn btn-small" id="quick-join-btn">Join</button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline close-modal-btn">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Class Detail Modals -->
-    <div id="data-entry-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="modal-header">
-                <h2>Data Entry Mastery</h2>
-                <p>Mr. Johnson | Mon & Wed, 10:00 AM - 11:30 AM</p>
-            </div>
-            <div class="modal-body">
-                <div class="class-details">
-                    <div class="detail-group">
-                        <h4>Class Information</h4>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div>
-                                <strong>Next Session:</strong><br>
-                                Monday, November 10, 2025<br>
-                                10:00 AM - 11:30 AM
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <div>
-                                <strong>Instructor:</strong><br>
-                                Mr. Johnson<br>
-                                <a href="mailto:johnson@hekimahub.com">johnson@hekimahub.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-group">
-                        <h4>Course Details</h4>
-                        <div class="detail-item">
-                            <i class="fas fa-book"></i>
-                            <div>
-                                <strong>Materials:</strong><br>
-                                Textbook: "Data Entry Fundamentals"<br>
-                                Software: MS Excel, Google Sheets
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-tasks"></i>
-                            <div>
-                                <strong>Assignments:</strong><br>
-                                3 pending assignments<br>
-                                Next due: November 12
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <h4>Class Description</h4>
-                <p>This course provides comprehensive training in data entry techniques, keyboard shortcuts, and data management skills. Students will learn to work efficiently with various data formats and software tools commonly used in today's data-driven workplace environments.</p>
-            </div>
-            <div class="modal-footer">
-                <a href="https://classroom.google.com/c/NjEyMzQ1Njc4MjZa" class="btn" target="_blank"><i class="fab fa-google"></i> Open Google Classroom</a>
-                <button class="btn btn-outline close-modal-btn">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Resources Section -->
-    <section class="resources">
-        <div class="container">
-            <h2>Learning Resources</h2>
-            
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-download"></i>
-                    </div>
-                    <h3>Download Center</h3>
-                    <p>Access course materials, lecture notes, and supplementary resources for all your classes.</p>
-                    <a href="#" class="btn btn-maroon">Browse Files</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Video Library</h3>
-                    <p>Watch recorded lectures, tutorials, and educational videos at your own pace.</p>
-                    <a href="#" class="btn btn-maroon">Watch Videos</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>E-Books</h3>
-                    <p>Access digital textbooks and reading materials for all your courses in one place.</p>
-                    <a href="#" class="btn btn-maroon">Read Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Need Help With Our eLearning Platform?</h2>
-            <p>Our dedicated support team is available to assist students with any technical issues or questions about using our platform.</p>
-            <a href="https://wa.me/254727211191" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> Get Support</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Hekima Hub</h3>
-                    <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">Empowering students through personalized education and expert guidance to achieve academic success in the digital age.</p>
-                </div> 
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="home.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
-                        <li><a href="about-us.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> E-Learning</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Learning Resources</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Study Guides</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Video Tutorials</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Practice Tests</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> E-Books</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Research Materials</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</a></li>
-                        <li><a href="tel:+254727211191"><i class="fas fa-phone"></i> +254 727211191</a></li>
-                        <li><a href="mailto:info.hekimahub@gmail.com"><i class="fas fa-envelope"></i> info.hekimahub@gmail.com</a></li>
-                    </ul>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hekima Hub. All Rights Reserved. | Designed for Student Success</p>
-            </div>
+        <div class="copyright">
+            <p>&copy; 2025 Hekima Hub Student Learning Portal. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-content">
+            <h2 style="margin-bottom: 1.5rem;">Sign In Required</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray);">Please sign in to access the learning portal</p>
+            <div id="auth-google-container">
+                <!-- Google Sign-In button will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Notification message</span>
+    </div>
+
     <script>
-        // Mobile menu functionality
-        const mobileMenu = document.getElementById('mobile-menu');
-        const sideMenu = document.getElementById('side-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const overlay = document.getElementById('overlay');
+        // User state
+        let currentUser = null;
+        let googleInitialized = false;
         
-        // Toggle side menu
-        mobileMenu.addEventListener('click', function() {
-            sideMenu.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+        // Data Entry Game State
+        let typingSpeed = 0;
+        let accuracyRate = 100;
+        let streakCount = 0;
+        let gameTimer = null;
+        let timeLeft = 60;
         
-        // Close side menu
-        function closeSideMenu() {
-            sideMenu.classList.remove('open');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Notes data
+        let notes = [];
+        
+        // Assignments data
+        let assignments = [
+            {
+                id: 1,
+                title: "Data Entry Accuracy Test",
+                subject: "Data Entry Mastery",
+                due: "Tomorrow",
+                description: "Complete the data entry accuracy test with at least 95% accuracy.",
+                progress: 75
+            },
+            {
+                id: 2,
+                title: "Personal Branding Essay",
+                subject: "Personal Branding",
+                due: "In 3 days",
+                description: "Write a 1000-word essay on building your personal brand online.",
+                progress: 30
+            },
+            {
+                id: 3,
+                title: "Budget Spreadsheet",
+                subject: "Personal Finance",
+                due: "Next Week",
+                description: "Create a monthly budget spreadsheet with formulas and charts.",
+                progress: 10
+            }
+        ];
+        
+        // Coding challenges
+        const codingChallenges = {
+            1: {
+                title: "FizzBuzz Challenge",
+                code: `// Write a FizzBuzz program
+// Print numbers from 1 to 100
+// For multiples of 3, print "Fizz"
+// For multiples of 5, print "Buzz"
+// For multiples of both, print "FizzBuzz"
+
+function fizzBuzz() {
+    // Your code here
+    for (let i = 1; i <= 100; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("FizzBuzz");
+        } else if (i % 3 === 0) {
+            console.log("Fizz");
+        } else if (i % 5 === 0) {
+            console.log("Buzz");
+        } else {
+            console.log(i);
+        }
+    }
+}
+
+fizzBuzz();`
+            },
+            2: {
+                title: "Palindrome Checker",
+                code: `// Write a function to check if a string is a palindrome
+// A palindrome reads the same forwards and backwards
+
+function isPalindrome(str) {
+    // Your code here
+    const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const reversed = cleanStr.split('').reverse().join('');
+    return cleanStr === reversed;
+}
+
+// Test cases
+console.log(isPalindrome("racecar")); // Should return true
+console.log(isPalindrome("hello"));   // Should return false`
+            }
+        };
+        
+        // Data entry challenges
+        const dataChallenges = [
+            "Enter: John Doe, Age: 25, Email: john@example.com, Phone: +254 712 345 678",
+            "Format this data: Product: Laptop, Price: $850, Quantity: 15, Category: Electronics",
+            "Data entry: Employee ID: E-2024-001, Department: Finance, Join Date: 15/03/2024",
+            "Customer info: Name: Jane Smith, Phone: 0721555666, Email: jane.smith@mail.com",
+            "Enter these values: Invoice #: INV-4567, Amount: $1,250.50, Due Date: 30/11/2024"
+        ];
+        
+        // Initialize Google Sign-In
+        function initializeGoogleSignIn() {
+            if (typeof google === 'undefined') {
+                console.warn('Google Identity Services not loaded yet, retrying...');
+                setTimeout(initializeGoogleSignIn, 500);
+                return;
+            }
+
+            try {
+                google.accounts.id.initialize({
+                    client_id: '230366555128-bkm4jhc3c14scafm8808uk8u456u6cfk.apps.googleusercontent.com',
+                    callback: handleGoogleSignIn,
+                    error_callback: handleGoogleSignInError,
+                    ux_mode: 'popup',
+                    auto_select: false
+                });
+
+                // Render Google Sign-In buttons
+                google.accounts.id.renderButton(
+                    document.getElementById('google-signin-container'),
+                    { 
+                        theme: "outline", 
+                        size: "large", 
+                        width: "100%",
+                        text: "signin_with",
+                        shape: "rectangular"
+                    }
+                );
+
+                google.accounts.id.renderButton(
+                    document.getElementById('auth-google-container'),
+                    { 
+                        theme: "outline", 
+                        size: "large", 
+                        width: "100%",
+                        text: "signin_with",
+                        shape: "rectangular"
+                    }
+                );
+
+                googleInitialized = true;
+                console.log('Google Sign-In initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing Google Sign-In:', error);
+                setupFallbackGoogleButton();
+            }
         }
         
-        closeMenu.addEventListener('click', closeSideMenu);
-        overlay.addEventListener('click', closeSideMenu);
-        
-        // Close menu when clicking on links
-        document.querySelectorAll('.side-menu a').forEach(link => {
-            link.addEventListener('click', closeSideMenu);
-        });
-
-        // Class modal functionality
-        const viewClassBtns = document.querySelectorAll('.view-class-btn');
-        const classModals = document.querySelectorAll('.modal');
-        const closeModalBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
-        
-        // Open modal when class card is clicked
-        viewClassBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const classCard = btn.closest('.class-card');
-                const classId = classCard.getAttribute('data-class');
-                document.getElementById(`${classId}-modal`).style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Tool card functionality
-        const toolCards = document.querySelectorAll('.tool-card');
-        
-        toolCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const modalId = card.getAttribute('data-modal');
-                if (modalId) {
-                    document.getElementById(modalId).style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-        
-        // Close modal when X is clicked
-        closeModalBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                classModals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Close modal when clicking outside content
-        window.addEventListener('click', (e) => {
-            classModals.forEach(modal => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-
-        // Virtual Meeting Functionality
-        const virtualMeeting = document.getElementById('virtual-meeting');
-        const joinMeetingBtns = document.querySelectorAll('.join-meeting-btn');
-        const endCallBtn = document.getElementById('end-call');
-        
-        // Join meeting functionality
-        joinMeetingBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const meetingName = btn.getAttribute('data-meeting');
-                
-                // Set meeting details
-                document.getElementById('meeting-name').textContent = 
-                    meetingName === 'financial-management' 
-                    ? 'Financial Management - Live Session' 
-                    : 'Class Session';
-                
-                // Show virtual meeting
-                virtualMeeting.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                
-                // Close any open modals
-                classModals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            });
-        });
-        
-        // End call functionality
-        endCallBtn.addEventListener('click', () => {
-            virtualMeeting.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Meeting controls
-        const muteAudioBtn = document.getElementById('mute-audio');
-        const muteVideoBtn = document.getElementById('mute-video');
-        
-        let audioMuted = false;
-        let videoMuted = false;
-        
-        muteAudioBtn.addEventListener('click', () => {
-            audioMuted = !audioMuted;
-            muteAudioBtn.innerHTML = audioMuted 
-                ? '<i class="fas fa-microphone-slash"></i>' 
-                : '<i class="fas fa-microphone"></i>';
-            muteAudioBtn.style.background = audioMuted ? '#d32f2f' : '#3d3d3d';
-        });
-        
-        muteVideoBtn.addEventListener('click', () => {
-            videoMuted = !videoMuted;
-            muteVideoBtn.innerHTML = videoMuted 
-                ? '<i class="fas fa-video-slash"></i>' 
-                : '<i class="fas fa-video"></i>';
-            muteVideoBtn.style.background = videoMuted ? '#d32f2f' : '#3d3d3d';
-        });
-
-        // Quick join functionality for Google Meet
-        document.addEventListener('DOMContentLoaded', function() {
-            const quickJoinBtn = document.getElementById('quick-join-btn');
-            const meetingCodeInput = document.querySelector('#meet-modal input[type="text"]');
+        // Handle Google Sign-In
+        function handleGoogleSignIn(response) {
+            console.log('Google Sign-In response received');
             
-            if (quickJoinBtn && meetingCodeInput) {
-                quickJoinBtn.addEventListener('click', function() {
-                    const code = meetingCodeInput.value.trim();
-                    if (code) {
-                        // Set meeting details for virtual meeting
-                        document.getElementById('meeting-name').textContent = `Meeting: ${code}`;
-                        document.getElementById('meeting-time').textContent = 'Quick Join Session';
-                        
-                        // Show virtual meeting
-                        virtualMeeting.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                        
-                        // Close the modal
-                        document.getElementById('meet-modal').style.display = 'none';
-                    } else {
-                        meetingCodeInput.focus();
-                    }
-                });
+            try {
+                const userInfo = parseJwt(response.credential);
                 
-                meetingCodeInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        quickJoinBtn.click();
-                    }
+                if (!userInfo) {
+                    throw new Error('Invalid token response');
+                }
+                
+                currentUser = {
+                    id: userInfo.sub,
+                    name: userInfo.name,
+                    email: userInfo.email,
+                    picture: userInfo.picture,
+                    provider: 'google'
+                };
+
+                updateUserInterface();
+                showToast(`Welcome to Hekima Hub, ${userInfo.name}!`);
+                
+                // Save to localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                console.log('User signed in successfully:', currentUser);
+                
+            } catch (error) {
+                console.error('Error handling Google Sign-In:', error);
+                showToast('Error signing in. Please try again.', 'error');
+            }
+        }
+
+        function handleGoogleSignInError(error) {
+            console.error('Google Sign-In error:', error);
+            showToast('Error with Google Sign-In. Please try again.', 'error');
+        }
+
+        // Parse JWT token
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                console.error('Error parsing JWT:', e);
+                return null;
+            }
+        }
+        
+        // Update UI based on authentication state
+        function updateUserInterface() {
+            if (currentUser) {
+                // User is logged in
+                document.getElementById('signin-prompt').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'grid';
+                document.getElementById('auth-modal').style.display = 'none';
+                
+                // Update user info in header
+                const authArea = document.getElementById('auth-area');
+                authArea.innerHTML = `
+                    <div class="user-info" id="user-info">
+                        <img src="${currentUser.picture}" alt="User Avatar" class="user-avatar">
+                        <div>
+                            <div class="user-name">${currentUser.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--gray);">Student</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                    </div>
+                    <button class="game-btn game-btn-secondary" id="logout-btn" style="padding: 8px 16px;">Logout</button>
+                `;
+                
+                // Add logout functionality
+                document.getElementById('logout-btn').addEventListener('click', logoutUser);
+                document.getElementById('user-info').addEventListener('click', toggleUserDropdown);
+                
+                // Update greeting
+                document.getElementById('user-greeting').textContent = currentUser.name.split(' ')[0];
+                
+                // Load user data
+                loadUserData();
+                
+            } else {
+                // User is not logged in
+                document.getElementById('signin-prompt').style.display = 'block';
+                document.getElementById('dashboard').style.display = 'none';
+                
+                // Clear user info in header
+                document.getElementById('auth-area').innerHTML = `
+                    <button class="game-btn game-btn-primary" id="header-signin-btn">Sign In</button>
+                `;
+                
+                document.getElementById('header-signin-btn').addEventListener('click', () => {
+                    document.getElementById('auth-modal').style.display = 'flex';
                 });
             }
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+        }
+        
+        // Toggle user dropdown
+        function toggleUserDropdown() {
+            // Implementation for dropdown if needed
+            showToast(`Logged in as ${currentUser.name}`);
+        }
+        
+        // Logout user
+        function logoutUser() {
+            currentUser = null;
+            updateUserInterface();
+            showToast('You have been logged out successfully.');
+            
+            // Remove from localStorage
+            localStorage.removeItem('currentUser');
+            
+            // Google Sign-Out
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+            }
+        }
+        
+        // Load user data
+        function loadUserData() {
+            // Load notes from localStorage
+            const savedNotes = localStorage.getItem(`notes_${currentUser.id}`);
+            if (savedNotes) {
+                notes = JSON.parse(savedNotes);
+                displayNotes();
+            }
+            
+            // Load assignments
+            displayAssignments();
+            
+            // Update date
+            const now = new Date();
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Update progress bar animation
+            setTimeout(() => {
+                document.getElementById('main-progress').style.width = '65%';
+            }, 500);
+            
+            // Initialize CodeMirror
+            initializeCodeEditor();
+            
+            // Setup event listeners
+            setupEventListeners();
+        }
+        
+        // Initialize CodeMirror editor
+        function initializeCodeEditor() {
+            const codeInput = document.getElementById('code-input');
+            const editor = CodeMirror.fromTextArea(codeInput, {
+                mode: "javascript",
+                theme: "dracula",
+                lineNumbers: true,
+                indentUnit: 4,
+                tabSize: 4,
+                lineWrapping: true,
+                autoCloseBrackets: true,
+                matchBrackets: true,
+                extraKeys: {
+                    "Ctrl-Space": "autocomplete"
+                }
+            });
+            
+            window.codeEditor = editor;
+            
+            // Handle language change
+            document.getElementById('language-select').addEventListener('change', function() {
+                const mode = this.value === 'python' ? 'python' :
+                            this.value === 'html' ? 'htmlmixed' :
+                            this.value === 'css' ? 'css' :
+                            this.value === 'java' ? 'text/x-java' : 'javascript';
+                
+                editor.setOption("mode", mode);
+            });
+            
+            // Run code button
+            document.getElementById('run-code').addEventListener('click', runCode);
+            
+            // Clear code button
+            document.getElementById('clear-code').addEventListener('click', () => {
+                editor.setValue('// Write your code here\nconsole.log("Hello, Hekima Hub!");');
+                document.getElementById('code-output').textContent = '';
+            });
+            
+            // Save code button
+            document.getElementById('save-code').addEventListener('click', () => {
+                const code = editor.getValue();
+                localStorage.setItem(`code_snippet_${currentUser.id}_${Date.now()}`, code);
+                showToast('Code snippet saved!');
+            });
+        }
+        
+        // Run code in editor
+        function runCode() {
+            const code = window.codeEditor.getValue();
+            const outputDiv = document.getElementById('code-output');
+            
+            try {
+                // Clear previous output
+                outputDiv.textContent = '';
+                
+                // Capture console.log output
+                const oldLog = console.log;
+                let logs = [];
+                console.log = function(...args) {
+                    logs.push(args.map(arg => 
+                        typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                    ).join(' '));
+                    oldLog.apply(console, args);
+                };
+                
+                // Execute the code
+                eval(code);
+                
+                // Restore console.log
+                console.log = oldLog;
+                
+                // Display output
+                outputDiv.textContent = logs.join('\n') || 'Code executed successfully (no output)';
+                
+            } catch (error) {
+                outputDiv.textContent = `Error: ${error.message}`;
+                outputDiv.style.color = '#ff5555';
+            }
+        }
+        
+        // Load coding challenge
+        function loadCodingChallenge(id) {
+            if (window.codeEditor && codingChallenges[id]) {
+                window.codeEditor.setValue(codingChallenges[id].code);
+                showToast(`Loaded: ${codingChallenges[id].title}`);
+                
+                // Switch to coding section
+                switchSection('coding');
+            }
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Navigation
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    
+                    // Update active state
+                    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show section
+                    switchSection(section);
+                });
+            });
+            
+            // Data Entry Game
+            document.getElementById('check-typing').addEventListener('click', checkTypingAccuracy);
+            document.getElementById('new-challenge').addEventListener('click', newDataChallenge);
+            document.getElementById('toggle-timer').addEventListener('click', toggleGameTimer);
+            
+            // Notes
+            document.querySelectorAll('.notes-toolbar .note-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    
+                    // Update active state
+                    document.querySelectorAll('.notes-toolbar .note-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (action === 'new') {
+                        showNoteEditor();
+                    } else {
+                        filterNotes(action);
+                    }
+                });
+            });
+            
+            document.getElementById('save-note').addEventListener('click', saveNote);
+            document.getElementById('cancel-note').addEventListener('click', cancelNote);
+            
+            // Assignments
+            document.getElementById('new-assignment-btn').addEventListener('click', createNewAssignment);
+        }
+        
+        // Switch between sections
+        function switchSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(`${sectionId}-section`).classList.add('active');
+            
+            // Update URL hash
+            window.location.hash = sectionId;
+        }
+        
+        // Data Entry Game Functions
+        function checkTypingAccuracy() {
+            const textToType = document.getElementById('text-to-type').textContent;
+            const userInput = document.getElementById('typing-input').value;
+            
+            if (!userInput.trim()) {
+                showToast('Please type something first!', 'error');
+                return;
+            }
+            
+            // Calculate accuracy
+            let correctChars = 0;
+            const minLength = Math.min(textToType.length, userInput.length);
+            
+            for (let i = 0; i < minLength; i++) {
+                if (textToType[i] === userInput[i]) {
+                    correctChars++;
+                }
+            }
+            
+            const accuracy = Math.round((correctChars / textToType.length) * 100);
+            const words = userInput.trim().split(/\s+/).length;
+            const timeUsed = 60 - timeLeft;
+            const wpm = timeUsed > 0 ? Math.round((words / timeUsed) * 60) : words;
+            
+            // Update stats
+            typingSpeed = wpm;
+            accuracyRate = accuracy;
+            
+            if (accuracy >= 90) {
+                streakCount++;
+                showToast(`Excellent! ${accuracy}% accuracy - ${wpm} WPM`, 'success');
+            } else if (accuracy >= 70) {
+                showToast(`Good job! ${accuracy}% accuracy - ${wpm} WPM`, 'success');
             } else {
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                streakCount = 0;
+                showToast(`Need improvement. ${accuracy}% accuracy - ${wpm} WPM`, 'error');
+            }
+            
+            // Update UI
+            document.getElementById('typing-speed').textContent = wpm;
+            document.getElementById('accuracy-rate').textContent = `${accuracy}%`;
+            document.getElementById('streak-count').textContent = streakCount;
+        }
+        
+        function newDataChallenge() {
+            const randomIndex = Math.floor(Math.random() * dataChallenges.length);
+            document.getElementById('text-to-type').textContent = dataChallenges[randomIndex];
+            document.getElementById('typing-input').value = '';
+            document.getElementById('typing-input').focus();
+        }
+        
+        function toggleGameTimer() {
+            const timerBtn = document.getElementById('toggle-timer');
+            
+            if (gameTimer) {
+                clearInterval(gameTimer);
+                gameTimer = null;
+                timerBtn.textContent = 'Start Timer (60s)';
+                showToast('Timer stopped');
+            } else {
+                timeLeft = 60;
+                gameTimer = setInterval(() => {
+                    timeLeft--;
+                    timerBtn.textContent = `Timer: ${timeLeft}s`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(gameTimer);
+                        gameTimer = null;
+                        timerBtn.textContent = 'Start Timer (60s)';
+                        checkTypingAccuracy();
+                        showToast('Time\'s up! Accuracy checked automatically.');
+                    }
+                }, 1000);
+                
+                showToast('Timer started! 60 seconds to complete.');
+            }
+        }
+        
+        // Notes Functions
+        function displayNotes() {
+            const notesList = document.getElementById('notes-list');
+            notesList.innerHTML = '';
+            
+            if (notes.length === 0) {
+                notesList.innerHTML = '<p style="color: var(--gray); text-align: center; padding: 2rem;">No notes yet. Create your first note!</p>';
+                return;
+            }
+            
+            notes.forEach((note, index) => {
+                const noteItem = document.createElement('div');
+                noteItem.className = 'note-item';
+                noteItem.innerHTML = `
+                    <h4>${note.title}</h4>
+                    <p>${note.content.substring(0, 100)}${note.content.length > 100 ? '...' : ''}</p>
+                    <div class="note-date">${note.date}</div>
+                `;
+                
+                noteItem.addEventListener('click', () => editNote(index));
+                notesList.appendChild(noteItem);
+            });
+        }
+        
+        function showNoteEditor(noteIndex = null) {
+            document.getElementById('notes-list').style.display = 'none';
+            document.getElementById('note-editor').classList.add('active');
+            
+            if (noteIndex !== null && notes[noteIndex]) {
+                const note = notes[noteIndex];
+                document.getElementById('note-title').value = note.title;
+                document.getElementById('note-content').value = note.content;
+                document.getElementById('save-note').setAttribute('data-index', noteIndex);
+            } else {
+                document.getElementById('note-title').value = '';
+                document.getElementById('note-content').value = '';
+                document.getElementById('save-note').removeAttribute('data-index');
+            }
+        }
+        
+        function saveNote() {
+            const title = document.getElementById('note-title').value.trim();
+            const content = document.getElementById('note-content').value.trim();
+            const noteIndex = document.getElementById('save-note').getAttribute('data-index');
+            
+            if (!title || !content) {
+                showToast('Please fill in both title and content', 'error');
+                return;
+            }
+            
+            const note = {
+                title,
+                content,
+                date: new Date().toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                }),
+                favorite: false
+            };
+            
+            if (noteIndex !== null) {
+                // Update existing note
+                notes[noteIndex] = note;
+                showToast('Note updated!');
+            } else {
+                // Add new note
+                notes.unshift(note);
+                showToast('Note saved!');
+            }
+            
+            // Save to localStorage
+            localStorage.setItem(`notes_${currentUser.id}`, JSON.stringify(notes));
+            
+            // Hide editor and show list
+            document.getElementById('note-editor').classList.remove('active');
+            document.getElementById('notes-list').style.display = 'block';
+            
+            // Refresh notes list
+            displayNotes();
+        }
+        
+        function cancelNote() {
+            document.getElementById('note-editor').classList.remove('active');
+            document.getElementById('notes-list').style.display = 'block';
+        }
+        
+        function editNote(index) {
+            showNoteEditor(index);
+        }
+        
+        function filterNotes(filter) {
+            // Implementation for filtering notes
+            displayNotes();
+        }
+        
+        // Assignments Functions
+        function displayAssignments() {
+            const container = document.getElementById('assignments-container');
+            container.innerHTML = '';
+            
+            assignments.forEach(assignment => {
+                const card = document.createElement('div');
+                card.className = 'assignment-card';
+                card.innerHTML = `
+                    <div class="assignment-header">
+                        <span class="assignment-subject">${assignment.subject}</span>
+                        <span class="assignment-due">Due: ${assignment.due}</span>
+                    </div>
+                    <div class="assignment-title">${assignment.title}</div>
+                    <div class="assignment-description">${assignment.description}</div>
+                    <div class="assignment-progress">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span>${assignment.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${assignment.progress}%"></div>
+                        </div>
+                    </div>
+                    <button class="game-btn game-btn-primary" style="width: 100%; margin-top: 1rem;">Continue Assignment</button>
+                `;
+                
+                container.appendChild(card);
+            });
+            
+            // Update upcoming assignments in dashboard
+            const upcomingContainer = document.getElementById('upcoming-assignments');
+            upcomingContainer.innerHTML = '';
+            
+            assignments.slice(0, 3).forEach(assignment => {
+                const item = document.createElement('div');
+                item.style.padding = '0.75rem';
+                item.style.borderBottom = '1px solid #eee';
+                item.innerHTML = `
+                    <div style="font-weight: 600;">${assignment.title}</div>
+                    <div style="font-size: 0.9rem; color: var(--gray); margin-top: 0.25rem;">
+                        ${assignment.subject} • Due: ${assignment.due}
+                    </div>
+                `;
+                upcomingContainer.appendChild(item);
+            });
+        }
+        
+        function createNewAssignment() {
+            showToast('New assignment feature coming soon!', 'success');
+        }
+        
+        // Game loading
+        function loadGame(gameType) {
+            switch (gameType) {
+                case 'data-entry':
+                    switchSection('dashboard');
+                    break;
+                case 'memory':
+                    showToast('Memory Match game coming soon!', 'success');
+                    break;
+                case 'quiz':
+                    showToast('Tech Quiz coming soon!', 'success');
+                    break;
+                case 'logic':
+                    switchSection('puzzles');
+                    break;
+            }
+        }
+        
+        // Puzzle functions
+        function checkPuzzle(puzzleId) {
+            const answers = {
+                1: "Name: Jane Doe, Age: 25, Email: jane@email.com, Phone: +254 712 345 678",
+                2: "64",
+                3: "Anna: Graphic Design, Ben: Data Entry, Chris: Finance"
+            };
+            
+            showToast('Puzzle checking feature coming soon!', 'success');
+        }
+        
+        function toggleHint(puzzleId) {
+            const hint = document.getElementById(`hint-${puzzleId}`);
+            hint.classList.toggle('active');
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.className = 'toast';
+            
+            if (type === 'success') {
+                toast.classList.add('show');
+                toast.querySelector('i').className = 'fas fa-check-circle';
+            } else if (type === 'error') {
+                toast.classList.add('show');
+                toast.querySelector('i').className = 'fas fa-exclamation-circle';
+                toast.style.background = 'var(--error)';
+            }
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.style.background = ''; // Reset to default
+            }, 3000);
+        }
+        
+        // Fallback Google button
+        function setupFallbackGoogleButton() {
+            const container = document.getElementById('google-signin-container');
+            const authContainer = document.getElementById('auth-google-container');
+            
+            const fallbackBtn = document.createElement('button');
+            fallbackBtn.className = 'google-signin-btn';
+            fallbackBtn.innerHTML = '<i class="fab fa-google"></i> Continue with Google';
+            fallbackBtn.onclick = () => {
+                showToast('Google Sign-In is temporarily unavailable. Please try again later.');
+            };
+            
+            if (container) container.innerHTML = '';
+            if (container) container.appendChild(fallbackBtn.cloneNode(true));
+            if (authContainer) authContainer.appendChild(fallbackBtn.cloneNode(true));
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Student Portal loading...');
+            
+            // Check if user is already logged in
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    console.log('Found saved user:', currentUser);
+                } catch (e) {
+                    console.error('Error parsing saved user:', e);
+                    localStorage.removeItem('currentUser');
+                }
+            }
+            
+            updateUserInterface();
+            
+            // Initialize Google Sign-In
+            setTimeout(initializeGoogleSignIn, 1000);
+            
+            // Set up initial data challenge
+            newDataChallenge();
+            
+            // Check URL hash for section
+            if (window.location.hash) {
+                const section = window.location.hash.substring(1);
+                const link = document.querySelector(`[data-section="${section}"]`);
+                if (link) {
+                    link.click();
+                }
             }
         });
-
-        console.log("Student eLearning Platform is now fully implemented with:");
-        console.log("- Tutor functions removed");
-        console.log("- Virtual meetings open in the same page");
-        console.log("- All student-focused features working properly");
+        
+        // Handle auth modal
+        document.getElementById('auth-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
