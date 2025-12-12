@@ -226,6 +226,80 @@
             text-align: center;
         }
 
+        /* Course Navigation Dropdown */
+        .course-dropdown {
+            margin-bottom: 0.5rem;
+        }
+
+        .course-dropdown-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .course-dropdown-header:hover {
+            background: var(--light);
+        }
+
+        .course-dropdown-content {
+            padding-left: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .course-dropdown.active .course-dropdown-content {
+            max-height: 300px;
+        }
+
+        .course-nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .course-nav-link:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        /* Course Navigation Tabs */
+        .course-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .course-tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: none;
+            color: var(--gray);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .course-tab:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .course-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Main Content Area */
         .main-content {
             min-height: 80vh;
@@ -266,6 +340,326 @@
             background: var(--highlight);
             margin-top: 8px;
             border-radius: 2px;
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .course-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .course-progress {
+            margin-top: 1rem;
+        }
+
+        .course-progress-bar {
+            height: 6px;
+            background: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .course-progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+
+        /* Course Page Layout */
+        .course-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 500px;
+        }
+
+        .course-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-banner h2 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-banner p {
+            opacity: 0.9;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .course-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+
+        .course-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--highlight);
+        }
+
+        .course-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Modules/Units */
+        .modules-container {
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(46, 139, 87, 0.1);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .module-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .module-status {
+            padding: 4px 12px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .module-status.completed {
+            background: #d4edda;
+            color: var(--success);
+        }
+
+        .module-status.in-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .module-content {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .module-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Assignments Section */
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .assignment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .assignment-subject {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .assignment-due {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .assignment-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .assignment-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .assignment-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Quizzes Section */
+        .quizzes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-due {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .quiz-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Classwork Section */
+        .classwork-container {
+            margin-top: 2rem;
+        }
+
+        .classwork-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .classwork-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .classwork-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .classwork-date {
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
         /* Right Sidebar */
@@ -405,74 +799,6 @@
             line-height: 1.5;
             resize: vertical;
             margin-bottom: 1rem;
-        }
-
-        /* Assignments Section */
-        .assignments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .assignment-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .assignment-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .assignment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .assignment-subject {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--primary);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .assignment-due {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .assignment-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .assignment-description {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .assignment-progress {
-            margin-bottom: 1rem;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--gray);
         }
 
         /* Coding Environment */
@@ -890,6 +1216,41 @@
             text-align: center;
         }
 
+        /* External Course Link Styling */
+        .external-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .external-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Back Button */
+        .back-btn {
+            padding: 8px 16px;
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #e9ecef;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 1200px) {
             .dashboard {
@@ -916,11 +1277,23 @@
                 padding: 1rem;
             }
             
+            .courses-grid,
             .assignments-grid,
+            .quizzes-grid,
             .games-grid,
             .puzzles-grid,
             .resources-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .course-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .course-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
             }
             
             .game-stats {
@@ -983,6 +1356,7 @@
                     <div class="sidebar-title">Navigation</div>
                     <ul class="sidebar-nav">
                         <li><a href="#dashboard" class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#courses" data-section="courses"><i class="fas fa-graduation-cap"></i> My Courses</a></li>
                         <li><a href="#assignments" data-section="assignments"><i class="fas fa-tasks"></i> Assignments</a></li>
                         <li><a href="#notes" data-section="notes"><i class="fas fa-sticky-note"></i> Notes</a></li>
                         <li><a href="#coding" data-section="coding"><i class="fas fa-code"></i> Coding Lab</a></li>
@@ -994,12 +1368,23 @@
                 
                 <div class="sidebar-section">
                     <div class="sidebar-title">My Courses</div>
-                    <ul class="sidebar-nav">
-                        <li><a href="#"><i class="fas fa-chart-bar"></i> Data Entry Mastery</a></li>
-                        <li><a href="#"><i class="fas fa-user-tie"></i> Personal Branding</a></li>
-                        <li><a href="#"><i class="fas fa-coins"></i> Personal Finance</a></li>
-                        <li><a href="#"><i class="fas fa-paint-brush"></i> Graphic Design</a></li>
-                    </ul>
+                    <div class="course-dropdown" id="course-dropdown">
+                        <div class="course-dropdown-header">
+                            <span>Select Course</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="course-dropdown-content">
+                            <a href="#data-entry" class="course-nav-link" data-course="data-entry"><i class="fas fa-chart-bar"></i> Data Entry Mastery</a>
+                            <a href="#personal-branding" class="course-nav-link" data-course="personal-branding"><i class="fas fa-user-tie"></i> Personal Branding</a>
+                            <a href="#personal-finance" class="course-nav-link" data-course="personal-finance"><i class="fas fa-coins"></i> Personal Finance</a>
+                            <a href="#graphic-design" class="course-nav-link" data-course="graphic-design"><i class="fas fa-paint-brush"></i> Graphic Design</a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-title" style="margin-top: 1.5rem;">Recent Activity</div>
+                    <div id="recent-activity" style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                        <!-- Recent activity will be populated here -->
+                    </div>
                 </div>
             </aside>
 
@@ -1065,11 +1450,403 @@
                     </div>
                 </div>
 
+                <!-- Courses Section -->
+                <div class="content-section" id="courses-section">
+                    <div class="section-header">
+                        <h2 class="section-title">My Courses</h2>
+                        <div style="color: var(--gray);">Enrolled courses and progress</div>
+                    </div>
+                    
+                    <div class="courses-grid">
+                        <!-- Data Entry Course Card -->
+                        <div class="course-card" onclick="loadCourse('data-entry')">
+                            <div class="course-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="course-title">Data Entry Mastery</div>
+                            <div class="course-description">
+                                Master accurate and efficient data entry techniques with practical exercises and real-world scenarios.
+                            </div>
+                            <div class="course-progress">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                    <span>Progress</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="course-progress-bar">
+                                    <div class="course-progress-fill" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Branding Course Card -->
+                        <div class="course-card" onclick="loadCourse('personal-branding')">
+                            <div class="course-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="course-title">Personal Branding</div>
+                            <div class="course-description">
+                                Build a powerful personal brand that stands out in today's competitive digital landscape.
+                            </div>
+                            <div class="course-progress">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                    <span>Progress</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="course-progress-bar">
+                                    <div class="course-progress-fill" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Finance Course Card -->
+                        <div class="course-card" onclick="loadCourse('personal-finance')">
+                            <div class="course-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="course-title">Personal Finance</div>
+                            <div class="course-description">
+                                Learn to manage your finances, budget effectively, and build wealth for the future.
+                            </div>
+                            <div class="course-progress">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                    <span>Progress</span>
+                                    <span>25%</span>
+                                </div>
+                                <div class="course-progress-bar">
+                                    <div class="course-progress-fill" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Graphic Design Course Card -->
+                        <div class="course-card" onclick="loadCourse('graphic-design')">
+                            <div class="course-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="course-title">Graphic Design</div>
+                            <div class="course-description">
+                                Master design principles and create stunning visuals using industry-standard tools.
+                            </div>
+                            <div class="course-progress">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                    <span>Progress</span>
+                                    <span>10%</span>
+                                </div>
+                                <div class="course-progress-bar">
+                                    <div class="course-progress-fill" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Content Pages -->
+                
+                <!-- Data Entry Course Page -->
+                <div class="content-section" id="data-entry-section">
+                    <a href="#courses" class="back-btn" onclick="switchSection('courses')">
+                        <i class="fas fa-arrow-left"></i> Back to Courses
+                    </a>
+                    
+                    <div class="course-banner">
+                        <div>
+                            <h2>Data Entry Mastery</h2>
+                            <p>Master accurate and efficient data entry techniques</p>
+                        </div>
+                        <div class="course-stats">
+                            <div class="course-stat">
+                                <div class="course-stat-value">65%</div>
+                                <div class="course-stat-label">Progress</div>
+                            </div>
+                            <div class="course-stat">
+                                <div class="course-stat-value">8/12</div>
+                                <div class="course-stat-label">Modules</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-tabs">
+                        <button class="course-tab active" data-tab="overview">Overview</button>
+                        <button class="course-tab" data-tab="assignments">Assignments</button>
+                        <button class="course-tab" data-tab="quizzes">Quizzes</button>
+                        <button class="course-tab" data-tab="classwork">Classwork</button>
+                        <button class="course-tab" data-tab="resources">Resources</button>
+                    </div>
+                    
+                    <div class="course-content">
+                        <div class="course-tab-content active" id="overview-tab">
+                            <h3 style="margin-bottom: 1rem; color: var(--dark);">Course Overview</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6;">
+                                This course teaches you the essential skills for accurate and efficient data entry. 
+                                You'll learn keyboard shortcuts, data validation techniques, error checking methods, 
+                                and best practices for maintaining data integrity.
+                            </p>
+                            
+                            <div class="modules-container">
+                                <h4 style="margin-bottom: 1rem; color: var(--dark);">Course Modules</h4>
+                                
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-title">Module 1: Introduction to Data Entry</div>
+                                        <div class="module-status completed">Completed</div>
+                                    </div>
+                                    <div class="module-content">
+                                        Learn the fundamentals of data entry and basic keyboard techniques.
+                                    </div>
+                                    <div class="module-actions">
+                                        <a href="data-entry-module1.html" target="_blank" class="external-link">
+                                            <i class="fas fa-external-link-alt"></i> Open Module
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-title">Module 2: Keyboard Mastery</div>
+                                        <div class="module-status completed">Completed</div>
+                                    </div>
+                                    <div class="module-content">
+                                        Master keyboard shortcuts and efficient typing techniques.
+                                    </div>
+                                    <div class="module-actions">
+                                        <a href="data-entry-module2.html" target="_blank" class="external-link">
+                                            <i class="fas fa-external-link-alt"></i> Open Module
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-title">Module 3: Data Validation</div>
+                                        <div class="module-status in-progress">In Progress</div>
+                                    </div>
+                                    <div class="module-content">
+                                        Learn techniques for validating and verifying data accuracy.
+                                    </div>
+                                    <div class="module-actions">
+                                        <a href="data-entry-module3.html" target="_blank" class="external-link">
+                                            <i class="fas fa-external-link-alt"></i> Open Module
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="assignments-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Assignments</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem;">
+                                Complete these assignments to practice your data entry skills.
+                            </p>
+                            
+                            <div class="assignments-grid">
+                                <div class="assignment-card">
+                                    <div class="assignment-header">
+                                        <span class="assignment-subject">Data Entry</span>
+                                        <span class="assignment-due">Due: Tomorrow</span>
+                                    </div>
+                                    <div class="assignment-title">Accuracy Practice</div>
+                                    <div class="assignment-description">
+                                        Complete the data entry accuracy test with at least 95% accuracy.
+                                    </div>
+                                    <a href="data-entry-assignment1.html" target="_blank" class="external-link" style="width: 100%; text-align: center;">
+                                        Start Assignment
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="quizzes-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Quizzes</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem;">
+                                Test your knowledge with these quizzes.
+                            </p>
+                            
+                            <div class="quizzes-grid">
+                                <div class="quiz-card">
+                                    <div class="quiz-header">
+                                        <div>
+                                            <div class="quiz-title">Data Entry Fundamentals Quiz</div>
+                                            <div class="quiz-due">Available Now</div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-score">85/100</div>
+                                    <a href="data-entry-quiz1.html" target="_blank" class="external-link" style="width: 100%; text-align: center;">
+                                        Take Quiz
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="classwork-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Classwork</h3>
+                            <div class="classwork-container">
+                                <div class="classwork-item">
+                                    <div class="classwork-header">
+                                        <div class="classwork-title">Practice Exercise: Customer Data</div>
+                                        <div class="classwork-date">Due: Today</div>
+                                    </div>
+                                    <p style="color: var(--gray); margin-bottom: 1rem;">
+                                        Enter 50 customer records with accurate formatting.
+                                    </p>
+                                    <a href="data-entry-classwork1.html" target="_blank" class="external-link">
+                                        Open Exercise
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="resources-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Course Resources</h3>
+                            <div class="resources-grid">
+                                <div class="resource-card">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="resource-title">Course Textbook</div>
+                                    <div class="resource-description">
+                                        Complete course textbook with detailed explanations and examples.
+                                    </div>
+                                    <a href="data-entry-textbook.pdf" target="_blank" class="external-link">
+                                        Download PDF
+                                    </a>
+                                </div>
+                                
+                                <div class="resource-card">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                    <div class="resource-title">Video Tutorials</div>
+                                    <div class="resource-description">
+                                        Step-by-step video tutorials for each module.
+                                    </div>
+                                    <a href="data-entry-videos.html" target="_blank" class="external-link">
+                                        Watch Videos
+                                    </a>
+                                </div>
+                                
+                                <div class="resource-card">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-file-excel"></i>
+                                    </div>
+                                    <div class="resource-title">Practice Templates</div>
+                                    <div class="resource-description">
+                                        Excel templates for practicing data entry exercises.
+                                    </div>
+                                    <a href="data-entry-templates.zip" target="_blank" class="external-link">
+                                        Download Templates
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Branding Course Page -->
+                <div class="content-section" id="personal-branding-section">
+                    <a href="#courses" class="back-btn" onclick="switchSection('courses')">
+                        <i class="fas fa-arrow-left"></i> Back to Courses
+                    </a>
+                    
+                    <div class="course-banner">
+                        <div>
+                            <h2>Personal Branding</h2>
+                            <p>Build a powerful personal brand</p>
+                        </div>
+                        <div class="course-stats">
+                            <div class="course-stat">
+                                <div class="course-stat-value">40%</div>
+                                <div class="course-stat-label">Progress</div>
+                            </div>
+                            <div class="course-stat">
+                                <div class="course-stat-value">4/10</div>
+                                <div class="course-stat-label">Modules</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-tabs">
+                        <button class="course-tab active" data-tab="overview">Overview</button>
+                        <button class="course-tab" data-tab="assignments">Assignments</button>
+                        <button class="course-tab" data-tab="resources">Resources</button>
+                    </div>
+                    
+                    <div class="course-content">
+                        <div class="course-tab-content active" id="overview-tab">
+                            <h3 style="margin-bottom: 1rem; color: var(--dark);">Course Overview</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6;">
+                                Learn how to build and maintain a powerful personal brand that stands out in today's 
+                                competitive digital landscape. This course covers online presence, networking, and 
+                                professional image development.
+                            </p>
+                            
+                            <div class="modules-container">
+                                <h4 style="margin-bottom: 1rem; color: var(--dark);">Course Modules</h4>
+                                
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-title">Module 1: Brand Foundations</div>
+                                        <div class="module-status completed">Completed</div>
+                                    </div>
+                                    <div class="module-content">
+                                        Understand the fundamentals of personal branding.
+                                    </div>
+                                    <div class="module-actions">
+                                        <a href="personal-branding-module1.html" target="_blank" class="external-link">
+                                            <i class="fas fa-external-link-alt"></i> Open Module
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="assignments-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Assignments</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem;">
+                                Complete these assignments to build your personal brand.
+                            </p>
+                            
+                            <div class="assignments-grid">
+                                <div class="assignment-card">
+                                    <div class="assignment-header">
+                                        <span class="assignment-subject">Personal Branding</span>
+                                        <span class="assignment-due">Due: In 3 days</span>
+                                    </div>
+                                    <div class="assignment-title">Brand Statement</div>
+                                    <div class="assignment-description">
+                                        Write a 1000-word essay on building your personal brand online.
+                                    </div>
+                                    <a href="personal-branding-assignment1.html" target="_blank" class="external-link" style="width: 100%; text-align: center;">
+                                        Start Assignment
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-tab-content" id="resources-tab">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Course Resources</h3>
+                            <div class="resources-grid">
+                                <div class="resource-card">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="resource-title">Branding Workbook</div>
+                                    <div class="resource-description">
+                                        Interactive workbook for developing your personal brand.
+                                    </div>
+                                    <a href="personal-branding-workbook.pdf" target="_blank" class="external-link">
+                                        Download PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Assignments Section -->
                 <div class="content-section" id="assignments-section">
                     <div class="section-header">
                         <h2 class="section-title">Assignments</h2>
-                        <button class="game-btn game-btn-primary" id="new-assignment-btn">New Assignment</button>
+                        <div style="color: var(--gray);">All your pending assignments</div>
                     </div>
                     
                     <div class="assignments-grid" id="assignments-container">
@@ -1391,9 +2168,9 @@ console.log("Hello, Hekima Hub!");</textarea>
                 <h4>Learning Portal</h4>
                 <ul>
                     <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#courses">Courses</a></li>
                     <li><a href="#assignments">Assignments</a></li>
                     <li><a href="#coding">Coding Lab</a></li>
-                    <li><a href="#games">Learning Games</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -1451,7 +2228,8 @@ console.log("Hello, Hekima Hub!");</textarea>
                 subject: "Data Entry Mastery",
                 due: "Tomorrow",
                 description: "Complete the data entry accuracy test with at least 95% accuracy.",
-                progress: 75
+                progress: 75,
+                link: "data-entry-assignment1.html"
             },
             {
                 id: 2,
@@ -1459,7 +2237,8 @@ console.log("Hello, Hekima Hub!");</textarea>
                 subject: "Personal Branding",
                 due: "In 3 days",
                 description: "Write a 1000-word essay on building your personal brand online.",
-                progress: 30
+                progress: 30,
+                link: "personal-branding-assignment1.html"
             },
             {
                 id: 3,
@@ -1467,9 +2246,42 @@ console.log("Hello, Hekima Hub!");</textarea>
                 subject: "Personal Finance",
                 due: "Next Week",
                 description: "Create a monthly budget spreadsheet with formulas and charts.",
-                progress: 10
+                progress: 10,
+                link: "personal-finance-assignment1.html"
             }
         ];
+        
+        // Courses data
+        const courses = {
+            'data-entry': {
+                name: 'Data Entry Mastery',
+                progress: 65,
+                modules: 12,
+                completed: 8,
+                color: '#2E8B57'
+            },
+            'personal-branding': {
+                name: 'Personal Branding',
+                progress: 40,
+                modules: 10,
+                completed: 4,
+                color: '#4169E1'
+            },
+            'personal-finance': {
+                name: 'Personal Finance',
+                progress: 25,
+                modules: 8,
+                completed: 2,
+                color: '#800000'
+            },
+            'graphic-design': {
+                name: 'Graphic Design',
+                progress: 10,
+                modules: 12,
+                completed: 1,
+                color: '#FFD700'
+            }
+        };
         
         // Coding challenges
         const codingChallenges = {
@@ -1678,7 +2490,6 @@ console.log(isPalindrome("hello"));   // Should return false`
         
         // Toggle user dropdown
         function toggleUserDropdown() {
-            // Implementation for dropdown if needed
             showToast(`Logged in as ${currentUser.name}`);
         }
         
@@ -1728,6 +2539,12 @@ console.log(isPalindrome("hello"));   // Should return false`
             
             // Setup event listeners
             setupEventListeners();
+            
+            // Setup course dropdown
+            setupCourseDropdown();
+            
+            // Setup course tabs
+            setupCourseTabs();
         }
         
         // Initialize CodeMirror editor
@@ -1776,6 +2593,70 @@ console.log(isPalindrome("hello"));   // Should return false`
             });
         }
         
+        // Setup course dropdown
+        function setupCourseDropdown() {
+            const dropdownHeader = document.querySelector('.course-dropdown-header');
+            const dropdown = document.getElementById('course-dropdown');
+            
+            dropdownHeader.addEventListener('click', () => {
+                dropdown.classList.toggle('active');
+            });
+            
+            // Course navigation links
+            document.querySelectorAll('.course-nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const courseId = this.getAttribute('data-course');
+                    loadCourse(courseId);
+                    dropdown.classList.remove('active');
+                });
+            });
+        }
+        
+        // Setup course tabs
+        function setupCourseTabs() {
+            document.querySelectorAll('.course-tabs').forEach(tabContainer => {
+                const tabs = tabContainer.querySelectorAll('.course-tab');
+                const tabContents = tabContainer.parentElement.querySelectorAll('.course-tab-content');
+                
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        const tabId = this.getAttribute('data-tab');
+                        
+                        // Update active tab
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Show corresponding content
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.id === `${tabId}-tab`) {
+                                content.classList.add('active');
+                            }
+                        });
+                    });
+                });
+            });
+        }
+        
+        // Load course
+        function loadCourse(courseId) {
+            switchSection(courseId);
+            
+            // Update sidebar navigation
+            document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+            document.querySelector('[data-section="courses"]').classList.add('active');
+            
+            // Update recent activity
+            const recentActivity = document.getElementById('recent-activity');
+            recentActivity.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;">
+                    <i class="fas fa-book-open" style="color: var(--primary);"></i>
+                    <span>Currently viewing: ${courses[courseId].name}</span>
+                </div>
+            `;
+        }
+        
         // Run code in editor
         function runCode() {
             const code = window.codeEditor.getValue();
@@ -1803,6 +2684,7 @@ console.log(isPalindrome("hello"));   // Should return false`
                 
                 // Display output
                 outputDiv.textContent = logs.join('\n') || 'Code executed successfully (no output)';
+                outputDiv.style.color = '#f8f8f2';
                 
             } catch (error) {
                 outputDiv.textContent = `Error: ${error.message}`;
@@ -1862,9 +2744,6 @@ console.log(isPalindrome("hello"));   // Should return false`
             
             document.getElementById('save-note').addEventListener('click', saveNote);
             document.getElementById('cancel-note').addEventListener('click', cancelNote);
-            
-            // Assignments
-            document.getElementById('new-assignment-btn').addEventListener('click', createNewAssignment);
         }
         
         // Switch between sections
@@ -1875,10 +2754,22 @@ console.log(isPalindrome("hello"));   // Should return false`
             });
             
             // Show selected section
-            document.getElementById(`${sectionId}-section`).classList.add('active');
+            const sectionElement = document.getElementById(`${sectionId}-section`);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+            } else {
+                document.getElementById('dashboard-section').classList.add('active');
+            }
             
             // Update URL hash
             window.location.hash = sectionId;
+            
+            // Update sidebar navigation for course pages
+            if (sectionId.includes('-')) {
+                document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                const coursesLink = document.querySelector('[data-section="courses"]');
+                if (coursesLink) coursesLink.classList.add('active');
+            }
         }
         
         // Data Entry Game Functions
@@ -2052,7 +2943,6 @@ console.log(isPalindrome("hello"));   // Should return false`
         }
         
         function filterNotes(filter) {
-            // Implementation for filtering notes
             displayNotes();
         }
         
@@ -2080,7 +2970,9 @@ console.log(isPalindrome("hello"));   // Should return false`
                             <div class="progress-fill" style="width: ${assignment.progress}%"></div>
                         </div>
                     </div>
-                    <button class="game-btn game-btn-primary" style="width: 100%; margin-top: 1rem;">Continue Assignment</button>
+                    <a href="${assignment.link}" target="_blank" class="external-link" style="width: 100%; text-align: center;">
+                        Open Assignment
+                    </a>
                 `;
                 
                 container.appendChild(card);
@@ -2099,13 +2991,12 @@ console.log(isPalindrome("hello"));   // Should return false`
                     <div style="font-size: 0.9rem; color: var(--gray); margin-top: 0.25rem;">
                         ${assignment.subject} • Due: ${assignment.due}
                     </div>
+                    <a href="${assignment.link}" target="_blank" class="external-link" style="margin-top: 0.5rem; padding: 4px 8px; font-size: 0.8rem;">
+                        Open
+                    </a>
                 `;
                 upcomingContainer.appendChild(item);
             });
-        }
-        
-        function createNewAssignment() {
-            showToast('New assignment feature coming soon!', 'success');
         }
         
         // Game loading
@@ -2153,6 +3044,7 @@ console.log(isPalindrome("hello"));   // Should return false`
             if (type === 'success') {
                 toast.classList.add('show');
                 toast.querySelector('i').className = 'fas fa-check-circle';
+                toast.style.background = 'var(--primary)';
             } else if (type === 'error') {
                 toast.classList.add('show');
                 toast.querySelector('i').className = 'fas fa-exclamation-circle';
@@ -2161,7 +3053,6 @@ console.log(isPalindrome("hello"));   // Should return false`
             
             setTimeout(() => {
                 toast.classList.remove('show');
-                toast.style.background = ''; // Reset to default
             }, 3000);
         }
         
@@ -2209,9 +3100,17 @@ console.log(isPalindrome("hello"));   // Should return false`
             // Check URL hash for section
             if (window.location.hash) {
                 const section = window.location.hash.substring(1);
-                const link = document.querySelector(`[data-section="${section}"]`);
-                if (link) {
-                    link.click();
+                if (section && document.getElementById(`${section}-section`)) {
+                    switchSection(section);
+                    
+                    // Update sidebar navigation
+                    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                    if (section.includes('-')) {
+                        document.querySelector('[data-section="courses"]').classList.add('active');
+                    } else {
+                        const link = document.querySelector(`[data-section="${section}"]`);
+                        if (link) link.classList.add('active');
+                    }
                 }
             }
         });
